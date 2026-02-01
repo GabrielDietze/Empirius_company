@@ -1,0 +1,278 @@
+/* Bento Card — vidro fosco que se separa do fundo */
+.bento-card {
+  position: relative;
+  border-radius: 20px;
+  padding: 28px;
+  background: rgba(17, 17, 17, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow: hidden;
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+.bento-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+/* Luz e sombra: drop-shadow ciano atrás dos cards (emissão suave) */
+.bento-card--cyan:hover {
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 0 48px rgba(34, 211, 238, 0.12),
+    0 0 80px rgba(34, 211, 238, 0.06);
+}
+
+.bento-card--purple:hover {
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 0 48px rgba(167, 139, 250, 0.12),
+    0 0 80px rgba(167, 139, 250, 0.06);
+}
+
+.bento-card--lime:hover {
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 0 48px rgba(163, 230, 53, 0.12),
+    0 0 80px rgba(163, 230, 53, 0.06);
+}
+
+.bento-card--pink:hover {
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 0 48px rgba(244, 114, 182, 0.12),
+    0 0 80px rgba(244, 114, 182, 0.06);
+}
+
+.bento-card__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.bento-card__icon {
+  margin-bottom: 16px;
+}
+
+.bento-card__icon-emoji {
+  font-size: 2rem;
+}
+
+/* Títulos ~50% maiores: 30–32px */
+.bento-card__title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* Texto descritivo 16–18px, mais alto, cor clara */
+.bento-card__description {
+  font-size: 1.125rem;
+  color: #e0e0e0;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+/* Destaque: só benefício/dor, cor do accent do card */
+.bento-card__description .bento-card__highlight {
+  color: var(--neon-cyan);
+  font-weight: 600;
+}
+
+.bento-card--purple .bento-card__description .bento-card__highlight {
+  color: var(--neon-purple);
+}
+
+.bento-card--lime .bento-card__description .bento-card__highlight {
+  color: var(--neon-lime);
+}
+
+.bento-card--pink .bento-card__description .bento-card__highlight {
+  color: var(--neon-pink);
+}
+
+/* Lista de benefícios com checkmark (card Sites) */
+.bento-card__benefits {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bento-card__benefits li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9375rem;
+  color: #e0e0e0;
+  line-height: 1.4;
+}
+
+.bento-card__check {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(34, 211, 238, 0.2);
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  border-radius: 50%;
+  color: #22d3ee;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.bento-card--purple .bento-card__check {
+  background: rgba(167, 139, 250, 0.2);
+  border-color: rgba(167, 139, 250, 0.4);
+  color: #a78bfa;
+}
+
+.bento-card--lime .bento-card__check {
+  background: rgba(163, 230, 53, 0.2);
+  border-color: rgba(163, 230, 53, 0.4);
+  color: #a3e635;
+}
+
+.bento-card--pink .bento-card__check {
+  background: rgba(244, 114, 182, 0.2);
+  border-color: rgba(244, 114, 182, 0.4);
+  color: #f472b6;
+}
+
+/* Link discreto no rodapé do card */
+.bento-card__action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #e0e0e0;
+  text-decoration: none;
+  transition: color 0.2s ease, gap 0.2s ease;
+}
+
+.bento-card__action:hover {
+  color: #ffffff;
+  gap: 0.4em;
+}
+
+.bento-card--cyan .bento-card__action:hover {
+  color: var(--neon-cyan);
+}
+
+.bento-card--purple .bento-card__action:hover {
+  color: var(--neon-purple);
+}
+
+.bento-card--lime .bento-card__action:hover {
+  color: var(--neon-lime);
+}
+
+.bento-card--pink .bento-card__action:hover {
+  color: var(--neon-pink);
+}
+
+/* Sizes para Bento Grid (grid definido na seção) */
+.bento-card--small,
+.bento-card--medium {
+  grid-column: span 1;
+}
+
+.bento-card--large {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+/* Card largo (Estratégia): layout horizontal — ícone à esquerda, conteúdo à direita */
+.bento-card--wide {
+  padding: 32px 40px;
+}
+
+.bento-card__wide-inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+}
+
+.bento-card__wide-icon {
+  flex: 0 0 auto;
+  width: 112px;
+  height: 112px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bento-card__wide-icon .service-icon-3d {
+  width: 112px;
+  height: 112px;
+  margin-bottom: 0;
+}
+
+.bento-card__wide-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.bento-card__wide-content .bento-card__title {
+  margin-bottom: 12px;
+}
+
+.bento-card__wide-content .bento-card__description {
+  margin-bottom: 0;
+}
+
+.bento-card__wide-content .bento-card__action {
+  margin-top: 20px;
+  padding-top: 16px;
+}
+
+@media (max-width: 768px) {
+  .bento-card--wide {
+    padding: 28px 24px;
+  }
+
+  .bento-card__wide-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .bento-card__wide-icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .bento-card__wide-icon .service-icon-3d {
+    width: 64px;
+    height: 64px;
+  }
+
+  .bento-card--large {
+    grid-row: span 1;
+  }
+}

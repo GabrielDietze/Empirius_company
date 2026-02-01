@@ -1,0 +1,242 @@
+/* Hero — Macro typography + Mesh gradients + Parallax */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 72px 24px 120px;
+  overflow: hidden;
+}
+
+/* Mesh gradients — manchas orgânicas */
+.hero__mesh {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero__mesh-1 {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  top: -20%;
+  right: -20%;
+  background: radial-gradient(ellipse 80% 80% at 70% 30%, rgba(34, 211, 238, 0.15) 0%, transparent 50%);
+  filter: blur(60px);
+}
+
+.hero__mesh-2 {
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  bottom: -10%;
+  left: -10%;
+  background: radial-gradient(ellipse 60% 60% at 30% 70%, rgba(167, 139, 250, 0.12) 0%, transparent 50%);
+  filter: blur(80px);
+}
+
+.hero__mesh-3 {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(163, 230, 53, 0.06) 0%, transparent 60%);
+  filter: blur(40px);
+}
+
+/* Luz ciano difusa canto superior direito — profundidade */
+.hero__mesh::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 50%;
+  height: 60%;
+  background: radial-gradient(ellipse 60% 60% at 80% 20%, rgba(34, 211, 238, 0.12) 0%, transparent 50%);
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.hero__text {
+  max-width: 560px;
+}
+
+/* Elemento 3D abstrato — vidro/geométrico com luz ciano, rotação lenta */
+.hero__visual {
+  position: relative;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 800px;
+}
+
+.hero__shape {
+  position: absolute;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.12) 0%, rgba(167, 139, 250, 0.08) 50%, transparent 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 0 60px rgba(34, 211, 238, 0.15), inset 0 0 40px rgba(34, 211, 238, 0.05);
+}
+
+.hero__shape--1 {
+  width: 200px;
+  height: 200px;
+  animation: heroShapeRotate1 22s linear infinite;
+}
+
+.hero__shape--2 {
+  width: 120px;
+  height: 120px;
+  top: 50%;
+  left: 50%;
+  margin-top: -60px;
+  margin-left: -60px;
+  animation: heroShapeRotate2 18s linear infinite reverse;
+}
+
+@keyframes heroShapeRotate1 {
+  from { transform: rotateY(-15deg) rotateX(10deg) rotateZ(0deg); }
+  to { transform: rotateY(-15deg) rotateX(10deg) rotateZ(360deg); }
+}
+
+@keyframes heroShapeRotate2 {
+  from { transform: translate(-50%, -50%) rotateY(25deg) rotateX(-5deg) rotateZ(0deg); }
+  to { transform: translate(-50%, -50%) rotateY(25deg) rotateX(-5deg) rotateZ(-360deg); }
+}
+
+.hero__tag {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--neon-cyan);
+  margin-bottom: 16px;
+}
+
+/* Macro typography — título gigante, tracking apertado */
+.hero__title {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: var(--tracking-tighter);
+  color: var(--text);
+  margin-bottom: 24px;
+  max-width: 14ch;
+}
+
+.hero__highlight {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 40px var(--glow);
+}
+
+.hero__subtitle {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  max-width: 42ch;
+  margin-bottom: 40px;
+  line-height: 1.65;
+}
+
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Botões com micro-interaction */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s var(--ease-out), box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn:hover {
+  transform: scale(1.03);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn--primary {
+  background: var(--neon-cyan);
+  color: var(--bg);
+}
+
+.btn--primary:hover {
+  box-shadow: 0 0 32px rgba(34, 211, 238, 0.5);
+}
+
+.btn--glass {
+  background: var(--glass);
+  color: var(--text);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--blur));
+}
+
+.btn--glass:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 24px rgba(34, 211, 238, 0.2);
+}
+
+@media (max-width: 900px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero__text {
+    max-width: none;
+  }
+
+  .hero__cta {
+    justify-content: center;
+  }
+
+  .hero__title {
+    max-width: none;
+  }
+
+  .hero__visual {
+    min-height: 220px;
+  }
+
+  .hero__shape--1 {
+    width: 140px;
+    height: 140px;
+  }
+
+  .hero__shape--2 {
+    width: 90px;
+    height: 90px;
+    margin-top: -45px;
+    margin-left: -45px;
+  }
+}

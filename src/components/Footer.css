@@ -1,0 +1,31 @@
+.footer {
+  background: var(--bg-elevated);
+  border-top: 1px solid var(--border);
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.footer__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer__logo {
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: var(--tracking-tight);
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.footer__text {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+}
+
+.footer__copy {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  opacity: 0.7;
+}

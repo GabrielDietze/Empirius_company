@@ -1,0 +1,85 @@
+/* Ícones 3D — “diamante”: luz própria + drop-shadow de LUZ (sombra projetada colorida) */
+.service-icon-3d {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.service-icon-3d__svg {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s var(--ease-out);
+}
+
+/* Sombra de LUZ (não preta): ícone parece iluminar o card */
+.service-icon-3d--sites .service-icon-3d__svg {
+  filter:
+    drop-shadow(0 0 12px rgba(0, 255, 255, 0.5))
+    drop-shadow(0 0 24px rgba(34, 211, 238, 0.35))
+    drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+}
+
+.service-icon-3d--redes .service-icon-3d__svg {
+  filter:
+    drop-shadow(0 0 12px rgba(167, 139, 250, 0.5))
+    drop-shadow(0 0 24px rgba(167, 139, 250, 0.35))
+    drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+}
+
+.service-icon-3d--google .service-icon-3d__svg {
+  filter:
+    drop-shadow(0 0 12px rgba(0, 255, 255, 0.5))
+    drop-shadow(0 0 24px rgba(34, 211, 238, 0.35))
+    drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+}
+
+.service-icon-3d--estrategia .service-icon-3d__svg {
+  filter:
+    drop-shadow(0 0 12px rgba(244, 114, 182, 0.45))
+    drop-shadow(0 0 20px rgba(34, 211, 238, 0.3))
+    drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+}
+
+.bento-card:hover .service-icon-3d__svg {
+  transform: scale(1.05);
+}
+
+.bento-card:hover .service-icon-3d--sites .service-icon-3d__svg {
+  filter:
+    drop-shadow(0 0 18px rgba(0, 255, 255, 0.6))
+    drop-shadow(0 0 32px rgba(34, 211, 238, 0.45))
+    drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+}
+
+.bento-card:hover .service-icon-3d--redes .service-icon-3d__svg {
+  filter:
+    drop-shadow(0 0 18px rgba(167, 139, 250, 0.6))
+    drop-shadow(0 0 32px rgba(167, 139, 250, 0.45))
+    drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+}
+
+.bento-card:hover .service-icon-3d--google .service-icon-3d__svg {
+  filter:
+    drop-shadow(0 0 18px rgba(0, 255, 255, 0.6))
+    drop-shadow(0 0 32px rgba(34, 211, 238, 0.45))
+    drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+}
+
+.bento-card:hover .service-icon-3d--estrategia .service-icon-3d__svg {
+  filter:
+    drop-shadow(0 0 18px rgba(244, 114, 182, 0.55))
+    drop-shadow(0 0 28px rgba(34, 211, 238, 0.4))
+    drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+}
+
+/* Cards large/wide — ícone um pouco maior */
+.bento-card--large .service-icon-3d,
+.bento-card--wide .service-icon-3d {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 24px;
+}

@@ -1,0 +1,82 @@
+/* About — glass + mesh gradient + forma abstrata */
+.bento-about {
+  position: relative;
+  padding: 120px 24px;
+  overflow: hidden;
+}
+
+.bento-about__mesh {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 80% 50%, rgba(167, 139, 250, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.bento-about__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.bento-about__title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: var(--tracking-tighter);
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.bento-about__text p {
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  line-height: 1.65;
+}
+
+.bento-about__text .btn {
+  margin-top: 16px;
+}
+
+.bento-about__visual {
+  position: relative;
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Forma 3D abstrata (CSS) — “vidro” / geométrico */
+.bento-about__shape {
+  width: 280px;
+  height: 280px;
+  border: 2px solid var(--glass-border);
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.08) 0%, rgba(167, 139, 250, 0.06) 100%);
+  backdrop-filter: blur(10px);
+  animation: morph 12s ease-in-out infinite;
+}
+
+@keyframes morph {
+  0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+  50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+}
+
+@media (max-width: 768px) {
+  .bento-about__inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .bento-about__visual {
+    min-height: 200px;
+  }
+
+  .bento-about__shape {
+    width: 200px;
+    height: 200px;
+  }
+}

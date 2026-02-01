@@ -1,0 +1,224 @@
+/* Mockups — dispositivos e dashboard */
+.mockup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 160px;
+}
+
+.mockup--macbook {
+  min-height: 220px;
+  padding: 16px 0;
+}
+
+.mockup--iphone {
+  min-height: 200px;
+  gap: 16px;
+}
+
+.mockup--iphones {
+  min-height: 200px;
+  gap: 8px;
+}
+
+.mockup--dashboard {
+  min-height: 140px;
+  padding: 20px;
+}
+
+/* MacBook */
+.mockup__macbook {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+}
+
+.mockup__macbook .mockup__screen {
+  aspect-ratio: 16 / 10;
+  border-radius: 12px 12px 0 0;
+  background: linear-gradient(145deg, #1a1a2e 0%, #16213e 50%);
+  border: 3px solid rgba(255, 255, 255, 0.08);
+  border-bottom: none;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), inset 0 0 60px rgba(34, 211, 238, 0.05);
+}
+
+.mockup__screen-content {
+  width: 100%;
+  height: 100%;
+}
+
+.mockup__screen-site {
+  background: linear-gradient(180deg, rgba(34, 211, 238, 0.08) 0%, transparent 40%);
+  background-image: radial-gradient(ellipse 60% 40% at 50% 20%, rgba(34, 211, 238, 0.12) 0%, transparent 50%);
+}
+
+.mockup__screen--placeholder {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  min-height: 80px;
+}
+
+.mockup__screen-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mockup__base {
+  height: 12px;
+  background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
+  border-radius: 0 0 24px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  margin-top: -2px;
+  max-width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* iPhone */
+.mockup__iphone {
+  width: 100px;
+  aspect-ratio: 9 / 19.5;
+  max-height: 180px;
+  background: linear-gradient(145deg, #1c1c1e 0%, #2c2c2e 100%);
+  border-radius: 28px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+.mockup__iphone .mockup__screen {
+  position: absolute;
+  inset: 8px 6px 8px 6px;
+  border-radius: 22px;
+  background: #0a0a0a;
+  overflow: hidden;
+}
+
+.mockup__notch {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 8px;
+  background: #000;
+  border-radius: 8px;
+  z-index: 2;
+}
+
+.mockup__screen-maps {
+  background: linear-gradient(180deg, #1a1a2e 0%, #0d1b2a 100%);
+  background-image: radial-gradient(ellipse 80% 80% at 50% 30%, rgba(34, 211, 238, 0.1) 0%, transparent 50%);
+}
+
+.mockup__screen-feed {
+  background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 100%);
+}
+
+.mockup__badge {
+  padding: 10px 16px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--neon-cyan);
+  white-space: nowrap;
+}
+
+.mockup__badge--glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--blur));
+  box-shadow: 0 0 24px rgba(34, 211, 238, 0.2);
+}
+
+.mockup__badge-value {
+  letter-spacing: 0.02em;
+}
+
+/* iPhones em camadas */
+.mockup--iphones {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 400px;
+}
+
+.mockup__iphone--back {
+  position: absolute;
+  transform: scale(0.75) translateX(-30px);
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.mockup__iphone--mid {
+  position: absolute;
+  transform: scale(0.88) translateX(-12px);
+  opacity: 0.75;
+  z-index: 1;
+}
+
+.mockup__iphone--front {
+  position: relative;
+  z-index: 2;
+}
+
+/* Dashboard */
+.mockup__dashboard {
+  width: 100%;
+  height: 100%;
+  min-height: 120px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  backdrop-filter: blur(var(--blur));
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mockup__chart {
+  flex: 1;
+  min-height: 60px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.mockup__chart svg {
+  width: 100%;
+  height: 100%;
+  min-height: 50px;
+}
+
+.mockup__kpi {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--neon-lime);
+  letter-spacing: var(--tracking-tight);
+  text-shadow: 0 0 20px rgba(163, 230, 53, 0.4);
+}
+
+/* Ajustes por tamanho do card */
+.project-card--large .mockup--macbook {
+  min-height: 280px;
+}
+
+.project-card--large .mockup__macbook {
+  max-width: 420px;
+}
+
+.project-card--medium .mockup__iphone {
+  max-height: 140px;
+  width: 72px;
+}
+
+.project-card--medium .mockup--iphones .mockup__iphone {
+  max-height: 120px;
+  width: 64px;
+}

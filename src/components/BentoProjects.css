@@ -1,0 +1,387 @@
+/* Bento Projects — Vitrine estática x Palco dinâmico */
+.bento-projects {
+  background: var(--bg-elevated);
+}
+
+.showcase-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Card: dois lados — esquerda fixa, direita carrossel */
+.showcase-card {
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s ease, border-color 0.3s ease;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 320px;
+  align-items: center;
+}
+
+.showcase-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.showcase-card--cyan:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 0 48px rgba(34, 211, 238, 0.08);
+}
+
+.showcase-card--purple:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 0 48px rgba(167, 139, 250, 0.08);
+}
+
+.showcase-card--lime:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 0 48px rgba(163, 230, 53, 0.08);
+}
+
+.showcase-card--pink:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 0 48px rgba(244, 114, 182, 0.08);
+}
+
+/* Lado esquerdo — base fixa (não se mexe ao trocar de slide) */
+.showcase-card__anchor {
+  padding: 32px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.showcase-card__title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.showcase-card__description {
+  font-size: 1.125rem;
+  color: #e0e0e0;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+.showcase-card__description .showcase-card__highlight {
+  font-weight: 600;
+}
+
+.showcase-card--cyan .showcase-card__highlight {
+  color: var(--neon-cyan);
+}
+
+.showcase-card--purple .showcase-card__highlight {
+  color: var(--neon-purple);
+}
+
+.showcase-card--lime .showcase-card__highlight {
+  color: var(--neon-lime);
+}
+
+.showcase-card--pink .showcase-card__highlight {
+  color: var(--neon-pink);
+}
+
+/* Navegação: setas + barra de progresso */
+.showcase-card__nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.showcase-card__arrow {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: #e0e0e0;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.showcase-card__arrow:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.showcase-card--cyan .showcase-card__arrow:hover {
+  color: var(--neon-cyan);
+  border-color: rgba(34, 211, 238, 0.4);
+}
+
+.showcase-card--purple .showcase-card__arrow:hover {
+  color: var(--neon-purple);
+  border-color: rgba(167, 139, 250, 0.4);
+}
+
+.showcase-card--lime .showcase-card__arrow:hover {
+  color: var(--neon-lime);
+  border-color: rgba(163, 230, 53, 0.4);
+}
+
+.showcase-card--pink .showcase-card__arrow:hover {
+  color: var(--neon-pink);
+  border-color: rgba(244, 114, 182, 0.4);
+}
+
+.showcase-card__progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.showcase-card__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.showcase-card__dot:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.showcase-card__dot--active {
+  background: var(--neon-cyan);
+  transform: scale(1.2);
+}
+
+.showcase-card--purple .showcase-card__dot--active {
+  background: var(--neon-purple);
+}
+
+.showcase-card--lime .showcase-card__dot--active {
+  background: var(--neon-lime);
+}
+
+.showcase-card--pink .showcase-card__dot--active {
+  background: var(--neon-pink);
+}
+
+/* Lado direito — palco dinâmico (mockup + etiqueta) */
+.showcase-card__stage {
+  padding: 24px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  position: relative;
+}
+
+.showcase-card__carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.showcase-card__slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  animation: showcase-fade 0.35s ease;
+}
+
+@keyframes showcase-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.showcase-card__mockup-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.showcase-card__mockup-wrap .mockup--macbook {
+  min-height: 240px;
+}
+
+.showcase-card__mockup-wrap .mockup__macbook {
+  max-width: 340px;
+}
+
+.showcase-card__mockup-wrap .mockup--iphones {
+  min-height: 200px;
+}
+
+.showcase-card__mockup-wrap .mockup--iphone {
+  min-height: 200px;
+}
+
+.showcase-card__mockup-wrap .mockup--dashboard {
+  min-height: 160px;
+  width: 100%;
+  max-width: 320px;
+}
+
+/* Etiqueta de vidro flutuante — canto inferior da área da imagem */
+.showcase-badge {
+  margin-top: 12px;
+  padding: 12px 18px;
+  border-radius: 14px;
+  background: rgba(17, 17, 17, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-self: center;
+  flex-shrink: 0;
+}
+
+.showcase-badge__name {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.01em;
+}
+
+.showcase-badge__niche {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.showcase-badge--cyan .showcase-badge__niche {
+  color: rgba(34, 211, 238, 0.9);
+}
+
+.showcase-badge--purple .showcase-badge__niche {
+  color: rgba(167, 139, 250, 0.9);
+}
+
+.showcase-badge--lime .showcase-badge__niche {
+  color: rgba(163, 230, 53, 0.9);
+}
+
+.showcase-badge--pink .showcase-badge__niche {
+  color: rgba(244, 114, 182, 0.9);
+}
+
+.showcase-badge--clickable {
+  text-decoration: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.showcase-badge--clickable:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+}
+
+.showcase-badge--cyan.showcase-badge--clickable:hover {
+  border-color: rgba(34, 211, 238, 0.4);
+  box-shadow: 0 8px 28px rgba(34, 211, 238, 0.15);
+}
+
+.showcase-badge--purple.showcase-badge--clickable:hover {
+  border-color: rgba(167, 139, 250, 0.4);
+  box-shadow: 0 8px 28px rgba(167, 139, 250, 0.15);
+}
+
+.showcase-badge__link {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 4px;
+  transition: color 0.2s ease;
+}
+
+.showcase-badge--clickable:hover .showcase-badge__link {
+  color: var(--neon-cyan);
+}
+
+.showcase-badge--purple.showcase-badge--clickable:hover .showcase-badge__link {
+  color: var(--neon-purple);
+}
+
+.showcase-badge--lime.showcase-badge--clickable:hover .showcase-badge__link {
+  color: var(--neon-lime);
+}
+
+.showcase-badge--pink.showcase-badge--clickable:hover .showcase-badge__link {
+  color: var(--neon-pink);
+}
+
+.showcase-badge--lime.showcase-badge--clickable:hover {
+  border-color: rgba(163, 230, 53, 0.4);
+  box-shadow: 0 8px 28px rgba(163, 230, 53, 0.15);
+}
+
+.showcase-badge--pink.showcase-badge--clickable:hover {
+  border-color: rgba(244, 114, 182, 0.4);
+  box-shadow: 0 8px 28px rgba(244, 114, 182, 0.15);
+}
+
+.bento-section__note {
+  margin-top: 32px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .showcase-card {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    min-height: auto;
+  }
+
+  .showcase-card__anchor {
+    padding: 24px 24px;
+    order: 1;
+  }
+
+  .showcase-card__title {
+    font-size: 1.5rem;
+  }
+
+  .showcase-card__stage {
+    padding: 20px 24px;
+    min-height: 260px;
+    order: 2;
+  }
+
+  .showcase-card__mockup-wrap .mockup__macbook {
+    max-width: 280px;
+  }
+
+  .showcase-card__mockup-wrap .mockup--iphones .mockup__iphone {
+    max-height: 140px;
+    width: 72px;
+  }
+}
