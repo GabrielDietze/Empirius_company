@@ -1,8 +1,11 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { showcases } from '../data/projects'
 import type { Showcase } from '../data/projects'
 import { ProjectMockup } from './ProjectMockup'
+import { DeviceStack } from './DeviceStack'
 import './BentoProjects.css'
+
+const PARALLAX_DURATION_MS = 420
 
 function ClientBadge({
   name,
@@ -45,17 +48,95 @@ function ClientBadge({
 
 function ShowcaseCard({ showcase, index: sectionIndex }: { showcase: Showcase; index: number }) {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+  const [nextIndex, setNextIndex] = useState(0)
+  const [direction, setDirection] = useState<'next' | 'prev' | null>(null)
+
   const total = showcase.projects.length
   const project = showcase.projects[currentIndex]
+  const useStack = showcase.mockupType === 'macbook'
 
-  const goPrev = () => setCurrentIndex((i) => (i === 0 ? total - 1 : i - 1))
-  const goNext = () => setCurrentIndex((i) => (i === total - 1 ? 0 : i + 1))
+  const goPrev = useCallback(() => {
+    if (total <= 1 || isTransitioning) return
+    const prev = currentIndex === 0 ? total - 1 : currentIndex - 1
+    setNextIndex(prev)
+    setDirection('prev')
+    setIsTransitioning(true)
+    setTimeout(() => {
+      setCurrentIndex(prev)
+      setIsTransitioning(false)
+      setDirection(null)
+    }, PARALLAX_DURATION_MS)
+  }, [currentIndex, total, isTransitioning])
+
+  const goNext = useCallback(() => {
+    if (total <= 1 || isTransitioning) return
+    const next = currentIndex === total - 1 ? 0 : currentIndex + 1
+    setNextIndex(next)
+    setDirection('next')
+    setIsTransitioning(true)
+    setTimeout(() => {
+      setCurrentIndex(next)
+      setIsTransitioning(false)
+      setDirection(null)
+    }, PARALLAX_DURATION_MS)
+  }, [currentIndex, total, isTransitioning])
+
+  const goTo = useCallback(
+    (i: number) => {
+      if (i === currentIndex || isTransitioning) return
+      setNextIndex(i)
+      setDirection(i > currentIndex ? 'next' : 'prev')
+      setIsTransitioning(true)
+      setTimeout(() => {
+        setCurrentIndex(i)
+        setIsTransitioning(false)
+        setDirection(null)
+      }, PARALLAX_DURATION_MS)
+    },
+    [currentIndex, isTransitioning]
+  )
+
+  const renderStageContent = (proj: (typeof showcase.projects)[0], slideClass: string) => {
+    if (useStack) {
+      return (
+        <div className={`showcase-card__slide ${slideClass}`}>
+          <div className="showcase-card__stack-wrap">
+            <DeviceStack imageUrl={proj.image || undefined} />
+            <div className="showcase-card__badge-on-iphone">
+              <ClientBadge
+                name={proj.name}
+                niche={proj.niche}
+                accent={showcase.accent}
+                url={proj.url}
+              />
+            </div>
+          </div>
+        </div>
+      )
+    }
+    return (
+      <div className={`showcase-card__slide ${slideClass}`}>
+        <div className="showcase-card__mockup-wrap">
+          <ProjectMockup
+            type={showcase.mockupType}
+            imageUrl={proj.image || undefined}
+          />
+        </div>
+        <ClientBadge
+          name={proj.name}
+          niche={proj.niche}
+          accent={showcase.accent}
+          url={proj.url}
+        />
+      </div>
+    )
+  }
 
   return (
     <article
       className={`showcase-card showcase-card--${showcase.accent} reveal reveal-delay-${Math.min(sectionIndex + 3, 4)}`}
     >
-      {/* Lado esquerdo: base fixa — não muda com o carrossel */}
       <div className="showcase-card__anchor">
         <h3 className="showcase-card__title">{showcase.serviceTitle}</h3>
         <p className="showcase-card__description">
@@ -88,7 +169,7 @@ function ShowcaseCard({ showcase, index: sectionIndex }: { showcase: Showcase; i
                   aria-selected={i === currentIndex}
                   aria-label={`Projeto ${i + 1}`}
                   className={`showcase-card__dot ${i === currentIndex ? 'showcase-card__dot--active' : ''}`}
-                  onClick={() => setCurrentIndex(i)}
+                  onClick={() => goTo(i)}
                 />
               ))}
             </div>
@@ -104,23 +185,16 @@ function ShowcaseCard({ showcase, index: sectionIndex }: { showcase: Showcase; i
         )}
       </div>
 
-      {/* Lado direito: palco dinâmico — mockup + etiqueta que deslizam juntos */}
       <div className="showcase-card__stage">
-        <div className="showcase-card__carousel">
-          <div key={currentIndex} className="showcase-card__slide">
-            <div className="showcase-card__mockup-wrap">
-              <ProjectMockup
-                type={showcase.mockupType}
-                imageUrl={project.image || undefined}
-              />
-            </div>
-            <ClientBadge
-              name={project.name}
-              niche={project.niche}
-              accent={showcase.accent}
-              url={project.url}
-            />
-          </div>
+        <div className={`showcase-card__carousel ${useStack ? 'showcase-card__carousel--stack' : ''}`}>
+          {useStack && isTransitioning && direction ? (
+            <>
+              {renderStageContent(showcase.projects[currentIndex], `showcase-card__slide--exit showcase-card__slide--exit-${direction === 'next' ? 'left' : 'right'}`)}
+              {renderStageContent(showcase.projects[nextIndex], `showcase-card__slide--enter showcase-card__slide--enter-from-${direction === 'next' ? 'right' : 'left'}`)}
+            </>
+          ) : (
+            renderStageContent(project, '')
+          )}
         </div>
       </div>
     </article>

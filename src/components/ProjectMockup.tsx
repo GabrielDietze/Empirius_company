@@ -6,9 +6,11 @@ interface ProjectMockupProps {
   className?: string
   /** URL da imagem do projeto (tela do dispositivo). Vazio = placeholder em branco. */
   imageUrl?: string
+  /** Esconde o badge nativo do iPhone (ex.: no stack MacBook + iPhone). */
+  hideBadge?: boolean
 }
 
-export function ProjectMockup({ type, className = '', imageUrl }: ProjectMockupProps) {
+export function ProjectMockup({ type, className = '', imageUrl, hideBadge }: ProjectMockupProps) {
   const screenContent = imageUrl ? (
     <img src={imageUrl} alt="" className="mockup__screen-img" />
   ) : (
@@ -29,15 +31,22 @@ export function ProjectMockup({ type, className = '', imageUrl }: ProjectMockupP
   }
 
   if (type === 'iphone') {
+    const iphoneScreenContent = imageUrl ? (
+      <img src={imageUrl} alt="" className="mockup__screen-img" />
+    ) : (
+      <div className="mockup__screen-maps mockup__screen--placeholder" />
+    )
     return (
       <div className={`mockup mockup--iphone ${className}`} aria-hidden="true">
         <div className="mockup__iphone">
           <div className="mockup__notch" />
-          <div className="mockup__screen mockup__screen-maps" />
+          <div className="mockup__screen mockup__screen-maps">{iphoneScreenContent}</div>
         </div>
-        <div className="mockup__badge mockup__badge--glass">
-          <span className="mockup__badge-value">Visualizações +400%</span>
-        </div>
+        {!hideBadge && (
+          <div className="mockup__badge mockup__badge--glass">
+            <span className="mockup__badge-value">Visualizações +400%</span>
+          </div>
+        )}
       </div>
     )
   }

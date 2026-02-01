@@ -1,0 +1,66 @@
+/* Stack: MacBook (trás) + iPhone (frente) com profundidade */
+.device-stack {
+  position: relative;
+  width: 100%;
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+}
+
+.device-stack__glow {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 50%,
+    rgba(34, 211, 238, 0.08) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+/* Camada de trás: MacBook grande, ligeiramente inclinado */
+.device-stack__back {
+  position: relative;
+  z-index: 0;
+  transform: rotateY(-4deg) rotateZ(-1deg);
+  transform-style: preserve-3d;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.device-stack__back .mockup--macbook {
+  min-height: 240px;
+}
+
+.device-stack__back .mockup__macbook {
+  max-width: 380px;
+  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.4));
+}
+
+/* Camada da frente: iPhone flutuando, sobrepondo o lado direito do MacBook */
+.device-stack__front {
+  position: absolute;
+  z-index: 1;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%) rotateZ(4deg);
+  transform-style: preserve-3d;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.device-stack__front .mockup--iphone {
+  min-height: 0;
+}
+
+.device-stack__front .mockup__iphone {
+  width: 110px;
+  max-height: 200px;
+  filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.35));
+}
+
+/* Parallax: velocidades diferentes na transição (controlado pelo pai .showcase-card__slide) */
+.device-stack__back,
+.device-stack__front {
+  will-change: transform;
+}

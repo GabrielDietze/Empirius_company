@@ -11,7 +11,7 @@ export function ServiceIcon3D({ serviceId, className = '' }: ServiceIcon3DProps)
   return (
     <div className={`service-icon-3d service-icon-3d--${serviceId} ${className}`} aria-hidden="true">
       {serviceId === 'sites' && <IconGlobe />}
-      {serviceId === 'redes' && <IconSmartphone />}
+      {serviceId === 'redes' && <IconSocial />}
       {serviceId === 'google' && <IconPin />}
       {serviceId === 'estrategia' && <IconTarget />}
     </div>
@@ -47,22 +47,33 @@ function IconGlobe() {
 }
 
 /* Smartphone: bordas brancas/roxo neon + “logos” brilhantes */
-function IconSmartphone() {
+function IconSocial() {
   return (
     <svg viewBox="0 0 80 80" fill="none" className="service-icon-3d__svg">
       <defs>
-        <linearGradient id="phoneEdge" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="rgba(255,255,255,0.85)" />
+        <linearGradient id="socialEdge" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="rgba(255,255,255,0.9)" />
           <stop offset="50%" stopColor="rgba(167, 139, 250, 0.9)" />
           <stop offset="100%" stopColor="rgba(167, 139, 250, 0.5)" />
         </linearGradient>
+        <filter id="socialGlow">
+          <feGaussianBlur stdDeviation="1" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
       </defs>
-      <rect x="22" y="12" width="36" height="56" rx="6" fill="rgba(20,20,25,0.6)" stroke="url(#phoneEdge)" strokeWidth="2" />
-      <rect x="24" y="16" width="32" height="48" rx="4" fill="rgba(10,10,12,0.8)" stroke="rgba(255,255,255,0.15)" strokeWidth="0.8" />
-      <rect x="34" y="14" width="12" height="3" rx="1.5" fill="rgba(0,0,0,0.6)" />
-      <circle cx="40" cy="32" r="5" fill="#E1306C" stroke="rgba(255,255,255,0.5)" strokeWidth="0.8" />
-      <circle cx="52" cy="44" r="4" fill="#4267B2" stroke="rgba(255,255,255,0.5)" strokeWidth="0.8" />
-      <rect x="26" y="20" width="10" height="10" rx="2" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.4)" strokeWidth="0.6" />
+      <path d="M 40 28 L 40 44" stroke="rgba(167, 139, 250, 0.5)" strokeWidth="1.5" opacity="0.8" />
+      <path d="M 40 44 L 24 56" stroke="rgba(167, 139, 250, 0.5)" strokeWidth="1.5" opacity="0.8" />
+      <path d="M 40 44 L 56 56" stroke="rgba(167, 139, 250, 0.5)" strokeWidth="1.5" opacity="0.8" />
+      <path d="M 24 56 L 56 56" stroke="rgba(167, 139, 250, 0.4)" strokeWidth="1.2" opacity="0.7" />
+      <circle cx="40" cy="28" r="14" fill="rgba(30,25,45,0.7)" stroke="url(#socialEdge)" strokeWidth="2.5" filter="url(#socialGlow)" />
+      <circle cx="40" cy="28" r="8" fill="rgba(167, 139, 250, 0.35)" stroke="rgba(255,255,255,0.6)" strokeWidth="1" />
+      <circle cx="24" cy="56" r="10" fill="rgba(30,25,45,0.7)" stroke="url(#socialEdge)" strokeWidth="2" filter="url(#socialGlow)" />
+      <circle cx="24" cy="56" r="5" fill="rgba(167, 139, 250, 0.4)" stroke="rgba(255,255,255,0.5)" strokeWidth="0.8" />
+      <circle cx="56" cy="56" r="10" fill="rgba(30,25,45,0.7)" stroke="url(#socialEdge)" strokeWidth="2" filter="url(#socialGlow)" />
+      <circle cx="56" cy="56" r="5" fill="rgba(167, 139, 250, 0.4)" stroke="rgba(255,255,255,0.5)" strokeWidth="0.8" />
     </svg>
   )
 }

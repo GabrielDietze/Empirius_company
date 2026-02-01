@@ -89,10 +89,11 @@
   color: var(--neon-pink);
 }
 
-/* Navegação: setas + barra de progresso */
+/* Navegação: setas + barra de progresso (centralizada) */
 .showcase-card__nav {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 16px;
   margin-top: 24px;
   padding-top: 20px;
@@ -198,22 +199,189 @@
   justify-content: center;
 }
 
+.showcase-card__carousel--stack {
+  overflow: hidden;
+}
+
+.showcase-card__carousel--stack .showcase-card__slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.showcase-card__carousel--stack .showcase-card__slide--exit-left,
+.showcase-card__carousel--stack .showcase-card__slide--exit-right {
+  z-index: 0;
+}
+
+.showcase-card__carousel--stack .showcase-card__slide--enter-from-right,
+.showcase-card__carousel--stack .showcase-card__slide--enter-from-left {
+  z-index: 1;
+}
+
+/* Parallax: saída — iPhone mais rápido que MacBook (animação) */
+.showcase-card__slide--exit-left .device-stack__back {
+  animation: stack-back-exit-left 0.4s var(--ease-out) 0.02s forwards;
+}
+
+.showcase-card__slide--exit-left .device-stack__front {
+  animation: stack-front-exit-left 0.32s var(--ease-out) forwards;
+}
+
+@keyframes stack-back-exit-left {
+  from {
+    transform: rotateY(-4deg) rotateZ(-1deg) translateX(0);
+  }
+  to {
+    transform: rotateY(-4deg) rotateZ(-1deg) translateX(-100%);
+  }
+}
+
+@keyframes stack-front-exit-left {
+  from {
+    transform: translateY(-50%) rotateZ(4deg) translateX(0);
+  }
+  to {
+    transform: translateY(-50%) rotateZ(4deg) translateX(-120%);
+  }
+}
+
+.showcase-card__slide--exit-right .device-stack__back {
+  animation: stack-back-exit-right 0.4s var(--ease-out) 0.02s forwards;
+}
+
+.showcase-card__slide--exit-right .device-stack__front {
+  animation: stack-front-exit-right 0.32s var(--ease-out) forwards;
+}
+
+@keyframes stack-back-exit-right {
+  from {
+    transform: rotateY(-4deg) rotateZ(-1deg) translateX(0);
+  }
+  to {
+    transform: rotateY(-4deg) rotateZ(-1deg) translateX(100%);
+  }
+}
+
+@keyframes stack-front-exit-right {
+  from {
+    transform: translateY(-50%) rotateZ(4deg) translateX(0);
+  }
+  to {
+    transform: translateY(-50%) rotateZ(4deg) translateX(120%);
+  }
+}
+
+/* Parallax: entrada da direita — animação (MacBook depois iPhone) */
+.showcase-card__slide--enter-from-right .device-stack__back {
+  animation: stack-back-enter-from-right 0.42s var(--ease-out) forwards;
+}
+
+.showcase-card__slide--enter-from-right .device-stack__front {
+  animation: stack-front-enter-from-right 0.38s var(--ease-out) 0.04s forwards;
+}
+
+@keyframes stack-back-enter-from-right {
+  from {
+    transform: rotateY(-4deg) rotateZ(-1deg) translateX(100%);
+  }
+  to {
+    transform: rotateY(-4deg) rotateZ(-1deg) translateX(0);
+  }
+}
+
+@keyframes stack-front-enter-from-right {
+  from {
+    transform: translateY(-50%) rotateZ(4deg) translateX(100%);
+  }
+  to {
+    transform: translateY(-50%) rotateZ(4deg) translateX(0);
+  }
+}
+
+/* Parallax: entrada da esquerda (quando volta) */
+.showcase-card__slide--enter-from-left .device-stack__back {
+  animation: stack-back-enter-from-left 0.42s var(--ease-out) forwards;
+}
+
+.showcase-card__slide--enter-from-left .device-stack__front {
+  animation: stack-front-enter-from-left 0.38s var(--ease-out) 0.04s forwards;
+}
+
+@keyframes stack-back-enter-from-left {
+  from {
+    transform: rotateY(-4deg) rotateZ(-1deg) translateX(-100%);
+  }
+  to {
+    transform: rotateY(-4deg) rotateZ(-1deg) translateX(0);
+  }
+}
+
+@keyframes stack-front-enter-from-left {
+  from {
+    transform: translateY(-50%) rotateZ(4deg) translateX(-120%);
+  }
+  to {
+    transform: translateY(-50%) rotateZ(4deg) translateX(0);
+  }
+}
+
+.showcase-card__slide--enter-from-right,
+.showcase-card__slide--enter-from-left {
+  pointer-events: none;
+}
+
 .showcase-card__slide {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  animation: showcase-fade 0.35s ease;
 }
 
-@keyframes showcase-fade {
+.showcase-card__slide:not([class*="exit"]):not([class*="enter"]) {
+  animation: showcase-slide-in 0.4s var(--ease-out) forwards;
+}
+
+.showcase-card__carousel:not(.showcase-card__carousel--stack) .showcase-card__slide {
+  position: relative;
+}
+
+@keyframes showcase-slide-in {
   from {
     opacity: 0;
+    transform: translateX(16px);
   }
   to {
     opacity: 1;
+    transform: translateX(0);
   }
+}
+
+/* Wrapper do stack: MacBook + iPhone + área do badge */
+.showcase-card__stack-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Badge sobrepondo o canto inferior do iPhone */
+.showcase-card__badge-on-iphone {
+  position: absolute;
+  right: 8%;
+  bottom: 18%;
+  z-index: 2;
+}
+
+.showcase-card__badge-on-iphone .showcase-badge {
+  margin-top: 0;
+  min-width: 200px;
+  min-height: 64px;
 }
 
 .showcase-card__mockup-wrap {
@@ -246,10 +414,12 @@
   max-width: 320px;
 }
 
-/* Etiqueta de vidro flutuante — canto inferior da área da imagem */
+/* Etiqueta de vidro flutuante — tamanho fixo para não pular ao trocar de projeto */
 .showcase-badge {
   margin-top: 12px;
   padding: 12px 18px;
+  min-width: 220px;
+  min-height: 72px;
   border-radius: 14px;
   background: rgba(17, 17, 17, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -258,9 +428,11 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 2px;
   align-self: center;
   flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 .showcase-badge__name {

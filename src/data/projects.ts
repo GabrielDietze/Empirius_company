@@ -37,8 +37,8 @@ export const showcases: Showcase[] = [
     mockupType: 'macbook',
     accent: 'cyan',
     projects: [
-      { id: 'marcela', name: 'Personal Marcela Magalhães', niche: 'Personal / Saúde', image: '', url: 'https://personalmarcela.com.br/' },
-      { id: 'portfolio-dev', name: 'Portfólio Dev', niche: 'Portfólio', image: '', url: 'https://portifolio-pessoal-rosy.vercel.app/' },
+      { id: 'marcela', name: 'Personal Marcela Magalhães', niche: 'Personal / Saúde', image: 'https://picsum.photos/seed/empirius-marcela/800/500', url: 'https://personalmarcela.com.br/' },
+      { id: 'portfolio-dev', name: 'Portfólio Dev', niche: 'Portfólio', image: 'https://picsum.photos/seed/empirius-portfolio/800/500', url: 'https://portifolio-pessoal-rosy.vercel.app/' },
     ],
   },
   {
@@ -51,8 +51,8 @@ export const showcases: Showcase[] = [
     mockupType: 'iphones',
     accent: 'purple',
     projects: [
-      { id: 'academia', name: 'Academia Corpo em Forma', niche: 'Instagram', image: '', url: 'https://www.instagram.com/academia.corpo.emforma/' },
-      { id: 'casa-vidro', name: 'Casa do Vidro Santa Luzia', niche: 'Instagram', image: '', url: 'https://www.instagram.com/casadovidrosantaluzia/' },
+      { id: 'academia', name: 'Academia Corpo em Forma', niche: 'Instagram', image: 'https://picsum.photos/seed/empirius-academia/800/500', url: 'https://www.instagram.com/academia.corpo.emforma/' },
+      { id: 'casa-vidro', name: 'Casa do Vidro Santa Luzia', niche: 'Instagram', image: 'https://picsum.photos/seed/empirius-casavidro/800/500', url: 'https://www.instagram.com/casadovidrosantaluzia/' },
     ],
   },
   {
@@ -65,7 +65,7 @@ export const showcases: Showcase[] = [
     mockupType: 'iphone',
     accent: 'lime',
     projects: [
-      { id: 'google-profile', name: 'Ver perfil no Google', niche: 'SEO Local', image: '', url: 'https://share.google/y40tADlL697QNxP2b' },
+      { id: 'google-profile', name: 'Ver perfil no Google', niche: 'SEO Local', image: 'https://picsum.photos/seed/empirius-google/800/500', url: 'https://share.google/y40tADlL697QNxP2b' },
     ],
   },
   {
@@ -78,7 +78,7 @@ export const showcases: Showcase[] = [
     mockupType: 'dashboard',
     accent: 'pink',
     projects: [
-      { id: 'consultoria-ads', name: 'Consultoria em tráfego pago', niche: 'Meta Ads · Google Ads', image: '', url: '' },
+      { id: 'consultoria-ads', name: 'Consultoria em tráfego pago', niche: 'Meta Ads · Google Ads', image: 'https://picsum.photos/seed/empirius-ads/800/500', url: '' },
     ],
   },
 ]
