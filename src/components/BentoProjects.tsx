@@ -1,230 +1,265 @@
-import { useState, useCallback } from 'react'
-import { showcases } from '../data/projects'
-import type { Showcase } from '../data/projects'
-import { ProjectMockup } from './ProjectMockup'
-import { DeviceStack } from './DeviceStack'
+import { useState, useRef, useEffect } from 'react'
+import { projects } from '../data/projects'
+import type { Project } from '../data/projects'
 import './BentoProjects.css'
 
-const PARALLAX_DURATION_MS = 420
-
-function ClientBadge({
-  name,
-  niche,
-  accent,
-  url,
+function ProjectCard({
+  project,
+  index,
+  isExpanded,
+  isFullWidth,
+  onToggle,
+  scrollRef,
 }: {
-  name: string
-  niche: string
-  accent: Showcase['accent']
-  url?: string
+  project: Project
+  index: number
+  isExpanded: boolean
+  isFullWidth: boolean
+  onToggle: () => void
+  scrollRef: React.RefObject<HTMLDivElement | null>
 }) {
-  const content = (
-    <>
-      <span className="showcase-badge__name">{name}</span>
-      <span className="showcase-badge__niche">{niche}</span>
-      {url && <span className="showcase-badge__link">Ver projeto →</span>}
-    </>
-  )
-  const className = `showcase-badge showcase-badge--${accent}`
-  if (url) {
-    return (
-      <a
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`${className} showcase-badge--clickable`}
-        aria-label={`Ver projeto: ${name}`}
-      >
-        {content}
-      </a>
-    )
-  }
-  return (
-    <div className={className} aria-hidden="true">
-      {content}
-    </div>
-  )
-}
+  const hasExpandido = Boolean(project.expandido)
 
-function ShowcaseCard({ showcase, index: sectionIndex }: { showcase: Showcase; index: number }) {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isTransitioning, setIsTransitioning] = useState(false)
-  const [nextIndex, setNextIndex] = useState(0)
-  const [direction, setDirection] = useState<'next' | 'prev' | null>(null)
-
-  const total = showcase.projects.length
-  const project = showcase.projects[currentIndex]
-  const useStack = showcase.mockupType === 'macbook'
-
-  const goPrev = useCallback(() => {
-    if (total <= 1 || isTransitioning) return
-    const prev = currentIndex === 0 ? total - 1 : currentIndex - 1
-    setNextIndex(prev)
-    setDirection('prev')
-    setIsTransitioning(true)
-    setTimeout(() => {
-      setCurrentIndex(prev)
-      setIsTransitioning(false)
-      setDirection(null)
-    }, PARALLAX_DURATION_MS)
-  }, [currentIndex, total, isTransitioning])
-
-  const goNext = useCallback(() => {
-    if (total <= 1 || isTransitioning) return
-    const next = currentIndex === total - 1 ? 0 : currentIndex + 1
-    setNextIndex(next)
-    setDirection('next')
-    setIsTransitioning(true)
-    setTimeout(() => {
-      setCurrentIndex(next)
-      setIsTransitioning(false)
-      setDirection(null)
-    }, PARALLAX_DURATION_MS)
-  }, [currentIndex, total, isTransitioning])
-
-  const goTo = useCallback(
-    (i: number) => {
-      if (i === currentIndex || isTransitioning) return
-      setNextIndex(i)
-      setDirection(i > currentIndex ? 'next' : 'prev')
-      setIsTransitioning(true)
-      setTimeout(() => {
-        setCurrentIndex(i)
-        setIsTransitioning(false)
-        setDirection(null)
-      }, PARALLAX_DURATION_MS)
-    },
-    [currentIndex, isTransitioning]
-  )
-
-  const renderStageContent = (proj: (typeof showcase.projects)[0], slideClass: string) => {
-    if (useStack) {
-      return (
-        <div className={`showcase-card__slide ${slideClass}`}>
-          <div className="showcase-card__stack-wrap">
-            <DeviceStack imageUrl={proj.image || undefined} />
-            <div className="showcase-card__badge-below-stack">
-              <ClientBadge
-                name={proj.name}
-                niche={proj.niche}
-                accent={showcase.accent}
-                url={proj.url}
-              />
-            </div>
-          </div>
-        </div>
-      )
-    }
-    return (
-      <div className={`showcase-card__slide ${slideClass}`}>
-        <div className="showcase-card__mockup-wrap">
-          <ProjectMockup
-            type={showcase.mockupType}
-            imageUrl={proj.image || undefined}
-          />
-        </div>
-        <ClientBadge
-          name={proj.name}
-          niche={proj.niche}
-          accent={showcase.accent}
-          url={proj.url}
-        />
-      </div>
-    )
+  const handleCardClick = (e: React.MouseEvent) => {
+    if (!hasExpandido) return
+    const target = e.target as HTMLElement
+    if (target.closest('a') || target.closest('button')) return
+    onToggle()
   }
 
-  const { colSpan, rowSpan, colStart, rowStart } = showcase.bentoSize
-  const gridStyle = {
-    gridColumn: `${colStart} / span ${colSpan}`,
-    gridRow: `${rowStart} / span ${rowSpan}`,
+  const handleToggleClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    if (hasExpandido) onToggle()
+  }
+
+  const handleCloseClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    onToggle()
   }
 
   return (
     <article
-      className={`showcase-card showcase-card--${showcase.accent} showcase-card--${showcase.id} reveal reveal-delay-${Math.min(sectionIndex + 3, 4)}`}
-      style={gridStyle}
+      ref={isExpanded ? scrollRef : undefined}
+      className={`project-card reveal reveal-delay-${Math.min(index + 2, 4)} ${isExpanded ? 'project-card--expanded' : ''} ${isFullWidth ? 'project-card--full-width' : ''} ${hasExpandido ? 'project-card--expandable' : ''}`}
+      onClick={handleCardClick}
+      role={hasExpandido ? 'button' : undefined}
+      tabIndex={hasExpandido ? 0 : undefined}
+      onKeyDown={
+        hasExpandido
+          ? (e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                onToggle()
+              }
+            }
+          : undefined
+      }
+      aria-expanded={hasExpandido ? isExpanded : undefined}
     >
-      <div className="showcase-card__anchor">
-        <h3 className="showcase-card__title">{showcase.serviceTitle}</h3>
-        <p className="showcase-card__description">
-          {showcase.serviceDescription.map((seg, i) =>
-            seg.highlight ? (
-              <strong key={i} className="showcase-card__highlight">
-                {seg.text}
-              </strong>
-            ) : (
-              <span key={i}>{seg.text}</span>
-            )
-          )}
-        </p>
-        {total > 1 && (
-          <div className="showcase-card__nav-pill" role="group" aria-label="Navegação do carrossel">
-            <button
-              type="button"
-              className="showcase-card__arrow"
-              onClick={goPrev}
-              aria-label="Projeto anterior"
-            >
-              ‹
-            </button>
-            <div className="showcase-card__progress" role="tablist" aria-label="Projetos">
-              {showcase.projects.map((_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  role="tab"
-                  aria-selected={i === currentIndex}
-                  aria-label={`Projeto ${i + 1}`}
-                  className={`showcase-card__dot ${i === currentIndex ? 'showcase-card__dot--active' : ''}`}
-                  onClick={() => goTo(i)}
-                />
-              ))}
-            </div>
-            <button
-              type="button"
-              className="showcase-card__arrow"
-              onClick={goNext}
-              aria-label="Próximo projeto"
-            >
-              ›
-            </button>
-          </div>
-        )}
+      <div className="project-card__image-wrap">
+        <img src={project.image} alt="" className="project-card__image" />
       </div>
 
-      <div className="showcase-card__stage">
-        <div className={`showcase-card__carousel ${useStack ? 'showcase-card__carousel--stack' : ''}`}>
-          {useStack && isTransitioning && direction ? (
-            <>
-              {renderStageContent(showcase.projects[currentIndex], `showcase-card__slide--exit showcase-card__slide--exit-${direction === 'next' ? 'left' : 'right'}`)}
-              {renderStageContent(showcase.projects[nextIndex], `showcase-card__slide--enter showcase-card__slide--enter-from-${direction === 'next' ? 'right' : 'left'}`)}
-            </>
-          ) : (
-            renderStageContent(project, '')
-          )}
-        </div>
+      <div className="project-card__body">
+        <h3 className="project-card__name">{project.name}</h3>
+        <p className="project-card__service-type">{project.serviceType}</p>
+
+        {/* Desktop: Problema → Resultado. Mobile: Resultado → Problema (via CSS order) */}
+        <p className="project-card__problema project-card__problema--reorder-mobile">
+          <span className="project-card__label">Problema:</span> {project.problema}
+        </p>
+        <p className="project-card__resultado project-card__resultado--reorder-mobile">
+          <span className="project-card__label">Resultado:</span>{' '}
+          <span className="project-card__resultado-value">{project.resultado}</span>
+        </p>
+
+        {hasExpandido ? (
+          <button
+            type="button"
+            className="project-card__toggle"
+            onClick={handleToggleClick}
+            aria-label={isExpanded ? 'Fechar detalhes' : 'Ver como foi feito'}
+          >
+            {isExpanded ? (
+              <>Fechar <span className="project-card__toggle-icon">↑</span></>
+            ) : (
+              <>Ver como foi feito <span className="project-card__toggle-icon">↓</span></>
+            )}
+          </button>
+        ) : project.url ? (
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="project-card__cta-link"
+            onClick={(e) => e.stopPropagation()}
+          >
+            Ver projeto →
+          </a>
+        ) : null}
       </div>
+
+      {/* Conteúdo expandido — visível quando isExpanded; layout horizontal quando isFullWidth */}
+      {hasExpandido && project.expandido && (
+        <div
+          className={`project-card__expandable ${isExpanded ? 'project-card__expandable--open' : ''}`}
+          role="region"
+          aria-label="Detalhes do projeto"
+          aria-hidden={!isExpanded}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="project-card__expandable-inner">
+            <hr className="project-card__divider" aria-hidden="true" />
+
+            <div className="project-card__block">
+              <h4 className="project-card__block-title">CONTEXTO</h4>
+              <p className="project-card__block-text">{project.expandido.contexto}</p>
+            </div>
+
+            <div className="project-card__block">
+              <h4 className="project-card__block-title">PROBLEMA</h4>
+              <ul className="project-card__list">
+                {project.expandido.problema.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="project-card__block">
+              <h4 className="project-card__block-title">SOLUÇÃO</h4>
+              <ul className="project-card__list">
+                {project.expandido.solucao.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="project-card__block">
+              <h4 className="project-card__block-title">RESULTADOS</h4>
+              <ul className="project-card__list project-card__list--results">
+                {project.expandido.resultados.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="project-card__block">
+              <h4 className="project-card__block-title">FERRAMENTAS</h4>
+              <p className="project-card__block-text project-card__block-text--tools">
+                {project.expandido.ferramentas}
+              </p>
+            </div>
+
+            <div className="project-card__expandable-cta">
+              <a
+                href="#contato"
+                className="project-card__cta-btn-expand"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Desktop: "Falar sobre esse projeto" / Mobile: "Quero um projeto assim" — via CSS ou duas spans com classe .desktop-only / .mobile-only */}
+                <span className="project-card__cta-desktop">Falar sobre esse projeto</span>
+                <span className="project-card__cta-mobile">Quero um projeto assim</span>
+              </a>
+              <button
+                type="button"
+                className="project-card__close-btn"
+                onClick={handleCloseClick}
+                aria-label="Fechar"
+              >
+                Fechar <span className="project-card__toggle-icon">↑</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </article>
   )
 }
 
 export function BentoProjects() {
+  const [expandedId, setExpandedId] = useState<string | null>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (expandedId) {
+      scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }, [expandedId])
+
+  const handleToggle = (id: string) => {
+    setExpandedId((current) => (current === id ? null : id))
+  }
+
   return (
     <section className="bento-section bento-projects" id="projetos">
-      <div className="bento-section__inner">
-        <h2 className="bento-section__title reveal">Projetos realizados</h2>
-        <p className="bento-section__intro reveal reveal-delay-1">
-          Alguns dos negócios que já apoiamos no caminho digital. Resultados reais, números que importam.
+      <div className="bento-projects__inner">
+        <h2 className="bento-projects__title reveal">Projetos</h2>
+        <p className="bento-projects__subtitle reveal reveal-delay-1">
+          Projetos que geraram resultado
         </p>
-        <div className="bento-projects-grid reveal reveal-delay-2">
-          {showcases.map((showcase, i) => (
-            <ShowcaseCard key={showcase.id} showcase={showcase} index={i} />
-          ))}
+        <p className="bento-projects__intro reveal reveal-delay-1">
+          Alguns exemplos de como ajudei negócios a crescer no digital.
+        </p>
+
+        <div className="projects-grid reveal reveal-delay-2">
+          {expandedId
+            ? (() => {
+                const expandedProject = projects.find((p) => p.id === expandedId)
+                const otherProjects = projects.filter((p) => p.id !== expandedId)
+                return (
+                  <>
+                    {expandedProject && (
+                      <ProjectCard
+                        key={expandedProject.id}
+                        project={expandedProject}
+                        index={0}
+                        isExpanded
+                        isFullWidth
+                        onToggle={() => handleToggle(expandedProject.id)}
+                        scrollRef={scrollRef}
+                      />
+                    )}
+                    {otherProjects.map((project, i) => (
+                      <ProjectCard
+                        key={project.id}
+                        project={project}
+                        index={i + 1}
+                        isExpanded={false}
+                        isFullWidth={false}
+                        onToggle={() => handleToggle(project.id)}
+                        scrollRef={scrollRef}
+                      />
+                    ))}
+                  </>
+                )
+              })()
+            : projects.map((project, i) => (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  index={i}
+                  isExpanded={false}
+                  isFullWidth={false}
+                  onToggle={() => handleToggle(project.id)}
+                  scrollRef={scrollRef}
+                />
+              ))}
         </div>
 
-        <p className="bento-section__note reveal">
-          Você pode ser o próximo. Adicione screenshots reais nos projetos para impacto máximo.
-        </p>
+        <div className="bento-projects__ver-todos reveal">
+          <a href="#projetos" className="bento-projects__ver-todos-link">
+            Ver todos os projetos →
+          </a>
+        </div>
+
+        <div className="bento-projects__cta reveal">
+          <p className="bento-projects__cta-text">Quer resultados parecidos no seu negócio?</p>
+          <a href="#contato" className="bento-projects__cta-btn">
+            Fale comigo
+          </a>
+        </div>
       </div>
     </section>
   )

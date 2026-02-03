@@ -31,14 +31,14 @@
   z-index: -1;
 }
 
-/* MacBook (fundo): centralizado, tamanho proporcional ao print do site */
+/* MacBook (fundo): centralizado, teclado um pouco aparente */
 .device-stack__back {
   position: relative;
   z-index: 1;
   width: 100%;
   max-width: 380px;
-  transform: rotateY(-4deg) rotateZ(-1deg);
-  transform-origin: center center;
+  transform: rotateY(-4deg) rotateZ(-1deg) rotateX(4deg);
+  transform-origin: center bottom;
   transform-style: preserve-3d;
   transition: transform 0.5s var(--ease-out);
 }
@@ -57,10 +57,10 @@
   min-height: 200px;
 }
 
-/* iPhone (frente): alinhado na base do notebook (mesma linha de baixo), canto direito */
+/* iPhone (frente): abaixado 5% em relação à base, canto direito */
 .device-stack__front {
   position: absolute;
-  bottom: 33%;
+  bottom: 28%;
   right: 5%;
   z-index: 2;
   transform: scale(0.65) rotateZ(4deg);
@@ -86,4 +86,54 @@
 .device-stack__back,
 .device-stack__front {
   will-change: transform;
+}
+
+/* ========== Responsividade: device stack em telas pequenas ========== */
+@media (max-width: 768px) {
+  .device-stack {
+    min-height: 280px;
+    height: 280px;
+    max-width: 100%;
+  }
+
+  .device-stack__back {
+    max-width: 280px;
+  }
+
+  .device-stack__back .mockup--macbook {
+    min-height: 160px;
+  }
+
+  .device-stack__back .mockup__macbook .mockup__screen {
+    min-height: 140px;
+  }
+
+  .device-stack__front .mockup__iphone {
+    width: 90px;
+    max-height: 160px;
+  }
+}
+
+@media (max-width: 480px) {
+  .device-stack {
+    min-height: 240px;
+    height: 240px;
+  }
+
+  .device-stack__back {
+    max-width: 240px;
+  }
+
+  .device-stack__back .mockup--macbook {
+    min-height: 140px;
+  }
+
+  .device-stack__back .mockup__macbook .mockup__screen {
+    min-height: 120px;
+  }
+
+  .device-stack__front .mockup__iphone {
+    width: 76px;
+    max-height: 140px;
+  }
 }

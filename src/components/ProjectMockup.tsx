@@ -8,9 +8,11 @@ interface ProjectMockupProps {
   imageUrl?: string
   /** Esconde o badge nativo do iPhone (ex.: no stack MacBook + iPhone). */
   hideBadge?: boolean
+  /** Para type iphones: exibe simulação de perfil Instagram (modo escuro) em vez da imagem. */
+  screenVariant?: 'instagram'
 }
 
-export function ProjectMockup({ type, className = '', imageUrl, hideBadge }: ProjectMockupProps) {
+export function ProjectMockup({ type, className = '', imageUrl, hideBadge, screenVariant }: ProjectMockupProps) {
   const screenContent = imageUrl ? (
     <img src={imageUrl} alt="" className="mockup__screen-img" />
   ) : (
@@ -43,8 +45,8 @@ export function ProjectMockup({ type, className = '', imageUrl, hideBadge }: Pro
           <div className="mockup__screen mockup__screen-maps">{iphoneScreenContent}</div>
         </div>
         {!hideBadge && (
-          <div className="mockup__badge mockup__badge--glass">
-            <span className="mockup__badge-value">Visualizações +400%</span>
+          <div className="mockup__badge mockup__badge--green">
+            <span className="mockup__badge-value">+400% Visualizações</span>
           </div>
         )}
       </div>
@@ -52,10 +54,23 @@ export function ProjectMockup({ type, className = '', imageUrl, hideBadge }: Pro
   }
 
   if (type === 'iphones') {
-    const feedContent = imageUrl ? (
+    const useInstagramSim = screenVariant === 'instagram'
+    const feedContent = !useInstagramSim && imageUrl ? (
       <img src={imageUrl} alt="" className="mockup__screen-img" />
     ) : (
-      <div className="mockup__screen--placeholder" />
+      <div className="mockup__screen--placeholder mockup__screen--instagram">
+        <div className="mockup__instagram-header">
+          <div className="mockup__instagram-avatar" />
+          <div className="mockup__instagram-name">@perfil</div>
+          <button type="button" className="mockup__instagram-follow" aria-hidden="true">Seguir</button>
+        </div>
+        <div className="mockup__instagram-bio">Biografia do perfil · Link</div>
+        <div className="mockup__instagram-grid">
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <div key={i} className="mockup__instagram-cell" />
+          ))}
+        </div>
+      </div>
     )
     return (
       <div className={`mockup mockup--iphones ${className}`} aria-hidden="true">
@@ -77,25 +92,35 @@ export function ProjectMockup({ type, className = '', imageUrl, hideBadge }: Pro
             <svg viewBox="0 0 200 80" fill="none" aria-hidden="true">
               <path
                 d="M 0 60 Q 25 50, 50 45 T 100 35 T 150 25 T 200 15"
-                stroke="var(--neon-lime)"
-                strokeWidth="2"
+                stroke="#a3e635"
+                strokeWidth="4"
                 fill="none"
-                opacity="0.9"
+                opacity="1"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                filter="url(#neonGlow)"
               />
               <path
                 d="M 0 60 Q 25 50, 50 45 T 100 35 T 150 25 T 200 15 L 200 80 L 0 80 Z"
                 fill="url(#chartGrad)"
-                opacity="0.2"
+                opacity="0.15"
               />
               <defs>
                 <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop stopColor="var(--neon-lime)" stopOpacity="0.4" />
-                  <stop stopColor="var(--neon-lime)" stopOpacity="0" offset="1" />
+                  <stop stopColor="#a3e635" stopOpacity="0.3" />
+                  <stop stopColor="#a3e635" stopOpacity="0" offset="1" />
                 </linearGradient>
+                <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="1" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
               </defs>
             </svg>
           </div>
-          <div className="mockup__kpi">ROAS 5.0</div>
+          <div className="mockup__kpi mockup__kpi--badge">ROAS 5.0</div>
         </div>
       </div>
     )

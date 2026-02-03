@@ -48,6 +48,19 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Base responsiva: textos menores em telas pequenas */
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+}
+
 body {
   font-family: var(--font);
   font-size: 1rem;
@@ -108,3 +121,18 @@ img {
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ========== Responsividade global (site todo) ========== */
+@media (max-width: 768px) {
+  .bento-section {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bento-section {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+}

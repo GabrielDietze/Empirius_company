@@ -126,20 +126,85 @@
   background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 100%);
 }
 
+/* Simulação Perfil Instagram (modo escuro): grade de fotos, biografia, botão Seguir */
+.mockup__screen--instagram {
+  background: #121212;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 10px;
+  gap: 8px;
+}
+
+.mockup__instagram-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.mockup__instagram-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  flex-shrink: 0;
+}
+
+.mockup__instagram-name {
+  flex: 1;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #e5e7eb;
+  min-width: 0;
+}
+
+.mockup__instagram-follow {
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #fff;
+  background: #8b5cf6;
+  border: none;
+  cursor: default;
+}
+
+.mockup__instagram-bio {
+  font-size: 0.6rem;
+  color: #9ca3af;
+  line-height: 1.3;
+}
+
+.mockup__instagram-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  flex: 1;
+  min-height: 60px;
+}
+
+.mockup__instagram-cell {
+  aspect-ratio: 1;
+  border-radius: 4px;
+  background: linear-gradient(145deg, #1f2937 0%, #374151 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
 .mockup__badge {
   padding: 10px 16px;
   border-radius: 14px;
   font-weight: 700;
   font-size: 0.85rem;
-  color: var(--neon-cyan);
   white-space: nowrap;
+  letter-spacing: 0.02em;
 }
 
-.mockup__badge--glass {
-  background: var(--glass);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(var(--blur));
-  box-shadow: 0 0 24px rgba(34, 211, 238, 0.2);
+/* Badge flutuante Google: fundo verde brilhante, texto branco bold, drop-shadow */
+.mockup__badge--green {
+  background: #10b981;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .mockup__badge-value {
@@ -209,6 +274,19 @@
   text-shadow: 0 0 20px rgba(163, 230, 53, 0.4);
 }
 
+/* Badge ROAS 5.0: fundo verde escuro, borda verde neon (no pico do gráfico) */
+.mockup__kpi--badge {
+  align-self: flex-start;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  background: #064e3b;
+  color: #a3e635;
+  border: 1px solid #a3e635;
+  box-shadow: 0 0 16px rgba(163, 230, 53, 0.3), 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
 /* Ajustes por tamanho do card */
 .project-card--large .mockup--macbook {
   min-height: 280px;
@@ -226,4 +304,158 @@
 .project-card--medium .mockup--iphones .mockup__iphone {
   max-height: 120px;
   width: 64px;
+}
+
+/* ========== Responsividade: mockups em telas pequenas ========== */
+@media (max-width: 768px) {
+  .mockup--macbook {
+    min-height: 180px;
+    padding: 12px 0;
+  }
+
+  .mockup__macbook {
+    max-width: 100%;
+  }
+
+  .mockup__macbook .mockup__screen {
+    min-height: 160px;
+    border-width: 8px;
+    border-bottom-width: 10px;
+  }
+
+  .mockup__base {
+    height: 10px;
+    width: 108%;
+  }
+
+  .mockup--iphone,
+  .mockup--iphones {
+    min-height: 160px;
+  }
+
+  .mockup__iphone {
+    max-height: 160px;
+    width: 88px;
+    border-radius: 24px;
+    border-width: 2px;
+  }
+
+  .mockup__iphone .mockup__screen {
+    inset: 6px 5px 6px 5px;
+    border-radius: 18px;
+  }
+
+  .mockup__notch {
+    width: 48px;
+    height: 6px;
+    top: 6px;
+  }
+
+  .mockup--dashboard {
+    min-height: 100px;
+    padding: 14px;
+  }
+
+  .mockup__dashboard {
+    min-height: 100px;
+    padding: 14px;
+    gap: 8px;
+    border-radius: 12px;
+  }
+
+  .mockup__chart {
+    min-height: 44px;
+  }
+
+  .mockup__chart svg {
+    min-height: 40px;
+  }
+
+  .mockup__kpi {
+    font-size: 1.25rem;
+  }
+
+  .mockup__kpi--badge {
+    padding: 6px 12px;
+    font-size: 0.875rem;
+  }
+
+  .mockup__badge {
+    padding: 8px 12px;
+    font-size: 0.75rem;
+  }
+
+  .mockup__screen--instagram {
+    padding: 10px 8px;
+    gap: 6px;
+  }
+
+  .mockup__instagram-avatar {
+    width: 30px;
+    height: 30px;
+  }
+
+  .mockup__instagram-name {
+    font-size: 0.6rem;
+  }
+
+  .mockup__instagram-follow {
+    padding: 3px 10px;
+    font-size: 0.6rem;
+  }
+
+  .mockup__instagram-bio {
+    font-size: 0.55rem;
+  }
+
+  .mockup__instagram-grid {
+    min-height: 48px;
+    gap: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mockup--macbook {
+    min-height: 150px;
+    padding: 10px 0;
+  }
+
+  .mockup__macbook .mockup__screen {
+    min-height: 130px;
+    border-width: 6px;
+    border-bottom-width: 8px;
+  }
+
+  .mockup__base {
+    height: 8px;
+  }
+
+  .mockup__iphone {
+    max-height: 140px;
+    width: 76px;
+  }
+
+  .mockup--dashboard {
+    min-height: 90px;
+    padding: 12px;
+  }
+
+  .mockup__dashboard {
+    padding: 12px;
+    gap: 6px;
+  }
+
+  .mockup__kpi {
+    font-size: 1.125rem;
+  }
+
+  .mockup__kpi--badge {
+    padding: 5px 10px;
+    font-size: 0.8125rem;
+  }
+
+  .mockup__badge {
+    padding: 6px 10px;
+    font-size: 0.7rem;
+  }
 }

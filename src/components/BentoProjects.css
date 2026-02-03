@@ -1,775 +1,551 @@
-/* Bento Projects — Bento Grid assimétrico + Glassmorphism premium */
+/* ========== Seção Projetos — Cards expansíveis ========== */
 .bento-projects {
-  background: var(--bg-elevated);
+  background: #000000;
+  position: relative;
 }
 
-/* Grid 12 colunas: Sites(8) + Redes(4) linha 1–2; Google(6) + Tráfego(6) linha 3 */
-.bento-projects-grid {
+.bento-projects__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bento-projects__title {
+  font-size: clamp(1.35rem, 4vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.bento-projects__subtitle {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.bento-projects__intro {
+  font-size: clamp(0.9375rem, 2vw, 1rem);
+  color: var(--text-muted);
+  max-width: 55ch;
+  margin-bottom: 40px;
+  text-align: left;
+  line-height: 1.6;
+}
+
+/* Grid: 3 colunas desktop, 2 tablet, 1 mobile. Card expandido ocupa a linha inteira. */
+.projects-grid {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: minmax(300px, auto) minmax(300px, auto) minmax(260px, auto);
-  gap: 20px;
-  min-height: 0;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+  transition: gap 0.25s ease;
 }
 
-/* Card: glassmorphism premium (Linear/Apple/Vercel style) */
-.showcase-card {
-  border-radius: 20px;
-  overflow: hidden;
-  background: rgba(15, 15, 15, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  box-shadow:
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.06),
-    0 8px 32px rgba(0, 0, 0, 0.35),
-    0 0 0 1px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s var(--ease-out), box-shadow 0.3s ease, border-color 0.3s ease;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 400px; /* Aumentado */
-  align-items: stretch; /* Mudado de center para stretch */
+/* Card expandido: ocupa toda a largura e empurra os outros para a linha de baixo */
+.project-card--full-width {
+  grid-column: 1 / -1;
 }
 
-.showcase-card__anchor,
-.showcase-card__stage {
-  height: 100%;
+/* Card: imagem no topo, corpo abaixo */
+.project-card {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  background: #0d0d0d;
+  border-radius: 20px;
+  overflow: hidden;
+  border: none;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s var(--ease-out), box-shadow 0.25s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
-.showcase-card:hover {
+/* Card expandido em largura total: layout horizontal — esquerda = imagem + resumo, direita = detalhes */
+.project-card--full-width.project-card--expanded {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.42fr) 1fr;
+  grid-template-rows: auto 1fr;
+  align-items: start;
+}
+
+.project-card--full-width.project-card--expanded .project-card__image-wrap {
+  grid-column: 1;
+  grid-row: 1;
+  aspect-ratio: 16 / 10;
+}
+
+.project-card--full-width.project-card--expanded .project-card__body {
+  grid-column: 1;
+  grid-row: 2;
+  padding: 20px 24px 24px;
+}
+
+.project-card--full-width.project-card--expanded .project-card__expandable {
+  grid-column: 2;
+  grid-row: 1 / -1;
+  max-height: none;
+  overflow: visible;
+}
+
+.project-card--full-width.project-card--expanded .project-card__expandable--open {
+  max-height: none;
+}
+
+.project-card--full-width.project-card--expanded .project-card__expandable-inner {
+  padding: 24px 28px 28px;
+  min-height: 100%;
+}
+
+.project-card--expandable {
+  cursor: pointer;
+}
+
+.project-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow:
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
-    0 20px 48px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
 }
 
-  .showcase-card--cyan:hover {
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 0 48px rgba(34, 211, 238, 0.08);
-  }
-
-  .showcase-card--purple:hover {
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 0 48px rgba(167, 139, 250, 0.08);
-  }
-
-  .showcase-card--lime:hover {
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 0 48px rgba(163, 230, 53, 0.08);
-  }
-
-  .showcase-card--pink:hover {
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 0 48px rgba(244, 114, 182, 0.08);
-  }
-
-  /* Lado esquerdo — base fixa (não se mexe ao trocar de slide) */
-  .showcase-card__anchor {
-    padding: 32px 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  /* Card Sites: texto no topo, não centralizado na altura */
-  .showcase-card--sites .showcase-card__anchor {
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding-top: 40px;
-    padding-bottom: 32px;
-  }
-
-  .showcase-card__title {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 12px;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-  }
-
-  .showcase-card__description {
-    font-size: 1.125rem;
-    color: #e0e0e0;
-    line-height: 1.7;
-    margin-bottom: 0;
-  }
-
-  .showcase-card__description .showcase-card__highlight {
-    font-weight: 600;
-    background: linear-gradient(135deg, #22d3ee 0%, #0ea5e9 50%, #0284c7 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .showcase-card--cyan .showcase-card__highlight {
-    color: var(--neon-cyan);
-    -webkit-text-fill-color: transparent;
-    background: linear-gradient(135deg, #22d3ee 0%, #0ea5e9 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-  }
-
-  .showcase-card--purple .showcase-card__highlight {
-    -webkit-text-fill-color: transparent;
-    background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-  }
-
-  .showcase-card--lime .showcase-card__highlight {
-    -webkit-text-fill-color: transparent;
-    background: linear-gradient(135deg, #a3e635 0%, #65a30d 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-  }
-
-  .showcase-card--pink .showcase-card__highlight {
-    -webkit-text-fill-color: transparent;
-    background: linear-gradient(135deg, #f472b6 0%, #db2777 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-  }
-
-  /* Navegação carrossel — estilo Bento (mesmo glass e cantos do card) */
-  .showcase-card__nav-pill {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    margin-top: 20px;
-    padding: 6px 8px 6px 10px;
-    border-radius: 12px;
-    background: rgba(15, 15, 15, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    box-shadow:
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.04),
-      0 2px 8px rgba(0, 0, 0, 0.2);
-  }
-
-  .showcase-card__nav-pill .showcase-card__arrow {
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(255, 255, 255, 0.04);
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 1.125rem;
-    line-height: 1;
-    cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-  }
-
-  .showcase-card__arrow:hover {
-    background: rgba(255, 255, 255, 0.08);
-    color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.12);
-  }
-
-  .showcase-card--cyan .showcase-card__arrow:hover {
-    color: var(--neon-cyan);
-    border-color: rgba(34, 211, 238, 0.3);
-    background: rgba(34, 211, 238, 0.08);
-  }
-
-  .showcase-card--purple .showcase-card__arrow:hover {
-    color: var(--neon-purple);
-    border-color: rgba(167, 139, 250, 0.3);
-    background: rgba(167, 139, 250, 0.08);
-  }
-
-  .showcase-card--lime .showcase-card__arrow:hover {
-    color: var(--neon-lime);
-    border-color: rgba(163, 230, 53, 0.3);
-    background: rgba(163, 230, 53, 0.08);
-  }
-
-  .showcase-card--pink .showcase-card__arrow:hover {
-    color: var(--neon-pink);
-    border-color: rgba(244, 114, 182, 0.3);
-    background: rgba(244, 114, 182, 0.08);
-  }
-
-  .showcase-card__progress {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .showcase-card__dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255, 255, 255, 0.18);
-    cursor: pointer;
-    padding: 0;
-    transition: background 0.2s ease, transform 0.2s ease;
-  }
-
-  .showcase-card__dot:hover {
-    background: rgba(255, 255, 255, 0.35);
-  }
-
-  .showcase-card__dot--active {
-    background: var(--neon-cyan);
-    transform: scale(1.15);
-  }
-
-  .showcase-card--purple .showcase-card__dot--active {
-    background: var(--neon-purple);
-  }
-
-  .showcase-card--lime .showcase-card__dot--active {
-    background: var(--neon-lime);
-  }
-
-  .showcase-card--pink .showcase-card__dot--active {
-    background: var(--neon-pink);
-  }
-
-  /* Lado direito — mockup “saindo” do card / flutuando (profundidade) */
-  .showcase-card__stage {
-    padding: 24px 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 380px;
-    position: relative;
-    overflow: visible;
-    z-index: 1;
-    width: 100%;
-  }
-
-  .showcase-card__stage .showcase-card__mockup-wrap,
-  .showcase-card__stage .showcase-card__stack-wrap {
-    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
-    transform: translateY(-8px);
-    transition: transform 0.3s var(--ease-out);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .showcase-card:hover .showcase-card__stage .showcase-card__mockup-wrap,
-  .showcase-card:hover .showcase-card__stage .showcase-card__stack-wrap {
-    transform: translateY(-12px);
-  }
-
-  /* ========== Card Redes Sociais: layout vertical — título, depois imagem, nav embaixo ========== */
-  .showcase-card--redes {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    grid-template-columns: unset;
-    min-height: 400px;
-    padding-bottom: 70px;
-  }
-
-  .showcase-card--redes .showcase-card__anchor {
-    flex-shrink: 0;
-    height: auto;
-    justify-content: flex-start;
-    align-items: flex-start;
-    text-align: left;
-    padding: 32px 40px 0 40px;
-    margin-bottom: 0;
-  }
-
-  .showcase-card--redes .showcase-card__title {
-    margin-bottom: 8px;
-  }
-
-  .showcase-card--redes .showcase-card__description {
-    margin-bottom: 0;
-  }
-
-  /* Área do mockup: logo após o título, altura definida para a imagem aparecer */
-  .showcase-card--redes .showcase-card__stage {
-    flex-shrink: 0;
-    position: relative;
-    width: 100%;
-    height: auto;
-    min-height: 280px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px 20px 20px;
-    margin: 0;
-    overflow: visible;
-  }
-
-  .showcase-card--redes .showcase-card__carousel {
-    width: 100%;
-    flex: 0 0 auto;
-    height: auto;
-    min-height: 240px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .showcase-card--redes .showcase-card__carousel .showcase-card__slide {
-    width: 100%;
-    min-height: 220px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .showcase-card--redes .showcase-card__slide .showcase-card__mockup-wrap {
-    flex-shrink: 0;
-  }
-
-  /* iPhone(s) logo abaixo do título, centralizado — garantir que ocupe espaço */
-  .showcase-card--redes .showcase-card__mockup-wrap {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    min-height: 200px;
-    transform: none;
-    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
-  }
-
-  .showcase-card--redes .showcase-card__mockup-wrap .mockup {
-    flex-shrink: 0;
-  }
-
-  .showcase-card--redes .showcase-card:hover .showcase-card__stage .showcase-card__mockup-wrap {
-    transform: none;
-  }
-
-  .showcase-card--redes .showcase-card__mockup-wrap .mockup--iphones {
-    min-height: 200px;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .showcase-card--redes .showcase-card__mockup-wrap .mockup__iphone {
-    max-height: 180px;
-    width: 80px;
-  }
-
-  /* Pílula de navegação: canto inferior esquerdo do card */
-  .showcase-card--redes .showcase-card__nav-pill {
-    position: absolute;
-    bottom: 24px;
-    left: 24px;
-    margin-top: 0;
-    z-index: 10;
-  }
-
-  .showcase-card__carousel {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    min-height: 340px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-  }
-
-  .showcase-card__carousel--stack {
-    overflow: visible;
-  }
-
-  .showcase-card__carousel--stack .showcase-card__slide {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-  }
-
-  .showcase-card__carousel--stack .showcase-card__slide--exit-left,
-  .showcase-card__carousel--stack .showcase-card__slide--exit-right {
-    z-index: 0;
-  }
-
-  .showcase-card__carousel--stack .showcase-card__slide--enter-from-right,
-  .showcase-card__carousel--stack .showcase-card__slide--enter-from-left {
-    z-index: 1;
-  }
-
-  /* Parallax: saída — iPhone mais rápido que MacBook (animação) */
-  .showcase-card__slide--exit-left .device-stack__back {
-    animation: stack-back-exit-left 0.4s var(--ease-out) 0.02s forwards;
-  }
-
-  .showcase-card__slide--exit-left .device-stack__front {
-    animation: stack-front-exit-left 0.32s var(--ease-out) forwards;
-  }
-
-  @keyframes stack-back-exit-left {
-    from {
-      transform: rotateY(-4deg) rotateZ(-1deg) translateX(0);
-    }
-    to {
-      transform: rotateY(-4deg) rotateZ(-1deg) translateX(-100%);
-    }
-  }
-
-  @keyframes stack-front-exit-left {
-    from {
-      transform: scale(0.65) rotateZ(4deg) translateX(0);
-    }
-    to {
-      transform: scale(0.65) rotateZ(4deg) translateX(-120%);
-    }
-  }
-
-  .showcase-card__slide--exit-right .device-stack__back {
-    animation: stack-back-exit-right 0.4s var(--ease-out) 0.02s forwards;
-  }
-
-  .showcase-card__slide--exit-right .device-stack__front {
-    animation: stack-front-exit-right 0.32s var(--ease-out) forwards;
-  }
-
-  @keyframes stack-back-exit-right {
-    from {
-      transform: rotateY(-4deg) rotateZ(-1deg) translateX(0);
-    }
-    to {
-      transform: rotateY(-4deg) rotateZ(-1deg) translateX(100%);
-    }
-  }
-
-  @keyframes stack-front-exit-right {
-    from {
-      transform: scale(0.65) rotateZ(4deg) translateX(0);
-    }
-    to {
-      transform: scale(0.65) rotateZ(4deg) translateX(120%);
-    }
-  }
-
-  /* Parallax: entrada da direita — animação (MacBook depois iPhone) */
-  .showcase-card__slide--enter-from-right .device-stack__back {
-    animation: stack-back-enter-from-right 0.42s var(--ease-out) forwards;
-  }
-
-  .showcase-card__slide--enter-from-right .device-stack__front {
-    animation: stack-front-enter-from-right 0.38s var(--ease-out) 0.04s forwards;
-  }
-
-  @keyframes stack-back-enter-from-right {
-    from {
-      transform: rotateY(-4deg) rotateZ(-1deg) translateX(100%);
-    }
-    to {
-      transform: rotateY(-4deg) rotateZ(-1deg) translateX(0);
-    }
-  }
-
-  @keyframes stack-front-enter-from-right {
-    from {
-      transform: scale(0.65) rotateZ(4deg) translateX(100%);
-    }
-    to {
-      transform: scale(0.65) rotateZ(4deg) translateX(0);
-    }
-  }
-
-  /* Parallax: entrada da esquerda (quando volta) */
-  .showcase-card__slide--enter-from-left .device-stack__back {
-    animation: stack-back-enter-from-left 0.42s var(--ease-out) forwards;
-  }
-
-  .showcase-card__slide--enter-from-left .device-stack__front {
-    animation: stack-front-enter-from-left 0.38s var(--ease-out) 0.04s forwards;
-  }
-
-  @keyframes stack-back-enter-from-left {
-    from {
-      transform: rotateY(-4deg) rotateZ(-1deg) translateX(-100%);
-    }
-    to {
-      transform: rotateY(-4deg) rotateZ(-1deg) translateX(0);
-    }
-  }
-
-  @keyframes stack-front-enter-from-left {
-    from {
-      transform: scale(0.65) rotateZ(4deg) translateX(-120%);
-    }
-    to {
-      transform: scale(0.65) rotateZ(4deg) translateX(0);
-    }
-  }
-
-  .showcase-card__slide--enter-from-right,
-  .showcase-card__slide--enter-from-left {
-    pointer-events: none;
-  }
-
-  .showcase-card__slide {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .showcase-card__slide:not([class*="exit"]):not([class*="enter"]) {
-    /* animation: showcase-slide-in 0.4s var(--ease-out) forwards; */
-    opacity: 1;
-    transform: none;
-  }
-
-  .showcase-card__carousel:not(.showcase-card__carousel--stack) .showcase-card__slide {
-    position: relative;
-  }
-
-  @keyframes showcase-slide-in {
-    from {
-      opacity: 0;
-      transform: translateX(16px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  /* Wrapper do stack: MacBook + iPhone em cima, badge abaixo (sem borda/outline) */
-  .showcase-card__stack-wrap {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    outline: none;
-    border: none;
-    box-shadow: none;
-  }
-
-  .showcase-card__stack-wrap .device-stack {
-    outline: none;
-    border: none;
-    box-shadow: none;
-  }
-
-  .showcase-card__stack-wrap .device-stack *,
-  .showcase-card__stack-wrap .mockup,
-  .showcase-card__stack-wrap .mockup__macbook {
-    outline: none;
-  }
-
-  /* Badge do cliente: canto inferior esquerdo da área do mockup (equilibra o celular à direita) */
-  .showcase-card__badge-below-stack {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    z-index: 5;
-    margin-top: 0;
-    text-align: left;
-  }
-
-  .showcase-card__badge-below-stack .showcase-badge {
-    margin-top: 0;
-    min-width: 200px;
-    min-height: 64px;
-  }
-
-  .showcase-card__mockup-wrap {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .showcase-card__mockup-wrap .mockup--macbook {
-    min-height: 240px;
-  }
-
-  .showcase-card__mockup-wrap .mockup__macbook {
-    max-width: 340px;
-  }
-
-  .showcase-card__mockup-wrap .mockup--iphones {
-    min-height: 200px;
-  }
-
-  .showcase-card__mockup-wrap .mockup--iphone {
-    min-height: 200px;
-  }
-
-  .showcase-card__mockup-wrap .mockup--dashboard {
-    min-height: 160px;
-    width: 100%;
-    max-width: 320px;
-  }
-
-  /* Etiqueta de vidro flutuante — tamanho fixo para não pular ao trocar de projeto */
-  .showcase-badge {
-    margin-top: 12px;
-    padding: 12px 18px;
-    min-width: 220px;
-    min-height: 72px;
-    border-radius: 14px;
-    background: rgba(17, 17, 17, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 2px;
-    align-self: center;
-    flex-shrink: 0;
-    box-sizing: border-box;
-  }
-
-  .showcase-badge__name {
+.project-card__image-wrap {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
+  flex-shrink: 0;
+}
+
+.project-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-card__body {
+  padding: 20px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.project-card__name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.project-card__service-type {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.project-card__problema,
+.project-card__resultado {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.45;
+}
+
+.project-card__label {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+}
+
+.project-card__resultado-value {
+  font-weight: 700;
+  color: var(--neon-cyan);
+  background: rgba(34, 211, 238, 0.12);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+/* Desktop: problema → resultado. Mobile: resultado → problema (order) */
+.project-card__problema--reorder-mobile,
+.project-card__resultado--reorder-mobile {
+  order: 0;
+}
+
+/* Botão "Ver como foi feito ↓" / "Fechar ↑" */
+.project-card__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 12px 18px;
+  min-height: 44px;
+  font-family: var(--font);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--neon-cyan);
+  background: rgba(34, 211, 238, 0.1);
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.project-card__toggle:hover {
+  background: rgba(34, 211, 238, 0.18);
+  color: #67e8f9;
+}
+
+.project-card__toggle-icon {
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.project-card--expanded .project-card__toggle-icon {
+  transform: rotate(0deg);
+}
+
+.project-card__cta-link {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--neon-cyan);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.project-card__cta-link:hover {
+  color: #67e8f9;
+}
+
+/* ========== Conteúdo expandido (inline) — animação 200–300ms ========== */
+.project-card__expandable {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.28s ease;
+}
+
+.project-card__expandable--open {
+  max-height: 2000px;
+}
+
+.project-card__expandable-inner {
+  padding: 0 20px 24px;
+}
+
+.project-card__divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin: 0 0 20px 0;
+}
+
+.project-card__block {
+  margin-bottom: 20px;
+}
+
+.project-card__block:last-of-type {
+  margin-bottom: 24px;
+}
+
+.project-card__block-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin: 0 0 8px 0;
+}
+
+.project-card__block-text {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.project-card__block-text--tools {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.project-card__list {
+  margin: 0;
+  padding-left: 1.2em;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.project-card__list--results li {
+  font-weight: 600;
+  color: var(--neon-cyan);
+}
+
+.project-card__expandable-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.project-card__cta-btn-expand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 14px 24px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0a0a0a;
+  background: var(--neon-cyan);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card__cta-btn-expand:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 28px rgba(34, 211, 238, 0.5);
+}
+
+/* Desktop: "Falar sobre esse projeto". Mobile: "Quero um projeto assim" */
+.project-card__cta-mobile {
+  display: none;
+}
+
+.project-card__close-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 12px 18px;
+  font-family: var(--font);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.project-card__close-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+/* Ver todos os projetos */
+.bento-projects__ver-todos {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.bento-projects__ver-todos-link {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--neon-cyan);
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.bento-projects__ver-todos-link:hover {
+  color: #67e8f9;
+}
+
+/* CTA: Quer resultados parecidos? */
+.bento-projects__cta {
+  text-align: center;
+  padding: 32px 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.bento-projects__cta-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 16px 0;
+}
+
+.bento-projects__cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0a0a0a;
+  background: var(--neon-cyan);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bento-projects__cta-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 32px rgba(34, 211, 238, 0.5);
+}
+
+/* ========== Responsividade ========== */
+@media (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bento-projects__title {
+    font-size: 1.35rem;
+    margin-bottom: 6px;
+  }
+
+  .bento-projects__subtitle {
+    font-size: 1rem;
+  }
+
+  .bento-projects__intro {
     font-size: 0.9375rem;
-    font-weight: 700;
-    color: #ffffff;
-    letter-spacing: 0.01em;
+    margin-bottom: 32px;
   }
 
-  .showcase-badge__niche {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  /* Card expandido em tablet/mobile: volta ao layout vertical (empilhado) */
+  .project-card--full-width.project-card--expanded {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card--full-width.project-card--expanded .project-card__image-wrap,
+  .project-card--full-width.project-card--expanded .project-card__body,
+  .project-card--full-width.project-card--expanded .project-card__expandable {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .project-card--full-width.project-card--expanded .project-card__expandable {
+    max-height: 2000px;
+  }
+
+  .project-card__body {
+    padding: 18px 18px 22px;
+  }
+
+  .project-card__name {
+    font-size: 1.05rem;
+  }
+
+  /* Mobile: Resultado antes do Problema (ordem de leitura) */
+  .project-card__resultado--reorder-mobile {
+    order: -1;
+  }
+  .project-card__problema--reorder-mobile {
+    order: 1;
+  }
+
+  .project-card__toggle {
+    min-height: 44px;
+    padding: 14px 20px;
+    font-size: 1rem;
+  }
+
+  .project-card__expandable-inner {
+    padding: 0 18px 22px;
+  }
+
+  /* Mobile: CTA "Quero um projeto assim" */
+  .project-card__cta-desktop {
+    display: none;
+  }
+  .project-card__cta-mobile {
+    display: inline;
+  }
+
+  .bento-projects__ver-todos {
+    margin-bottom: 40px;
+  }
+
+  .bento-projects__cta {
+    padding: 28px 20px;
+  }
+
+  .bento-projects__cta-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .bento-projects__title {
+    font-size: 1.2rem;
+  }
+
+  .bento-projects__subtitle {
+    font-size: 0.9375rem;
+  }
+
+  .bento-projects__intro {
+    font-size: 0.875rem;
+    margin-bottom: 28px;
+  }
+
+  .projects-grid {
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .project-card {
+    width: 100%;
+  }
+
+  .project-card__body {
+    padding: 16px 16px 20px;
+  }
+
+  .project-card__name {
+    font-size: 1rem;
+  }
+
+  .project-card__problema,
+  .project-card__resultado {
     font-size: 0.8125rem;
-    color: var(--text-muted);
-    font-weight: 500;
   }
 
-  .showcase-badge--cyan .showcase-badge__niche {
-    color: rgba(34, 211, 238, 0.9);
+  .project-card__toggle {
+    min-height: 44px;
+    padding: 14px 18px;
+    font-size: 0.9375rem;
   }
 
-  .showcase-badge--purple .showcase-badge__niche {
-    color: rgba(167, 139, 250, 0.9);
+  .project-card__cta-btn-expand,
+  .project-card__close-btn {
+    min-height: 44px;
   }
 
-  .showcase-badge--lime .showcase-badge__niche {
-    color: rgba(163, 230, 53, 0.9);
+  .project-card__expandable-inner {
+    padding: 0 16px 20px;
   }
 
-  .showcase-badge--pink .showcase-badge__niche {
-    color: rgba(244, 114, 182, 0.9);
+  .project-card__block-text,
+  .project-card__list {
+    font-size: 0.8125rem;
   }
 
-  .showcase-badge--clickable {
-    text-decoration: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  .bento-projects__cta {
+    padding: 24px 16px;
   }
 
-  .showcase-badge--clickable:hover {
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+  .bento-projects__cta-btn {
+    padding: 14px 24px;
+    min-height: 44px;
+    font-size: 0.9375rem;
   }
-
-  .showcase-badge--cyan.showcase-badge--clickable:hover {
-    border-color: rgba(34, 211, 238, 0.4);
-    box-shadow: 0 8px 28px rgba(34, 211, 238, 0.15);
-  }
-
-  .showcase-badge--purple.showcase-badge--clickable:hover {
-    border-color: rgba(167, 139, 250, 0.4);
-    box-shadow: 0 8px 28px rgba(167, 139, 250, 0.15);
-  }
-
-  .showcase-badge__link {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    margin-top: 4px;
-    transition: color 0.2s ease;
-  }
-
-  .showcase-badge--clickable:hover .showcase-badge__link {
-    color: var(--neon-cyan);
-  }
-
-  .showcase-badge--purple.showcase-badge--clickable:hover .showcase-badge__link {
-    color: var(--neon-purple);
-  }
-
-  .showcase-badge--lime.showcase-badge--clickable:hover .showcase-badge__link {
-    color: var(--neon-lime);
-  }
-
-  .showcase-badge--pink.showcase-badge--clickable:hover .showcase-badge__link {
-    color: var(--neon-pink);
-  }
-
-  .showcase-badge--lime.showcase-badge--clickable:hover {
-    border-color: rgba(163, 230, 53, 0.4);
-    box-shadow: 0 8px 28px rgba(163, 230, 53, 0.15);
-  }
-
-  .showcase-badge--pink.showcase-badge--clickable:hover {
-    border-color: rgba(244, 114, 182, 0.4);
-    box-shadow: 0 8px 28px rgba(244, 114, 182, 0.15);
-  }
-
-  .bento-section__note {
-    margin-top: 32px;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    font-style: italic;
-  }
-
-  /* Responsivo: 1 coluna empilhada */
-  @media (max-width: 768px) {
-    .bento-projects-grid {
-      grid-template-columns: 1fr;
-      grid-template-rows: none;
-      gap: 20px;
-    }
-
-    .bento-projects-grid .showcase-card {
-      grid-column: 1 / -1 !important;
-      grid-row: auto !important;
-    }
-
-    .showcase-card {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto 1fr;
-      min-height: auto;
-    }
-
-    .showcase-card__anchor {
-      padding: 24px 24px;
-      order: 1;
-    }
-
-    .showcase-card__title {
-      font-size: 1.5rem;
-    }
-
-    .showcase-card__stage {
-      padding: 20px 24px;
-      min-height: 260px;
-      order: 2;
-    }
-
-    .showcase-card__mockup-wrap .mockup__macbook {
-      max-width: 100%;
-    }
-
-    .showcase-card__mockup-wrap .mockup--iphones .mockup__iphone {
-      max-height: 140px;
-      width: 72px;
-    }
-  }
+}

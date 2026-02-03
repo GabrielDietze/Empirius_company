@@ -1,6 +1,6 @@
 /* Bento Section — layout e tipografia */
 .bento-section {
-  padding: 120px 24px;
+  padding: 120px 32px;
   position: relative;
 }
 
@@ -10,7 +10,7 @@
 }
 
 .bento-section__title {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(1.5rem, 4vw, 3.5rem);
   font-weight: 800;
   letter-spacing: var(--tracking-tighter);
   color: var(--text);
@@ -18,7 +18,7 @@
 }
 
 .bento-section__intro {
-  font-size: 1.15rem;
+  font-size: clamp(0.9375rem, 2vw, 1.15rem);
   color: var(--text-muted);
   max-width: 55ch;
   margin-bottom: 48px;
@@ -44,6 +44,7 @@
 @media (max-width: 768px) {
   .bento-grid--services {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .bento-card--wide {
@@ -51,6 +52,35 @@
   }
 
   .bento-section {
-    padding: 80px 24px;
+    padding: 64px 28px;
+  }
+
+  .bento-section__title {
+    font-size: clamp(1.35rem, 5vw, 1.75rem);
+    margin-bottom: 12px;
+  }
+
+  .bento-section__intro {
+    font-size: 0.9375rem;
+    margin-bottom: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bento-grid--services {
+    gap: 12px;
+  }
+
+  .bento-section {
+    padding: 48px 22px;
+  }
+
+  .bento-section__title {
+    font-size: 1.25rem;
+  }
+
+  .bento-section__intro {
+    font-size: 0.875rem;
+    margin-bottom: 24px;
   }
 }

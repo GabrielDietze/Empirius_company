@@ -13,6 +13,7 @@ export function Header() {
 
   const links = [
     { href: '#servicos', label: 'Serviços' },
+    { href: '#beneficios', label: 'Benefícios' },
     { href: '#projetos', label: 'Projetos' },
     { href: '#sobre', label: 'Sobre' },
     { href: '#contato', label: 'Contato' },

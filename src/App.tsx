@@ -1,6 +1,7 @@
 import { Header } from './components/Header'
 import { Hero } from './components/Hero'
 import { BentoServices } from './components/BentoServices'
+import { BentoBenefits } from './components/BentoBenefits'
 import { BentoProjects } from './components/BentoProjects'
 import { BentoAbout } from './components/BentoAbout'
 import { Contact } from './components/Contact'
@@ -16,6 +17,7 @@ function App() {
       <main>
         <Hero />
         <BentoServices />
+        <BentoBenefits />
         <BentoProjects />
         <BentoAbout />
         <Contact />

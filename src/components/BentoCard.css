@@ -68,7 +68,7 @@
 
 /* Títulos ~50% maiores: 30–32px */
 .bento-card__title {
-  font-size: 1.875rem;
+  font-size: clamp(1.35rem, 3vw, 1.875rem);
   font-weight: 700;
   color: #ffffff;
   margin-bottom: 12px;
@@ -78,7 +78,7 @@
 
 /* Texto descritivo 16–18px, mais alto, cor clara */
 .bento-card__description {
-  font-size: 1.125rem;
+  font-size: clamp(0.9375rem, 1.5vw, 1.125rem);
   color: #e0e0e0;
   line-height: 1.7;
   margin-bottom: 0;
@@ -252,27 +252,65 @@
 }
 
 @media (max-width: 768px) {
+  .bento-card {
+    padding: 22px 20px;
+  }
+
   .bento-card--wide {
-    padding: 28px 24px;
+    padding: 22px 20px;
   }
 
   .bento-card__wide-inner {
     flex-direction: column;
     align-items: flex-start;
-    gap: 24px;
+    gap: 20px;
   }
 
   .bento-card__wide-icon {
-    width: 64px;
-    height: 64px;
+    width: 56px;
+    height: 56px;
   }
 
   .bento-card__wide-icon .service-icon-3d {
-    width: 64px;
-    height: 64px;
+    width: 56px;
+    height: 56px;
+  }
+
+  .bento-card__title {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+  }
+
+  .bento-card__description {
+    font-size: 0.9375rem;
+  }
+
+  .bento-card__benefits li {
+    font-size: 0.875rem;
   }
 
   .bento-card--large {
     grid-row: span 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .bento-card,
+  .bento-card--wide {
+    padding: 18px 16px;
+  }
+
+  .bento-card__title {
+    font-size: 1.125rem;
+  }
+
+  .bento-card__description {
+    font-size: 0.875rem;
+  }
+
+  .bento-card__wide-icon,
+  .bento-card__wide-icon .service-icon-3d {
+    width: 48px;
+    height: 48px;
   }
 }

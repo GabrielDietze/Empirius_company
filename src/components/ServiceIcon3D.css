@@ -83,3 +83,34 @@
   height: 64px;
   margin-bottom: 24px;
 }
+
+/* ========== Responsividade: ícones em telas pequenas ========== */
+@media (max-width: 768px) {
+  .service-icon-3d {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+  }
+
+  .bento-card--large .service-icon-3d,
+  .bento-card--wide .service-icon-3d {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-icon-3d {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 14px;
+  }
+
+  .bento-card--large .service-icon-3d,
+  .bento-card--wide .service-icon-3d {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+  }
+}

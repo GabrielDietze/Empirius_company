@@ -1,0 +1,129 @@
+/* Seção Benefícios — grid 2 colunas desktop, cards glass */
+.bento-benefits .bento-section__title {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: var(--tracking-tighter);
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.bento-benefits .bento-section__intro {
+  font-size: clamp(0.9375rem, 2vw, 1.15rem);
+  color: var(--text-muted);
+  max-width: 55ch;
+  margin-bottom: 40px;
+}
+
+.bento-benefits__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.benefit-card {
+  border-radius: 20px;
+  padding: 28px 24px;
+  background: rgba(17, 17, 17, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: transform 0.25s var(--ease-out), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.benefit-card--cyan:hover {
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 0 40px rgba(34, 211, 238, 0.1);
+}
+
+.benefit-card--purple:hover {
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 0 40px rgba(167, 139, 250, 0.1);
+}
+
+.benefit-card--lime:hover {
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 0 40px rgba(163, 230, 53, 0.1);
+}
+
+.benefit-card--pink:hover {
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 0 40px rgba(244, 114, 182, 0.1);
+}
+
+.benefit-card__title {
+  font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.benefit-card__description {
+  font-size: clamp(0.9375rem, 1.5vw, 1rem);
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .bento-benefits .bento-section__title {
+    font-size: clamp(1.35rem, 5vw, 1.75rem);
+    margin-bottom: 12px;
+  }
+
+  .bento-benefits .bento-section__intro {
+    font-size: 0.9375rem;
+    margin-bottom: 32px;
+  }
+
+  .bento-benefits__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .benefit-card {
+    padding: 24px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bento-benefits .bento-section__title {
+    font-size: 1.25rem;
+  }
+
+  .bento-benefits .bento-section__intro {
+    font-size: 0.875rem;
+    margin-bottom: 24px;
+  }
+
+  .bento-benefits__grid {
+    gap: 14px;
+  }
+
+  .benefit-card {
+    padding: 22px 18px;
+  }
+
+  .benefit-card__title {
+    font-size: 1.15rem;
+  }
+
+  .benefit-card__description {
+    font-size: 0.875rem;
+  }
+}

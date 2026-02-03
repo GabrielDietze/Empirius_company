@@ -1,102 +1,109 @@
 import personalMarcelaImage from '../assets/personal-marcela.png'
 
+/** Tipo de mockup (usado por ProjectMockup, mantido para compatibilidade) */
 export type ProjectMockupType = 'macbook' | 'iphone' | 'iphones' | 'dashboard'
 
-/** Segmento de descrição com opção de destaque em gradiente */
-export interface DescriptionSegment {
-  text: string
-  highlight?: boolean
-}
-
-/** Um cliente/projeto dentro de um showcase (carrossel) */
-export interface ShowcaseProject {
+/** Projeto/case para a seção Projetos — card expansível */
+export interface Project {
   id: string
+  /** Nome do projeto / cliente */
   name: string
-  niche: string
+  /** Tipo de serviço */
+  serviceType: string
+  /** Problema em 1 linha (resumo no card fechado) */
+  problema: string
+  /** Resultado (métrica) — destaque visual */
+  resultado: string
+  /** Imagem ou mockup do projeto */
   image: string
-  /** Link do site ou perfil (ex.: site, Instagram) */
+  /** Link externo (opcional) */
   url?: string
+  /** Conteúdo do estado expandido */
+  expandido?: {
+    /** Breve descrição do cliente e do cenário */
+    contexto: string
+    /** Dor principal / o que não funcionava (bullets) */
+    problema: string[]
+    /** Estratégia aplicada / ações realizadas (bullets) */
+    solucao: string[]
+    /** Métricas (bullets) */
+    resultados: string[]
+    /** Ex: "Figma • React • Node" */
+    ferramentas: string
+  }
 }
 
-/** Posição/tamanho no Bento Grid (12 colunas, 3 linhas lógicas) */
-export interface BentoSize {
-  colSpan: number
-  rowSpan: number
-  /** Coluna inicial (1-based) */
-  colStart: number
-  /** Linha inicial (1-based) */
-  rowStart: number
-}
-
-/** Vitrine de um serviço: lado fixo (título, descrição, nav) + carrossel de clientes */
-export interface Showcase {
-  id: string
-  serviceTitle: string
-  serviceDescription: DescriptionSegment[]
-  mockupType: 'macbook' | 'iphones' | 'iphone' | 'dashboard'
-  accent: 'cyan' | 'purple' | 'lime' | 'pink'
-  projects: ShowcaseProject[]
-  /** Posição no Bento Grid: col-span e row-span (grid de 12 colunas) */
-  bentoSize: BentoSize
-}
-
-export const showcases: Showcase[] = [
+export const projects: Project[] = [
   {
-    id: 'sites',
-    serviceTitle: 'Sites',
-    serviceDescription: [
-      { text: 'Páginas profissionais que ' },
-      { text: 'apresentam seu negócio e convertem visitantes em clientes.', highlight: true },
-    ],
-    mockupType: 'macbook',
-    accent: 'cyan',
-    bentoSize: { colSpan: 8, rowSpan: 2, colStart: 1, rowStart: 1 },
-    projects: [
-      { id: 'marcela', name: 'Personal Marcela Magalhães', niche: 'Personal / Saúde', image: personalMarcelaImage, url: 'https://personalmarcela.com.br/' },
-      { id: 'portfolio-dev', name: 'Portfólio Dev', niche: 'Portfólio', image: 'https://picsum.photos/seed/empirius-portfolio/800/500', url: 'https://portifolio-pessoal-rosy.vercel.app/' },
-    ],
+    id: 'personal-marcela',
+    name: 'Personal Marcela Magalhães',
+    serviceType: 'Site • Conversão',
+    problema: 'Poucas vendas e baixa visibilidade online.',
+    resultado: '+38% conversão',
+    image: personalMarcelaImage,
+    url: 'https://personalmarcela.com.br/',
+    expandido: {
+      contexto:
+        'Personal trainer com foco em resultados e bem-estar, precisava de presença digital profissional para atrair alunos e divulgar serviços.',
+      problema: [
+        'Poucas vendas pelo canal online.',
+        'Falta de credibilidade e visibilidade na região.',
+      ],
+      solucao: [
+        'Site institucional com foco em conversão e SEO local.',
+        'Formulário de contato e integração com WhatsApp.',
+        'Conteúdo claro sobre metodologia e depoimentos.',
+      ],
+      resultados: ['+38% conversão', '+25% faturamento', 'Mais leads qualificados'],
+      ferramentas: 'Figma • React • Vercel • SEO',
+    },
   },
   {
-    id: 'redes',
-    serviceTitle: 'Redes Sociais',
-    serviceDescription: [
-      { text: 'Gestão e criação de conteúdo para você ' },
-      { text: 'conectar com seu público no Instagram e outras redes.', highlight: true },
-    ],
-    mockupType: 'iphones',
-    accent: 'purple',
-    bentoSize: { colSpan: 4, rowSpan: 2, colStart: 9, rowStart: 1 },
-    projects: [
-      { id: 'academia', name: 'Academia Corpo em Forma', niche: 'Instagram', image: 'https://picsum.photos/seed/empirius-academia/800/500', url: 'https://www.instagram.com/academia.corpo.emforma/' },
-      { id: 'casa-vidro', name: 'Casa do Vidro Santa Luzia', niche: 'Instagram', image: 'https://picsum.photos/seed/empirius-casavidro/800/500', url: 'https://www.instagram.com/casadovidrosantaluzia/' },
-    ],
+    id: 'academia-corpo',
+    name: 'Academia Corpo em Forma',
+    serviceType: 'Redes Sociais • Instagram',
+    problema: 'Processo manual e pouco alcance nas redes.',
+    resultado: '-50% tempo operacional',
+    image: 'https://picsum.photos/seed/empirius-academia/800/500',
+    url: 'https://www.instagram.com/academia.corpo.emforma/',
+    expandido: {
+      contexto:
+        'Academia com foco em resultados e comunidade, buscando mais alcance e engajamento no Instagram.',
+      problema: [
+        'Processo manual de divulgação e agendamento.',
+        'Pouco alcance orgânico nas redes.',
+      ],
+      solucao: [
+        'Gestão de redes com conteúdo planejado e stories.',
+        'Padrão visual e tom de voz alinhados à marca.',
+        'Uso de chamadas para ação e link na bio.',
+      ],
+      resultados: ['-50% tempo operacional', '+40% alcance', 'Mais engajamento'],
+      ferramentas: 'Instagram • Canva • Métricas nativas',
+    },
   },
   {
-    id: 'google-business',
-    serviceTitle: 'Google Business Profile & SEO Local',
-    serviceDescription: [
-      { text: 'Perfil otimizado, avaliações e ' },
-      { text: 'visibilidade no Google para quem busca você na região.', highlight: true },
-    ],
-    mockupType: 'iphone',
-    accent: 'lime',
-    bentoSize: { colSpan: 6, rowSpan: 1, colStart: 1, rowStart: 3 },
-    projects: [
-      { id: 'google-profile', name: 'Ver perfil no Google', niche: 'SEO Local', image: 'https://picsum.photos/seed/empirius-google/800/500', url: 'https://share.google/y40tADlL697QNxP2b' },
-    ],
-  },
-  {
-    id: 'trafego-pago',
-    serviceTitle: 'Tráfego pago e consultoria',
-    serviceDescription: [
-      { text: 'Campanhas estruturadas para ' },
-      { text: 'mais leads qualificados e menos desperdício.', highlight: true },
-    ],
-    mockupType: 'dashboard',
-    accent: 'pink',
-    bentoSize: { colSpan: 6, rowSpan: 1, colStart: 7, rowStart: 3 },
-    projects: [
-      { id: 'consultoria-ads', name: 'Consultoria em tráfego pago', niche: 'Meta Ads · Google Ads', image: 'https://picsum.photos/seed/empirius-ads/800/500', url: '' },
-    ],
+    id: 'casa-vidro',
+    name: 'Casa do Vidro Santa Luzia',
+    serviceType: 'Google Business • SEO Local',
+    problema: 'Leads desqualificados e pouca visibilidade local.',
+    resultado: '+62% leads qualificados',
+    image: 'https://picsum.photos/seed/empirius-casavidro/800/500',
+    url: 'https://www.instagram.com/casadovidrosantaluzia/',
+    expandido: {
+      contexto:
+        'Loja de vidros e espelhos com forte atuação local, precisando aparecer para quem busca na região.',
+      problema: [
+        'Muitos leads desqualificados e perda de tempo.',
+        'Pouca visibilidade no Google para buscas locais.',
+      ],
+      solucao: [
+        'Otimização do perfil no Google (horários, fotos, descrição).',
+        'SEO local e palavras-chave regionais.',
+        'Respostas a avaliações e presença ativa.',
+      ],
+      resultados: ['+62% leads qualificados', '+400% visualizações no perfil', 'Melhor posicionamento local'],
+      ferramentas: 'Google Business • Google Search Console • SEO Local',
+    },
   },
 ]
