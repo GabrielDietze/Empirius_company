@@ -1,50 +1,70 @@
-/* Stack: MacBook (trás) + iPhone (frente) com profundidade */
+/* ============================================================
+   Device Stack — Composição em camadas (mockup-stage)
+   MacBook centralizado (tamanho de print do site) | iPhone no canto
+   ============================================================ */
+
+/* Container: área da composição, conteúdo centralizado */
 .device-stack {
   position: relative;
   width: 100%;
-  min-height: 260px;
+  max-width: 520px;
+  min-height: 380px;
+  height: 380px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  perspective: 1200px;
+  outline: none;
+  border: none;
+  box-shadow: none;
 }
 
 .device-stack__glow {
   position: absolute;
-  inset: -20%;
+  inset: -10%;
   background: radial-gradient(
-    ellipse 80% 60% at 50% 50%,
-    rgba(34, 211, 238, 0.08) 0%,
-    transparent 60%
+    circle at 50% 50%,
+    rgba(34, 211, 238, 0.15) 0%,
+    transparent 70%
   );
   pointer-events: none;
+  z-index: -1;
 }
 
-/* Camada de trás: MacBook grande, ligeiramente inclinado */
+/* MacBook (fundo): centralizado, tamanho proporcional ao print do site */
 .device-stack__back {
   position: relative;
-  z-index: 0;
+  z-index: 1;
+  width: 100%;
+  max-width: 380px;
   transform: rotateY(-4deg) rotateZ(-1deg);
+  transform-origin: center center;
   transform-style: preserve-3d;
   transition: transform 0.5s var(--ease-out);
 }
 
 .device-stack__back .mockup--macbook {
-  min-height: 240px;
+  min-height: 220px;
 }
 
 .device-stack__back .mockup__macbook {
-  max-width: 380px;
+  max-width: 100%;
   filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.4));
 }
 
-/* Camada da frente: iPhone flutuando, sobrepondo o lado direito do MacBook */
+.device-stack__back .mockup__macbook .mockup__screen {
+  aspect-ratio: 16 / 10;
+  min-height: 200px;
+}
+
+/* iPhone (frente): alinhado na base do notebook (mesma linha de baixo), canto direito */
 .device-stack__front {
   position: absolute;
-  z-index: 1;
+  bottom: 33%;
   right: 5%;
-  top: 50%;
-  transform: translateY(-50%) rotateZ(4deg);
+  z-index: 2;
+  transform: scale(0.65) rotateZ(4deg);
+  transform-origin: bottom center;
   transform-style: preserve-3d;
   transition: transform 0.5s var(--ease-out);
 }
@@ -57,9 +77,12 @@
   width: 110px;
   max-height: 200px;
   filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.35));
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
-/* Parallax: velocidades diferentes na transição (controlado pelo pai .showcase-card__slide) */
+/* Parallax: animações controladas pelo pai .showcase-card__slide */
 .device-stack__back,
 .device-stack__front {
   will-change: transform;

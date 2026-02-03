@@ -103,7 +103,7 @@ function ShowcaseCard({ showcase, index: sectionIndex }: { showcase: Showcase; i
         <div className={`showcase-card__slide ${slideClass}`}>
           <div className="showcase-card__stack-wrap">
             <DeviceStack imageUrl={proj.image || undefined} />
-            <div className="showcase-card__badge-on-iphone">
+            <div className="showcase-card__badge-below-stack">
               <ClientBadge
                 name={proj.name}
                 niche={proj.niche}
@@ -133,9 +133,16 @@ function ShowcaseCard({ showcase, index: sectionIndex }: { showcase: Showcase; i
     )
   }
 
+  const { colSpan, rowSpan, colStart, rowStart } = showcase.bentoSize
+  const gridStyle = {
+    gridColumn: `${colStart} / span ${colSpan}`,
+    gridRow: `${rowStart} / span ${rowSpan}`,
+  }
+
   return (
     <article
-      className={`showcase-card showcase-card--${showcase.accent} reveal reveal-delay-${Math.min(sectionIndex + 3, 4)}`}
+      className={`showcase-card showcase-card--${showcase.accent} showcase-card--${showcase.id} reveal reveal-delay-${Math.min(sectionIndex + 3, 4)}`}
+      style={gridStyle}
     >
       <div className="showcase-card__anchor">
         <h3 className="showcase-card__title">{showcase.serviceTitle}</h3>
@@ -151,7 +158,7 @@ function ShowcaseCard({ showcase, index: sectionIndex }: { showcase: Showcase; i
           )}
         </p>
         {total > 1 && (
-          <div className="showcase-card__nav">
+          <div className="showcase-card__nav-pill" role="group" aria-label="Navegação do carrossel">
             <button
               type="button"
               className="showcase-card__arrow"
@@ -209,7 +216,7 @@ export function BentoProjects() {
         <p className="bento-section__intro reveal reveal-delay-1">
           Alguns dos negócios que já apoiamos no caminho digital. Resultados reais, números que importam.
         </p>
-        <div className="showcase-grid reveal reveal-delay-2">
+        <div className="bento-projects-grid reveal reveal-delay-2">
           {showcases.map((showcase, i) => (
             <ShowcaseCard key={showcase.id} showcase={showcase} index={i} />
           ))}

@@ -31,34 +31,26 @@
 .mockup__macbook {
   position: relative;
   width: 100%;
-  max-width: 320px;
+  max-width: 440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .mockup__macbook .mockup__screen {
+  position: relative;
+  width: 100%;
   aspect-ratio: 16 / 10;
+  min-height: 220px; /* Aumentado */
   border-radius: 12px 12px 0 0;
-  background: linear-gradient(145deg, #1a1a2e 0%, #16213e 50%);
-  border: 3px solid rgba(255, 255, 255, 0.08);
-  border-bottom: none;
+  background: #050505;
+  border: 10px solid #1a1a1a;
+  border-bottom-width: 14px;
   overflow: hidden;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), inset 0 0 60px rgba(34, 211, 238, 0.05);
-}
-
-.mockup__screen-content {
-  width: 100%;
-  height: 100%;
-}
-
-.mockup__screen-site {
-  background: linear-gradient(180deg, rgba(34, 211, 238, 0.08) 0%, transparent 40%);
-  background-image: radial-gradient(ellipse 60% 40% at 50% 20%, rgba(34, 211, 238, 0.12) 0%, transparent 50%);
-}
-
-.mockup__screen--placeholder {
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.04);
-  min-height: 80px;
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 0 30px rgba(0, 0, 0, 0.9);
 }
 
 .mockup__screen-img {
@@ -66,17 +58,30 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  position: relative;
+  z-index: 1;
+  outline: none;
+  border: none;
+  vertical-align: middle;
+}
+
+.mockup__screen--placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
 }
 
 .mockup__base {
+  position: relative;
+  width: 114%; /* Base mais larga */
   height: 12px;
-  background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
-  border-radius: 0 0 24px 24px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #222;
+  background: linear-gradient(180deg, #333 0%, #111 100%);
+  border-radius: 0 0 16px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   margin-top: -2px;
-  max-width: 95%;
-  margin-left: auto;
-  margin-right: auto;
+  z-index: 2;
 }
 
 /* iPhone */

@@ -14,7 +14,7 @@ export function ProjectMockup({ type, className = '', imageUrl, hideBadge }: Pro
   const screenContent = imageUrl ? (
     <img src={imageUrl} alt="" className="mockup__screen-img" />
   ) : (
-    <div className="mockup__screen-content mockup__screen-site mockup__screen--placeholder" />
+    <div className="mockup__screen--placeholder" />
   )
 
   if (type === 'macbook') {
@@ -34,7 +34,7 @@ export function ProjectMockup({ type, className = '', imageUrl, hideBadge }: Pro
     const iphoneScreenContent = imageUrl ? (
       <img src={imageUrl} alt="" className="mockup__screen-img" />
     ) : (
-      <div className="mockup__screen-maps mockup__screen--placeholder" />
+      <div className="mockup__screen--placeholder" />
     )
     return (
       <div className={`mockup mockup--iphone ${className}`} aria-hidden="true">
