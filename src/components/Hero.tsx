@@ -16,15 +16,16 @@ export function Hero() {
       <div className="hero__inner">
         <div className="hero__text">
           <h1 className="hero__title reveal reveal-delay-1">
-            Seu negócio merece <span className="hero__highlight">presença digital</span> de verdade.
+            Seu negócio merece uma <span className="hero__highlight">presença digital que gera clientes</span>.
           </h1>
           <p className="hero__subtitle reveal reveal-delay-1">
-            Apoiamos micro e pequenos empreendedores e autônomos a crescer no mundo digital: sites, redes sociais, Google Business e estratégias que geram resultados.
+            Criamos sites e estratégias digitais para atrair clientes todos os dias, mesmo enquanto você trabalha.
           </p>
           <div className="hero__cta reveal reveal-delay-2">
-            <a href="#contato" className="btn btn--primary">Fale conosco</a>
+            <a href="#contato" className="btn btn--primary">Solicitar diagnóstico gratuito</a>
             <a href="#projetos" className="btn btn--glass">Ver projetos</a>
           </div>
+          <p className="hero__commitment">Sem compromisso</p>
         </div>
         <div className="hero__visual reveal reveal-delay-2" aria-hidden="true">
           <div className="hero__shape hero__shape--1" />

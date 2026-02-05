@@ -63,7 +63,7 @@ export function BentoBenefits() {
       <div className="bento-section__inner">
         <div className="bento-benefits__header">
           <h2 className="bento-section__title reveal">
-            Por que empresas em crescimento escolhem a Empirius
+            Por que empresas que querem crescer escolhem a Empirius
           </h2>
           <p className="bento-section__intro reveal reveal-delay-1">
             Estratégia clara, execução próxima e foco no que realmente gera resultado.

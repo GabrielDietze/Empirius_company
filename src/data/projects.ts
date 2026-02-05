@@ -38,7 +38,7 @@ export const projects: Project[] = [
     id: 'personal-marcela',
     name: 'Personal Marcela Magalhães',
     serviceType: 'Site • Conversão',
-    problema: 'Poucas vendas e baixa visibilidade online.',
+    problema: 'Desafio de posicionamento digital.',
     resultado: '+38% conversão',
     image: '/images/personal-marcela.png',
     url: 'https://personalmarcela.com.br/',
@@ -47,7 +47,6 @@ export const projects: Project[] = [
       contexto:
         'Personal trainer com foco em resultados e bem-estar, precisava de presença digital profissional para atrair alunos e divulgar serviços.',
       problema: [
-        'Poucas vendas pelo canal online.',
         'Falta de credibilidade e visibilidade na região.',
       ],
       solucao: [
@@ -118,7 +117,7 @@ export const projects: Project[] = [
     id: 'casa-vidro',
     name: 'Casa do Vidro Santa Luzia',
     serviceType: 'Google Business • SEO Local',
-    problema: 'Leads desqualificados e pouca visibilidade local.',
+    problema: 'Desafio de visibilidade local.',
     resultado: '+62% leads qualificados',
     image: 'https://picsum.photos/seed/empirius-casavidro/1200/600',
     url: 'https://www.instagram.com/casadovidrosantaluzia/',
@@ -126,7 +125,6 @@ export const projects: Project[] = [
       contexto:
         'Loja de vidros e espelhos com forte atuação local, precisando aparecer para quem busca na região.',
       problema: [
-        'Muitos leads desqualificados e perda de tempo.',
         'Pouca visibilidade no Google para buscas locais.',
       ],
       solucao: [

@@ -4,7 +4,7 @@
   min-height: calc(100vh - var(--header-height));
   display: flex;
   align-items: center;
-  padding: 80px 32px 120px;
+  padding: 40px 32px 120px;
   overflow: hidden;
   margin-top: var(--header-height);
 }
@@ -160,6 +160,13 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+  margin-bottom: 12px;
+}
+
+.hero__commitment {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin: 0;
 }
 
 /* Botões com micro-interaction */

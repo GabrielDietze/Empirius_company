@@ -21,32 +21,24 @@ export function Contact() {
   return (
     <section className="contact" id="contato">
       <div className="contact__inner">
-        <h2 className="contact__title reveal">Contato</h2>
-        <p className="contact__intro reveal reveal-delay-1">
-          Pule a burocracia e fale com quem entende do assunto.
-        </p>
-
         <div className="contact__grid reveal reveal-delay-2">
           {/* Coluna esquerda — A Promessa */}
           <div className="contact__promise">
-            <h3 className="contact__promise-title">
-              Sua empresa merece <span className="contact__highlight">destaque</span> no digital.
-            </h3>
-            <p className="contact__promise-subtitle">
-              Pule a burocracia. Tenha <span className="contact__highlight">acesso direto</span> a uma <span className="contact__highlight">consultoria estratégica</span> para tirar suas dúvidas e criar um plano de ação para o seu negócio.
-            </p>
+            <h2 className="contact__promise-title">
+              Sua empresa merece <span className="contact__highlight">resultados de elite</span>.
+            </h2>
             <ul className="contact__value-list" aria-label="Benefícios do atendimento">
               <li>
                 <span className="contact__value-check" aria-hidden="true">✓</span>
-                Diagnóstico rápido do seu perfil
+                Diagnóstico gratuito
               </li>
               <li>
                 <span className="contact__value-check" aria-hidden="true">✓</span>
-                Estratégias personalizadas
+                Planejamento focado em captação de clientes
               </li>
               <li>
                 <span className="contact__value-check" aria-hidden="true">✓</span>
-                Orçamento sem compromisso
+                Proposta em até 24h
               </li>
             </ul>
           </div>
@@ -55,6 +47,7 @@ export function Contact() {
           <div className="contact__action">
             <div className="contact-card contact-card--glass">
               {/* Cabeçalho: avatar + status online */}
+              {/* DICA: Substitua o avatar pela foto real do consultor para aumentar conversão */}
               <div className="contact-card__header">
                 <div className="contact-card__avatar" aria-hidden="true">
                   <span className="contact-card__avatar-inner">E</span>
@@ -67,7 +60,7 @@ export function Contact() {
 
               {/* Texto de convite */}
               <p className="contact-card__invite">
-                Olá! Vamos analisar o seu negócio? Me chame para uma conversa rápida.
+                Vamos analisar seu negócio hoje?
               </p>
 
               {/* Botão principal — Ciano/Azul + Glow */}

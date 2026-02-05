@@ -1,7 +1,7 @@
 .footer {
   background: var(--bg-elevated);
   border-top: 1px solid var(--border);
-  padding: clamp(32px, 5vw, 48px) 32px;
+  padding: clamp(20px, 3vw, 28px) 32px;
   text-align: center;
 }
 
@@ -15,13 +15,13 @@
   font-size: clamp(1.1rem, 2vw, 1.25rem);
   letter-spacing: var(--tracking-tight);
   color: var(--text);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .footer__text {
   color: var(--text-muted);
   font-size: clamp(0.875rem, 1.5vw, 0.95rem);
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .footer__copy {
@@ -32,7 +32,7 @@
 
 @media (max-width: 768px) {
   .footer {
-    padding: 32px 28px;
+    padding: 20px 28px;
   }
 
   .footer__logo {
@@ -41,7 +41,7 @@
 
   .footer__text {
     font-size: 0.875rem;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
   }
 
   .footer__copy {
@@ -51,7 +51,7 @@
 
 @media (max-width: 480px) {
   .footer {
-    padding: 24px 22px;
+    padding: 16px 22px;
   }
 
   .footer__logo {
