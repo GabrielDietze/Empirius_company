@@ -16,40 +16,12 @@
 
 .bento-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(255, 255, 255, 0.14);
-}
-
-/* Luz e sombra: drop-shadow ciano atrás dos cards (emissão suave) */
-.bento-card--cyan:hover {
+  border-color: rgba(34, 211, 238, 0.2);
   box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.25),
     0 0 0 1px rgba(255, 255, 255, 0.08),
     0 0 48px rgba(34, 211, 238, 0.12),
     0 0 80px rgba(34, 211, 238, 0.06);
-}
-
-.bento-card--purple:hover {
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.25),
-    0 0 0 1px rgba(255, 255, 255, 0.08),
-    0 0 48px rgba(167, 139, 250, 0.12),
-    0 0 80px rgba(167, 139, 250, 0.06);
-}
-
-.bento-card--lime:hover {
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.25),
-    0 0 0 1px rgba(255, 255, 255, 0.08),
-    0 0 48px rgba(163, 230, 53, 0.12),
-    0 0 80px rgba(163, 230, 53, 0.06);
-}
-
-.bento-card--pink:hover {
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.25),
-    0 0 0 1px rgba(255, 255, 255, 0.08),
-    0 0 48px rgba(244, 114, 182, 0.12),
-    0 0 80px rgba(244, 114, 182, 0.06);
 }
 
 .bento-card__content {
@@ -84,22 +56,10 @@
   margin-bottom: 0;
 }
 
-/* Destaque: só benefício/dor, cor do accent do card */
+/* Destaque: texto destacado sempre em azul ciano da marca */
 .bento-card__description .bento-card__highlight {
-  color: var(--neon-cyan);
+  color: #22d3ee;
   font-weight: 600;
-}
-
-.bento-card--purple .bento-card__description .bento-card__highlight {
-  color: var(--neon-purple);
-}
-
-.bento-card--lime .bento-card__description .bento-card__highlight {
-  color: var(--neon-lime);
-}
-
-.bento-card--pink .bento-card__description .bento-card__highlight {
-  color: var(--neon-pink);
 }
 
 /* Lista de benefícios com checkmark (card Sites) */
@@ -136,24 +96,6 @@
   font-weight: 700;
 }
 
-.bento-card--purple .bento-card__check {
-  background: rgba(167, 139, 250, 0.2);
-  border-color: rgba(167, 139, 250, 0.4);
-  color: #a78bfa;
-}
-
-.bento-card--lime .bento-card__check {
-  background: rgba(163, 230, 53, 0.2);
-  border-color: rgba(163, 230, 53, 0.4);
-  color: #a3e635;
-}
-
-.bento-card--pink .bento-card__check {
-  background: rgba(244, 114, 182, 0.2);
-  border-color: rgba(244, 114, 182, 0.4);
-  color: #f472b6;
-}
-
 /* Link discreto no rodapé do card */
 .bento-card__action {
   display: inline-flex;
@@ -170,24 +112,8 @@
 }
 
 .bento-card__action:hover {
-  color: #ffffff;
+  color: #22d3ee;
   gap: 0.4em;
-}
-
-.bento-card--cyan .bento-card__action:hover {
-  color: var(--neon-cyan);
-}
-
-.bento-card--purple .bento-card__action:hover {
-  color: var(--neon-purple);
-}
-
-.bento-card--lime .bento-card__action:hover {
-  color: var(--neon-lime);
-}
-
-.bento-card--pink .bento-card__action:hover {
-  color: var(--neon-pink);
 }
 
 /* Sizes para Bento Grid (grid definido na seção) */

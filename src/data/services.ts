@@ -9,7 +9,6 @@ export interface ServiceItem {
   description: DescriptionSegment[]
   benefits?: string[]
   size: 'large' | 'medium' | 'wide'
-  accent: 'cyan' | 'purple' | 'lime' | 'pink'
 }
 
 export const services: ServiceItem[] = [
@@ -21,7 +20,6 @@ export const services: ServiceItem[] = [
       { text: 'para você ser encontrado e vender mais.', highlight: true },
     ],
     size: 'medium' as const,
-    accent: 'cyan' as const,
   },
   {
     id: 'redes',
@@ -31,7 +29,6 @@ export const services: ServiceItem[] = [
       { text: 'outras redes do seu público.', highlight: true },
     ],
     size: 'medium' as const,
-    accent: 'purple' as const,
   },
   {
     id: 'google',
@@ -41,7 +38,6 @@ export const services: ServiceItem[] = [
       { text: 'visibilidade no Google para quem busca você na região.', highlight: true },
     ],
     size: 'medium' as const,
-    accent: 'lime' as const,
   },
   {
     id: 'estrategia',
@@ -52,6 +48,5 @@ export const services: ServiceItem[] = [
       { text: ' A base de tudo.' },
     ],
     size: 'wide' as const,
-    accent: 'pink' as const,
   },
 ]

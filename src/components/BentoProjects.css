@@ -1,230 +1,368 @@
-/* ========== Seção Projetos — Cards expansíveis ========== */
+/* ==========================================================================
+   BENTO PROJECTS - Portfolio Section
+   Layout: Bento Grid Assimetrico
+   Paleta: Preto Profundo + Cinza Chumbo + Ciano Neon
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   SECAO CONTAINER
+   -------------------------------------------------------------------------- */
 .bento-projects {
-  background: #000000;
   position: relative;
+  background: #050505;
+  padding: 6rem 2rem;
+  overflow: hidden;
+}
+
+.bento-projects__bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(34, 211, 238, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 30% at 20% 100%, rgba(34, 211, 238, 0.02) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 30% at 80% 100%, rgba(34, 211, 238, 0.02) 0%, transparent 50%);
+  pointer-events: none;
 }
 
 .bento-projects__inner {
+  position: relative;
   max-width: 1200px;
   margin: 0 auto;
+  z-index: 1;
+}
+
+/* --------------------------------------------------------------------------
+   HEADER DA SECAO
+   -------------------------------------------------------------------------- */
+.bento-projects__header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.bento-projects__badge {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  background: rgba(34, 211, 238, 0.08);
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: #22d3ee;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
 }
 
 .bento-projects__title {
-  font-size: clamp(1.35rem, 4vw, 2.5rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: #ffffff;
-  margin-bottom: 8px;
-  text-align: left;
-}
-
-.bento-projects__subtitle {
-  font-size: clamp(1rem, 2vw, 1.15rem);
-  color: var(--text-muted);
-  margin-bottom: 8px;
-  text-align: left;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 1rem;
+  line-height: 1.2;
 }
 
 .bento-projects__intro {
-  font-size: clamp(0.9375rem, 2vw, 1rem);
-  color: var(--text-muted);
-  max-width: 55ch;
-  margin-bottom: 40px;
-  text-align: left;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 600px;
+  margin: 0 auto;
   line-height: 1.6;
 }
 
-/* Grid: 3 colunas desktop, 2 tablet, 1 mobile. Card expandido ocupa a linha inteira. */
-.projects-grid {
+/* --------------------------------------------------------------------------
+   BENTO GRID - Layout Assimetrico
+   -------------------------------------------------------------------------- */
+.projects-bento-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-bottom: 40px;
-  transition: gap 0.25s ease;
+  grid-template-rows: auto auto;
+  gap: 1.5rem;
 }
 
-/* Card expandido: ocupa toda a largura e empurra os outros para a linha de baixo */
-.project-card--full-width {
-  grid-column: 1 / -1;
-}
-
-/* Card: imagem no topo, corpo abaixo */
-.project-card {
+/* Card Hero ocupa 2 colunas e 2 linhas */
+.projects-bento-grid > .project-card--hero {
+  grid-column: span 2;
+  grid-row: span 2;
   display: flex;
   flex-direction: column;
-  background: #0d0d0d;
-  border-radius: 20px;
+  min-height: 520px;
+}
+
+/* Card Wide ocupa todas as 3 colunas */
+.projects-bento-grid > .project-card--wide {
+  grid-column: span 3;
+}
+
+/* Quando tem expandido, muda o grid */
+.projects-bento-grid--has-expanded {
+  grid-template-columns: 1fr;
+}
+
+.projects-bento-grid--has-expanded > .project-card--hero {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+/* --------------------------------------------------------------------------
+   PROJECT CARD - Base
+   -------------------------------------------------------------------------- */
+.project-card {
+  position: relative;
+  background: linear-gradient(145deg, #141414 0%, #0d0d0d 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1.25rem;
   overflow: hidden;
-  border: none;
-  text-decoration: none;
-  color: inherit;
-  transition: transform 0.25s var(--ease-out), box-shadow 0.25s ease;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Card expandido em largura total: layout horizontal — esquerda = imagem + resumo, direita = detalhes */
-.project-card--full-width.project-card--expanded {
-  display: grid;
-  grid-template-columns: minmax(280px, 0.42fr) 1fr;
-  grid-template-rows: auto 1fr;
-  align-items: start;
-}
-
-.project-card--full-width.project-card--expanded .project-card__image-wrap {
-  grid-column: 1;
-  grid-row: 1;
-  aspect-ratio: 16 / 10;
-}
-
-.project-card--full-width.project-card--expanded .project-card__body {
-  grid-column: 1;
-  grid-row: 2;
-  padding: 20px 24px 24px;
-}
-
-.project-card--full-width.project-card--expanded .project-card__expandable {
-  grid-column: 2;
-  grid-row: 1 / -1;
-  max-height: none;
-  overflow: visible;
-}
-
-.project-card--full-width.project-card--expanded .project-card__expandable--open {
-  max-height: none;
-}
-
-.project-card--full-width.project-card--expanded .project-card__expandable-inner {
-  padding: 24px 28px 28px;
-  min-height: 100%;
+/* Card selecionado - reduz opacidade enquanto o modal está aberto */
+.project-card--selected {
+  opacity: 0.3;
+  pointer-events: none;
+  filter: grayscale(0.5);
 }
 
 .project-card--expandable {
   cursor: pointer;
 }
 
+/* --------------------------------------------------------------------------
+   PROJECT CARD - Hover com Glow
+   -------------------------------------------------------------------------- */
 .project-card:hover {
+  border-color: rgba(34, 211, 238, 0.3);
+  box-shadow: 
+    0 0 30px rgba(34, 211, 238, 0.1),
+    0 0 60px rgba(34, 211, 238, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
   transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
 }
 
+.project-card--expanded {
+  border-color: rgba(34, 211, 238, 0.4);
+  box-shadow: 
+    0 0 40px rgba(34, 211, 238, 0.15),
+    0 0 80px rgba(34, 211, 238, 0.08);
+}
+
+/* --------------------------------------------------------------------------
+   CARD WIDE - Layout Horizontal (Imagem 50% | Texto 50%)
+   -------------------------------------------------------------------------- */
+.project-card--wide {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  min-height: 320px;
+}
+
+.project-card--wide .project-card__image-wrap {
+  height: 100%;
+  min-height: 320px;
+  grid-row: span 1;
+}
+
+.project-card--wide .project-card__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2.5rem;
+  gap: 1rem;
+}
+
+.project-card--wide .project-card__metric-value {
+  font-size: 2.25rem;
+}
+
+.project-card--wide .project-card__name {
+  font-size: 1.5rem;
+}
+
+.project-card--wide .project-card__problema {
+  font-size: 1rem;
+  max-width: 400px;
+}
+
+.project-card--wide .project-card__expandable {
+  grid-column: span 2;
+}
+
+/* --------------------------------------------------------------------------
+   IMAGE - Com Zoom no Hover
+   -------------------------------------------------------------------------- */
 .project-card__image-wrap {
-  aspect-ratio: 16 / 10;
+  position: relative;
+  width: 100%;
+  height: 180px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.04);
-  flex-shrink: 0;
+}
+
+.project-card--hero .project-card__image-wrap {
+  height: 55%;
+  min-height: 300px;
 }
 
 .project-card__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
+  object-position: top center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.project-card:hover .project-card__image {
+  transform: scale(1.08);
+}
+
+.project-card__image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 40%,
+    rgba(5, 5, 5, 0.6) 70%,
+    rgba(5, 5, 5, 0.95) 100%
+  );
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   BODY - Conteudo do Card
+   -------------------------------------------------------------------------- */
 .project-card__body {
-  padding: 20px 20px 24px;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  flex: 0 0 auto;
+  gap: 0.75rem;
 }
 
+.project-card--hero .project-card__body {
+  padding: 2rem;
+  gap: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --------------------------------------------------------------------------
+   METRIC - O Gancho Visual (Ciano Neon)
+   -------------------------------------------------------------------------- */
+.project-card__metric {
+  margin-bottom: 0.25rem;
+}
+
+.project-card__metric-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #22d3ee;
+  line-height: 1.2;
+  text-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+}
+
+.project-card--hero .project-card__metric-value {
+  font-size: 2rem;
+}
+
+/* --------------------------------------------------------------------------
+   CONTENT - Nome, Tipo, Problema
+   -------------------------------------------------------------------------- */
 .project-card__name {
   font-size: 1.1rem;
-  font-weight: 700;
-  color: #ffffff;
+  font-weight: 600;
+  color: #fff;
   margin: 0;
   line-height: 1.3;
 }
 
+.project-card--hero .project-card__name {
+  font-size: 1.4rem;
+}
+
 .project-card__service-type {
-  font-size: 0.8125rem;
-  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(34, 211, 238, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   margin: 0;
 }
 
-.project-card__problema,
-.project-card__resultado {
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  margin: 0;
-  line-height: 1.45;
-}
-
-.project-card__label {
+.project-card__problema {
+  font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.6);
-  font-weight: 600;
+  margin: 0.5rem 0 0;
+  line-height: 1.5;
 }
 
-.project-card__resultado-value {
-  font-weight: 700;
-  color: var(--neon-cyan);
-  background: rgba(34, 211, 238, 0.12);
-  padding: 2px 8px;
-  border-radius: 6px;
+/* --------------------------------------------------------------------------
+   TECH TAGS - Badges de tecnologias (apenas Hero)
+   -------------------------------------------------------------------------- */
+.project-card__tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
 }
 
-/* Desktop: problema → resultado. Mobile: resultado → problema (order) */
-.project-card__problema--reorder-mobile,
-.project-card__resultado--reorder-mobile {
-  order: 0;
+.project-card__tech-tag {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
 }
 
-/* Botão "Ver como foi feito ↓" / "Fechar ↑" */
-.project-card__toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  margin-top: 8px;
-  padding: 12px 18px;
-  min-height: 44px;
-  font-family: var(--font);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--neon-cyan);
-  background: rgba(34, 211, 238, 0.1);
-  border: 1px solid rgba(34, 211, 238, 0.25);
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+.project-card:hover .project-card__tech-tag {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.65);
 }
 
-.project-card__toggle:hover {
-  background: rgba(34, 211, 238, 0.18);
-  color: #67e8f9;
-}
-
-.project-card__toggle-icon {
-  font-size: 1rem;
-  line-height: 1;
-  transition: transform 0.2s ease;
-}
-
-.project-card--expanded .project-card__toggle-icon {
-  transform: rotate(0deg);
-}
-
+/* --------------------------------------------------------------------------
+   TOGGLE & CTA
+   -------------------------------------------------------------------------- */
+.project-card__toggle,
 .project-card__cta-link {
   display: inline-flex;
   align-items: center;
-  margin-top: 8px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--neon-cyan);
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #22d3ee;
+  cursor: pointer;
+  transition: all 0.3s ease;
   text-decoration: none;
-  transition: color 0.2s ease;
 }
 
+.project-card__toggle:hover,
 .project-card__cta-link:hover {
-  color: #67e8f9;
+  color: #5eead4;
 }
 
-/* ========== Conteúdo expandido (inline) — animação 200–300ms ========== */
+.project-card__toggle-icon {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.project-card__toggle:hover .project-card__toggle-icon {
+  transform: translateX(4px);
+}
+
+/* --------------------------------------------------------------------------
+   EXPANDABLE - Conteudo Expandido
+   -------------------------------------------------------------------------- */
 .project-card__expandable {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.28s ease;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .project-card__expandable--open {
@@ -232,83 +370,98 @@
 }
 
 .project-card__expandable-inner {
-  padding: 0 20px 24px;
+  padding: 0 2rem 2rem;
 }
 
 .project-card__divider {
   border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  margin: 0 0 20px 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.3), transparent);
+  margin: 0 0 1.5rem;
 }
 
+/* Blocos de conteudo expandido */
 .project-card__block {
-  margin-bottom: 20px;
-}
-
-.project-card__block:last-of-type {
-  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
 }
 
 .project-card__block-title {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-  margin: 0 0 8px 0;
+  letter-spacing: 0.15em;
+  color: #22d3ee;
+  margin: 0 0 0.75rem;
+  text-transform: uppercase;
 }
 
 .project-card__block-text {
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  line-height: 1.55;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
   margin: 0;
 }
 
 .project-card__block-text--tools {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.5);
+  font-style: italic;
 }
 
 .project-card__list {
   margin: 0;
-  padding-left: 1.2em;
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  line-height: 1.55;
+  padding-left: 1.25rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.8;
 }
 
-.project-card__list--results li {
-  font-weight: 600;
-  color: var(--neon-cyan);
+.project-card__list li {
+  position: relative;
 }
 
+.project-card__list li::marker {
+  color: rgba(34, 211, 238, 0.5);
+}
+
+.project-card__list--results li::marker {
+  color: #22d3ee;
+}
+
+/* CTA dentro do expandido */
 .project-card__expandable-cta {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 8px;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .project-card__cta-btn-expand {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
-  padding: 14px 24px;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #0a0a0a;
-  background: var(--neon-cyan);
-  border-radius: 12px;
+  padding: 0.875rem 1.75rem;
+  background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%);
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #050505;
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(34, 211, 238, 0.3);
 }
 
 .project-card__cta-btn-expand:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 28px rgba(34, 211, 238, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgba(34, 211, 238, 0.4);
 }
 
-/* Desktop: "Falar sobre esse projeto". Mobile: "Quero um projeto assim" */
+.project-card__cta-desktop {
+  display: inline;
+}
+
 .project-card__cta-mobile {
   display: none;
 }
@@ -316,236 +469,645 @@
 .project-card__close-btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
-  min-height: 44px;
-  padding: 12px 18px;
-  font-family: var(--font);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  background: transparent;
+  gap: 0.5rem;
+  background: none;
   border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
+  border-radius: 8px;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .project-card__close-btn:hover {
-  background: rgba(255, 255, 255, 0.06);
-  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
 }
 
-/* Ver todos os projetos */
-.bento-projects__ver-todos {
-  text-align: center;
-  margin-bottom: 48px;
-}
-
-.bento-projects__ver-todos-link {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--neon-cyan);
-  text-decoration: none;
-  transition: color 0.2s ease, opacity 0.2s ease;
-}
-
-.bento-projects__ver-todos-link:hover {
-  color: #67e8f9;
-}
-
-/* CTA: Quer resultados parecidos? */
+/* --------------------------------------------------------------------------
+   CTA FINAL DA SECAO
+   -------------------------------------------------------------------------- */
 .bento-projects__cta {
+  margin-top: 4rem;
   text-align: center;
-  padding: 32px 24px;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.bento-projects__cta-content {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2.5rem 3rem;
+  background: linear-gradient(145deg, rgba(34, 211, 238, 0.05) 0%, rgba(34, 211, 238, 0.02) 100%);
+  border: 1px solid rgba(34, 211, 238, 0.15);
+  border-radius: 1.25rem;
 }
 
 .bento-projects__cta-text {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #ffffff;
-  margin: 0 0 16px 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
 }
 
 .bento-projects__cta-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 28px;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%);
+  border: none;
+  border-radius: 10px;
   font-size: 1rem;
-  font-weight: 700;
-  color: #0a0a0a;
-  background: var(--neon-cyan);
-  border-radius: 12px;
+  font-weight: 600;
+  color: #050505;
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 25px rgba(34, 211, 238, 0.35);
 }
 
 .bento-projects__cta-btn:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 32px rgba(34, 211, 238, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 35px rgba(34, 211, 238, 0.45);
 }
 
-/* ========== Responsividade ========== */
+/* --------------------------------------------------------------------------
+   RESPONSIVO - Tablet
+   -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
-  .projects-grid {
+  .projects-bento-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin-bottom: 36px;
+  }
+  
+  .projects-bento-grid > .project-card--hero {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+  
+  .projects-bento-grid > .project-card--wide {
+    grid-column: span 2;
+  }
+  
+  .project-card--hero .project-card__image-wrap {
+    height: 240px;
+    min-height: 240px;
+  }
+  
+  .project-card--wide {
+    min-height: 280px;
+  }
+  
+  .project-card--wide .project-card__image-wrap {
+    min-height: 280px;
   }
 }
 
-@media (max-width: 768px) {
-  .bento-projects__title {
-    font-size: 1.35rem;
-    margin-bottom: 6px;
+/* --------------------------------------------------------------------------
+   RESPONSIVO - Mobile
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .bento-projects {
+    padding: 4rem 1rem;
   }
-
-  .bento-projects__subtitle {
+  
+  .bento-projects__header {
+    margin-bottom: 2.5rem;
+  }
+  
+  .bento-projects__title {
+    font-size: 1.75rem;
+  }
+  
+  .bento-projects__intro {
     font-size: 1rem;
   }
-
-  .bento-projects__intro {
-    font-size: 0.9375rem;
-    margin-bottom: 32px;
-  }
-
-  .projects-grid {
+  
+  .projects-bento-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
-    margin-bottom: 32px;
+    gap: 1.25rem;
   }
-
-  /* Card expandido em tablet/mobile: volta ao layout vertical (empilhado) */
-  .project-card--full-width.project-card--expanded {
+  
+  .projects-bento-grid > .project-card--hero {
+    grid-column: span 1;
+  }
+  
+  /* Card Wide vira vertical no mobile */
+  .projects-bento-grid > .project-card--wide {
+    grid-column: span 1;
+  }
+  
+  .project-card--wide {
     display: flex;
     flex-direction: column;
+    min-height: auto;
   }
-
-  .project-card--full-width.project-card--expanded .project-card__image-wrap,
-  .project-card--full-width.project-card--expanded .project-card__body,
-  .project-card--full-width.project-card--expanded .project-card__expandable {
-    grid-column: auto;
-    grid-row: auto;
+  
+  .project-card--wide .project-card__image-wrap {
+    height: 180px;
+    min-height: 180px;
   }
-
-  .project-card--full-width.project-card--expanded .project-card__expandable {
-    max-height: 2000px;
+  
+  .project-card--wide .project-card__body {
+    padding: 1.5rem;
   }
-
-  .project-card__body {
-    padding: 18px 18px 22px;
+  
+  .project-card--wide .project-card__metric-value {
+    font-size: 1.5rem;
   }
-
-  .project-card__name {
-    font-size: 1.05rem;
+  
+  .project-card--wide .project-card__name {
+    font-size: 1.15rem;
   }
-
-  /* Mobile: Resultado antes do Problema (ordem de leitura) */
-  .project-card__resultado--reorder-mobile {
-    order: -1;
+  
+  .project-card--wide .project-card__expandable {
+    grid-column: span 1;
   }
-  .project-card__problema--reorder-mobile {
-    order: 1;
+  
+  .project-card__image-wrap,
+  .project-card--hero .project-card__image-wrap {
+    height: 180px;
+    min-height: 180px;
   }
-
-  .project-card__toggle {
-    min-height: 44px;
-    padding: 14px 20px;
-    font-size: 1rem;
+  
+  .project-card__body,
+  .project-card--hero .project-card__body {
+    padding: 1.25rem;
+    gap: 0.5rem;
   }
-
+  
+  .project-card__metric-value,
+  .project-card--hero .project-card__metric-value {
+    font-size: 1.35rem;
+  }
+  
+  .project-card__name,
+  .project-card--hero .project-card__name {
+    font-size: 1.1rem;
+  }
+  
   .project-card__expandable-inner {
-    padding: 0 18px 22px;
+    padding: 0 1.25rem 1.5rem;
   }
-
-  /* Mobile: CTA "Quero um projeto assim" */
+  
+  .project-card__expandable-cta {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .project-card__cta-btn-expand,
+  .project-card__close-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
   .project-card__cta-desktop {
     display: none;
   }
+  
   .project-card__cta-mobile {
     display: inline;
   }
-
-  .bento-projects__ver-todos {
-    margin-bottom: 40px;
+  
+  .bento-projects__cta-content {
+    padding: 1.75rem 1.5rem;
+    width: 100%;
   }
-
-  .bento-projects__cta {
-    padding: 28px 20px;
-  }
-
+  
   .bento-projects__cta-text {
-    font-size: 1rem;
+    font-size: 1.1rem;
+  }
+  
+  .bento-projects__cta-btn {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
   }
 }
 
-@media (max-width: 480px) {
-  .bento-projects__title {
-    font-size: 1.2rem;
+/* --------------------------------------------------------------------------
+   SCROLL REVEAL ANIMATIONS
+   -------------------------------------------------------------------------- */
+.bento-projects .reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.bento-projects .reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bento-projects .reveal-delay-1 {
+  transition-delay: 0.1s;
+}
+
+.bento-projects .reveal-delay-2 {
+  transition-delay: 0.2s;
+}
+
+.bento-projects .reveal-delay-3 {
+  transition-delay: 0.3s;
+}
+
+.bento-projects .reveal-delay-4 {
+  transition-delay: 0.4s;
+}
+
+/* ==========================================================================
+   EXPANDED CARD MODAL - Card Expansível Estilo App Store
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   OVERLAY CONTAINER - Fixo, cobre toda a tela, centraliza via flexbox
+   IMPORTANTE: Este é o container pai que centraliza o card expandido
+   -------------------------------------------------------------------------- */
+.expanded-overlay-container {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  
+  /* Flexbox para centralizar o card filho */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  /* Fundo escuro com blur */
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* --------------------------------------------------------------------------
+   EXPANDED CARD - Filho direto do container flexbox (será centralizado)
+   NÃO usa position: fixed nem transform translate - é centralizado pelo pai
+   -------------------------------------------------------------------------- */
+.expanded-card {
+  /* NÃO precisa de position: fixed nem transform - o pai já centraliza */
+  position: relative;
+  
+  width: 90vw;
+  max-width: 720px;
+  max-height: 90vh;
+  
+  background: #111111;
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  border-radius: 1.5rem;
+  
+  overflow: hidden;
+  overflow-y: auto;
+  
+  box-shadow:
+    0 0 60px rgba(34, 211, 238, 0.15),
+    0 25px 80px rgba(0, 0, 0, 0.5);
+}
+
+/* Scrollbar customizada */
+.expanded-card::-webkit-scrollbar {
+  width: 6px;
+}
+
+.expanded-card::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.expanded-card::-webkit-scrollbar-thumb {
+  background: rgba(34, 211, 238, 0.3);
+  border-radius: 3px;
+}
+
+.expanded-card::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 211, 238, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   CLOSE BUTTON - Botão X
+   -------------------------------------------------------------------------- */
+.expanded-card__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.expanded-card__close:hover {
+  background: rgba(34, 211, 238, 0.2);
+  border-color: rgba(34, 211, 238, 0.4);
+  transform: rotate(90deg);
+}
+
+/* --------------------------------------------------------------------------
+   HEADER - Imagem com Métrica
+   -------------------------------------------------------------------------- */
+.expanded-card__header {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+}
+
+.expanded-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.expanded-card__image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 30%,
+    rgba(17, 17, 17, 0.7) 70%,
+    #111111 100%
+  );
+}
+
+.expanded-card__hero-metric {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  border-radius: 12px;
+}
+
+.expanded-card__hero-metric svg {
+  color: #22d3ee;
+  filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.5));
+}
+
+.expanded-card__hero-metric-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #22d3ee;
+  text-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   BODY - Conteúdo Principal
+   -------------------------------------------------------------------------- */
+.expanded-card__body {
+  padding: 2rem;
+}
+
+.expanded-card__service-type {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(34, 211, 238, 0.8);
+  margin: 0 0 0.5rem;
+}
+
+.expanded-card__title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 2rem;
+  line-height: 1.3;
+}
+
+/* --------------------------------------------------------------------------
+   SECTIONS - O Desafio, A Estratégia, O Resultado
+   -------------------------------------------------------------------------- */
+.expanded-card__sections {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.expanded-card__section {
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+}
+
+.expanded-card__section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.expanded-card__section-header svg {
+  color: #22d3ee;
+  flex-shrink: 0;
+}
+
+.expanded-card__section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.expanded-card__section-text {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin: 0 0 1rem;
+}
+
+.expanded-card__list {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.expanded-card__list li::marker {
+  color: rgba(34, 211, 238, 0.5);
+}
+
+.expanded-card__list--solutions li::marker {
+  color: #22d3ee;
+}
+
+/* Tech Tags no card expandido */
+.expanded-card__tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.expanded-card__tech-tag {
+  padding: 0.4rem 0.85rem;
+  background: rgba(34, 211, 238, 0.1);
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #22d3ee;
+}
+
+/* Seção de Resultados */
+.expanded-card__section--results {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.08) 0%, rgba(34, 211, 238, 0.02) 100%);
+  border-color: rgba(34, 211, 238, 0.2);
+}
+
+.expanded-card__results-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.expanded-card__result-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+}
+
+.expanded-card__result-item svg {
+  width: 20px;
+  height: 20px;
+  color: #22d3ee;
+  flex-shrink: 0;
+}
+
+.expanded-card__result-item span {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   CTA - Call to Action
+   -------------------------------------------------------------------------- */
+.expanded-card__cta {
+  margin-top: 2rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.1) 0%, rgba(34, 211, 238, 0.03) 100%);
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.expanded-card__cta-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 1.25rem;
+}
+
+.expanded-card__cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+}
+
+.expanded-card__cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+}
+
+.expanded-card__cta-link {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #22d3ee;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.expanded-card__cta-link:hover {
+  color: #5eead4;
+}
+
+/* --------------------------------------------------------------------------
+   EXPANDED CARD - Responsivo Mobile
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .expanded-card {
+    width: 95vw;
+    max-height: 95vh;
+    border-radius: 1rem;
   }
 
-  .bento-projects__subtitle {
-    font-size: 0.9375rem;
+  .expanded-card__header {
+    height: 200px;
   }
 
-  .bento-projects__intro {
-    font-size: 0.875rem;
-    margin-bottom: 28px;
+  .expanded-card__hero-metric {
+    bottom: 1rem;
+    left: 1rem;
+    padding: 0.5rem 1rem;
   }
 
-  .projects-grid {
-    gap: 14px;
-    margin-bottom: 28px;
+  .expanded-card__hero-metric svg {
+    width: 24px;
+    height: 24px;
   }
 
-  .project-card {
+  .expanded-card__hero-metric-value {
+    font-size: 1.25rem;
+  }
+
+  .expanded-card__body {
+    padding: 1.5rem;
+  }
+
+  .expanded-card__title {
+    font-size: 1.35rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .expanded-card__section {
+    padding: 1rem;
+  }
+
+  .expanded-card__results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .expanded-card__cta {
+    padding: 1.5rem;
+  }
+
+  .expanded-card__cta-btn {
     width: 100%;
-  }
-
-  .project-card__body {
-    padding: 16px 16px 20px;
-  }
-
-  .project-card__name {
-    font-size: 1rem;
-  }
-
-  .project-card__problema,
-  .project-card__resultado {
-    font-size: 0.8125rem;
-  }
-
-  .project-card__toggle {
-    min-height: 44px;
-    padding: 14px 18px;
-    font-size: 0.9375rem;
-  }
-
-  .project-card__cta-btn-expand,
-  .project-card__close-btn {
-    min-height: 44px;
-  }
-
-  .project-card__expandable-inner {
-    padding: 0 16px 20px;
-  }
-
-  .project-card__block-text,
-  .project-card__list {
-    font-size: 0.8125rem;
-  }
-
-  .bento-projects__cta {
-    padding: 24px 16px;
-  }
-
-  .bento-projects__cta-btn {
-    padding: 14px 24px;
-    min-height: 44px;
-    font-size: 0.9375rem;
+    padding: 0.875rem 1.5rem;
   }
 }

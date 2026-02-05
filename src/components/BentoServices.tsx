@@ -21,7 +21,6 @@ export function BentoServices() {
               actionHref="#projetos"
               iconType={s.id as 'sites' | 'redes' | 'google' | 'estrategia'}
               size={s.size}
-              accent={s.accent}
               className={`reveal reveal-delay-${Math.min(i + 3, 4)}`}
             />
           ))}

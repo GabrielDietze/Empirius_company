@@ -18,6 +18,8 @@ export interface Project {
   image: string
   /** Link externo (opcional) */
   url?: string
+  /** Tags de tecnologias (opcional, exibido apenas no card Hero) */
+  techTags?: string[]
   /** Conteúdo do estado expandido */
   expandido?: {
     /** Breve descrição do cliente e do cenário */
@@ -42,6 +44,7 @@ export const projects: Project[] = [
     resultado: '+38% conversão',
     image: personalMarcelaImage,
     url: 'https://personalmarcela.com.br/',
+    techTags: ['WordPress', 'Elementor', 'SEO Local', 'UX Design'],
     expandido: {
       contexto:
         'Personal trainer com foco em resultados e bem-estar, precisava de presença digital profissional para atrair alunos e divulgar serviços.',
@@ -83,12 +86,43 @@ export const projects: Project[] = [
     },
   },
   {
+    id: 'consultoria-digital',
+    name: 'Consultoria Empresarial Nexus',
+    serviceType: 'Estratégia Digital Completa',
+    problema: 'Empresa sem presença digital e perdendo mercado para concorrentes.',
+    resultado: '+180% faturamento em 6 meses',
+    image: 'https://picsum.photos/seed/empirius-nexus/1200/600',
+    url: '#',
+    expandido: {
+      contexto:
+        'Consultoria empresarial tradicional que precisava se reinventar no digital para não perder relevância no mercado.',
+      problema: [
+        'Zero presença online enquanto concorrentes dominavam.',
+        'Processo de captação 100% offline e limitado.',
+        'Marca desatualizada e sem identidade digital.',
+      ],
+      solucao: [
+        'Diagnóstico completo e plano estratégico de 12 meses.',
+        'Criação de site institucional otimizado para conversão.',
+        'Gestão de redes sociais com conteúdo de autoridade.',
+        'Campanhas de Google Ads segmentadas por região.',
+      ],
+      resultados: [
+        '+180% faturamento em 6 meses',
+        '+320% tráfego orgânico',
+        '45 novos contratos fechados',
+        'ROI de 8x sobre investimento em marketing',
+      ],
+      ferramentas: 'Estratégia • Site • Redes Sociais • Google Ads • Analytics',
+    },
+  },
+  {
     id: 'casa-vidro',
     name: 'Casa do Vidro Santa Luzia',
     serviceType: 'Google Business • SEO Local',
     problema: 'Leads desqualificados e pouca visibilidade local.',
     resultado: '+62% leads qualificados',
-    image: 'https://picsum.photos/seed/empirius-casavidro/800/500',
+    image: 'https://picsum.photos/seed/empirius-casavidro/1200/600',
     url: 'https://www.instagram.com/casadovidrosantaluzia/',
     expandido: {
       contexto:

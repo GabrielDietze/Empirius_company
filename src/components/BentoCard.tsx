@@ -2,7 +2,6 @@ import { ReactNode } from 'react'
 import { ServiceIcon3D } from './ServiceIcon3D'
 import './BentoCard.css'
 
-type Accent = 'cyan' | 'purple' | 'lime' | 'pink'
 type Size = 'small' | 'medium' | 'large' | 'wide'
 type ServiceId = 'sites' | 'redes' | 'google' | 'estrategia'
 
@@ -21,7 +20,6 @@ interface BentoCardProps {
   icon?: string
   children?: ReactNode
   size?: Size
-  accent?: Accent
   className?: string
 }
 
@@ -59,7 +57,6 @@ export function BentoCard({
   icon,
   children,
   size = 'medium',
-  accent,
   className = '',
 }: BentoCardProps) {
   const isSegments = Array.isArray(description) && description.length > 0
@@ -101,7 +98,7 @@ export function BentoCard({
   if (isWide) {
     return (
       <article
-        className={`bento-card bento-card--wide ${accent ? `bento-card--${accent}` : ''} ${className}`}
+        className={`bento-card bento-card--wide ${className}`}
       >
         <div className="bento-card__wide-inner">
           <div className="bento-card__wide-icon" aria-hidden="true">
@@ -118,7 +115,7 @@ export function BentoCard({
 
   return (
     <article
-      className={`bento-card bento-card--${size} ${accent ? `bento-card--${accent}` : ''} ${className}`}
+      className={`bento-card bento-card--${size} ${className}`}
     >
       <div className="bento-card__content">
         {iconEl}

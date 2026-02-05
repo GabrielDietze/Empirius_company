@@ -2,34 +2,41 @@
 export interface BenefitItem {
   id: string
   title: string
+  /** Linha de impacto antes da descrição (suporta HTML para destaque) */
+  impact: string
+  /** Texto explicativo (suporta HTML para destaque) */
   description: string
-  /** Accent opcional para ícone/borda (cyan, purple, lime, pink) */
-  accent?: 'cyan' | 'purple' | 'lime' | 'pink'
+  /** Ícone SVG do card */
+  icon?: string
 }
 
 export const benefits: BenefitItem[] = [
   {
     id: 'resultados',
     title: 'Resultados mensuráveis',
-    description: 'Métricas claras e acompanhamento do que importa para o seu negócio.',
-    accent: 'cyan',
+    impact: 'Decisões baseadas em <em>dados</em>, não achismo.',
+    description: 'Acompanhamos métricas que impactam <em>faturamento</em> e <em>crescimento real</em>.',
+    icon: 'chart',
   },
   {
     id: 'estrategia',
     title: 'Estratégia sob medida',
-    description: 'Planejamento feito para o tamanho e o momento do seu negócio.',
-    accent: 'purple',
+    impact: 'Nada de <em>fórmulas prontas</em>.',
+    description: 'Criamos estratégias específicas para o <em>tamanho</em> e <em>momento</em> do seu negócio.',
+    icon: 'target',
   },
   {
     id: 'atendimento',
     title: 'Atendimento próximo',
-    description: 'Comunicação direta, sem burocracia. Você fala com quem executa.',
-    accent: 'lime',
+    impact: 'Você fala com <em>quem executa</em>.',
+    description: 'Comunicação direta, sem <em>burocracia</em>, com respostas rápidas.',
+    icon: 'chat',
   },
   {
     id: 'foco',
-    title: 'Foco em quem está crescendo',
-    description: 'Experiência com micro e pequenos negócios que querem dar o próximo passo.',
-    accent: 'pink',
+    title: 'Foco em crescimento',
+    impact: 'Parceiros de quem quer <em>escalar</em>.',
+    description: 'Atuamos com negócios prontos para dar o <em>próximo passo</em>.',
+    icon: 'rocket',
   },
 ]

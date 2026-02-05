@@ -15,64 +15,19 @@
   transition: transform 0.3s var(--ease-out);
 }
 
-/* Sombra de LUZ (não preta): ícone parece iluminar o card */
-.service-icon-3d--sites .service-icon-3d__svg {
+/* Sombra de LUZ (não preta): ícone parece iluminar o card - TODOS EM CYAN */
+.service-icon-3d__svg {
   filter:
     drop-shadow(0 0 12px rgba(0, 255, 255, 0.5))
     drop-shadow(0 0 24px rgba(34, 211, 238, 0.35))
-    drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
-}
-
-.service-icon-3d--redes .service-icon-3d__svg {
-  filter:
-    drop-shadow(0 0 12px rgba(167, 139, 250, 0.5))
-    drop-shadow(0 0 24px rgba(167, 139, 250, 0.35))
-    drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
-}
-
-.service-icon-3d--google .service-icon-3d__svg {
-  filter:
-    drop-shadow(0 0 12px rgba(0, 255, 255, 0.5))
-    drop-shadow(0 0 24px rgba(34, 211, 238, 0.35))
-    drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
-}
-
-.service-icon-3d--estrategia .service-icon-3d__svg {
-  filter:
-    drop-shadow(0 0 12px rgba(244, 114, 182, 0.45))
-    drop-shadow(0 0 20px rgba(34, 211, 238, 0.3))
     drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
 }
 
 .bento-card:hover .service-icon-3d__svg {
   transform: scale(1.05);
-}
-
-.bento-card:hover .service-icon-3d--sites .service-icon-3d__svg {
   filter:
     drop-shadow(0 0 18px rgba(0, 255, 255, 0.6))
     drop-shadow(0 0 32px rgba(34, 211, 238, 0.45))
-    drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
-}
-
-.bento-card:hover .service-icon-3d--redes .service-icon-3d__svg {
-  filter:
-    drop-shadow(0 0 18px rgba(167, 139, 250, 0.6))
-    drop-shadow(0 0 32px rgba(167, 139, 250, 0.45))
-    drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
-}
-
-.bento-card:hover .service-icon-3d--google .service-icon-3d__svg {
-  filter:
-    drop-shadow(0 0 18px rgba(0, 255, 255, 0.6))
-    drop-shadow(0 0 32px rgba(34, 211, 238, 0.45))
-    drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
-}
-
-.bento-card:hover .service-icon-3d--estrategia .service-icon-3d__svg {
-  filter:
-    drop-shadow(0 0 18px rgba(244, 114, 182, 0.55))
-    drop-shadow(0 0 28px rgba(34, 211, 238, 0.4))
     drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
 }
 
