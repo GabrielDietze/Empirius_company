@@ -1,11 +1,12 @@
 /* Hero — Macro typography + Mesh gradients + Parallax */
 .hero {
   position: relative;
-  min-height: 100vh;
+  min-height: calc(100vh - var(--header-height));
   display: flex;
   align-items: center;
-  padding: 104px 32px 120px;
+  padding: 80px 32px 120px;
   overflow: hidden;
+  margin-top: var(--header-height);
 }
 
 /* Mesh gradients — manchas orgânicas */

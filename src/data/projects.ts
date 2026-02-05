@@ -1,5 +1,3 @@
-import personalMarcelaImage from '../assets/personal-marcela.png'
-
 /** Tipo de mockup (usado por ProjectMockup, mantido para compatibilidade) */
 export type ProjectMockupType = 'macbook' | 'iphone' | 'iphones' | 'dashboard'
 
@@ -42,7 +40,7 @@ export const projects: Project[] = [
     serviceType: 'Site • Conversão',
     problema: 'Poucas vendas e baixa visibilidade online.',
     resultado: '+38% conversão',
-    image: personalMarcelaImage,
+    image: '/images/personal-marcela.png',
     url: 'https://personalmarcela.com.br/',
     techTags: ['WordPress', 'Elementor', 'SEO Local', 'UX Design'],
     expandido: {

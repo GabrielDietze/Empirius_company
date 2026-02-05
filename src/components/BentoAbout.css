@@ -1,8 +1,12 @@
 /* About — glass + mesh gradient + forma abstrata */
 .bento-about {
   position: relative;
-  padding: 120px 32px;
+  min-height: calc(100vh - var(--header-height));
+  margin-top: var(--header-height);
+  padding: 60px 32px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
 }
 
 .bento-about__mesh {
@@ -38,6 +42,12 @@
   line-height: 1.65;
 }
 
+.bento-about__highlight {
+  color: #22d3ee;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
 .bento-about__text .btn {
   margin-top: 16px;
 }
@@ -68,7 +78,8 @@
 
 @media (max-width: 768px) {
   .bento-about {
-    padding: 64px 20px;
+    padding: 40px 20px;
+    min-height: calc(100vh - var(--header-height));
   }
 
   .bento-about__inner {
@@ -98,7 +109,8 @@
 
 @media (max-width: 480px) {
   .bento-about {
-    padding: 48px 22px;
+    padding: 30px 22px;
+    min-height: calc(100vh - var(--header-height));
   }
 
   .bento-about__title {

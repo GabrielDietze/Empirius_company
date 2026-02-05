@@ -372,6 +372,11 @@ function ExpandedOverlay({
 export function BentoProjects() {
   const [selectedId, setSelectedId] = useState<string | null>(null)
 
+  useEffect(() => {
+    const elements = document.querySelectorAll('.bento-projects .reveal')
+    elements.forEach((el) => el.classList.add('is-visible'))
+  }, [selectedId])
+
   const selectedProject = selectedId
     ? projects.find((p) => p.id === selectedId)
     : null

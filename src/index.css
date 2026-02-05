@@ -3,6 +3,9 @@
    ============================================ */
 
 :root {
+  /* Header */
+  --header-height: 72px;
+
   /* Dark base — não preto puro */
   --bg: #0a0a0a;
   --bg-elevated: #111111;
@@ -50,6 +53,10 @@ html {
 
 /* Base responsiva: textos menores em telas pequenas */
 @media (max-width: 768px) {
+  :root {
+    --header-height: 64px;
+  }
+
   html {
     font-size: 15px;
   }
