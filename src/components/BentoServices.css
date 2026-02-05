@@ -1,6 +1,6 @@
 /* Bento Section — layout e tipografia */
 .bento-section {
-  padding: 120px 32px;
+  padding: 120px 37px;
   position: relative;
 }
 
@@ -10,18 +10,23 @@
 }
 
 .bento-section__title {
-  font-size: clamp(1.5rem, 4vw, 3.5rem);
+  font-size: clamp(1.5rem, 4vw, 2.75rem);
   font-weight: 800;
   letter-spacing: var(--tracking-tighter);
   color: var(--text);
   margin-bottom: 16px;
+  max-width: 20ch;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 .bento-section__intro {
   font-size: clamp(0.9375rem, 2vw, 1.15rem);
   color: var(--text-muted);
-  max-width: 55ch;
-  margin-bottom: 48px;
+  max-width: 50ch;
+  margin: 0 auto 48px auto;
+  text-align: center;
 }
 
 /* Grid 3x1: três em cima (iguais), um embaixo (largo) */
@@ -29,6 +34,8 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+  max-width: 945px;
+  margin: 0 auto;
 }
 
 /* Linha superior: 3 cards iguais */
@@ -44,7 +51,8 @@
 @media (max-width: 768px) {
   .bento-grid--services {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 14px;
+    max-width: 400px;
   }
 
   .bento-card--wide {
@@ -52,7 +60,7 @@
   }
 
   .bento-section {
-    padding: 64px 28px;
+    padding: 64px 32px;
   }
 
   .bento-section__title {
@@ -72,7 +80,7 @@
   }
 
   .bento-section {
-    padding: 48px 22px;
+    padding: 48px 25px;
   }
 
   .bento-section__title {

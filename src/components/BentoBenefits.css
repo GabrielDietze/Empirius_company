@@ -1,5 +1,9 @@
 /* Seção Benefícios — grid 2x2 consistente, cards glass */
 
+.bento-benefits {
+  padding: 120px 37px;
+}
+
 /* Background com camadas visuais */
 .bento-benefits {
   position: relative;
@@ -49,7 +53,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-  max-width: 900px;
+  max-width: 945px;
   margin: 0 auto;
 }
 
@@ -217,6 +221,10 @@
 
 /* Responsivo */
 @media (max-width: 768px) {
+  .bento-benefits {
+    padding: 64px 32px;
+  }
+
   .bento-benefits__header {
     margin-bottom: 36px;
   }
@@ -259,6 +267,10 @@
 }
 
 @media (max-width: 480px) {
+  .bento-benefits {
+    padding: 48px 25px;
+  }
+
   .bento-benefits .bento-section__title {
     font-size: 1.25rem;
   }
