@@ -205,9 +205,6 @@ function CardContent({ project, isExpanded, isHero, isWide, onClose }: CardConte
             )}
 
             <div className="expanded-card__cta">
-              <p className="expanded-card__cta-text">
-                Quer um resultado similar para o seu negócio?
-              </p>
               <a
                 href={whatsappLink}
                 target="_blank"
@@ -217,16 +214,6 @@ function CardContent({ project, isExpanded, isHero, isWide, onClose }: CardConte
               >
                 <IconWhatsApp />
                 <span>Quero um resultado similar</span>
-              </a>
-              <a 
-                href="#contato" 
-                className="expanded-card__cta-link" 
-                onClick={(e) => {
-                  e.stopPropagation()
-                  onClose?.()
-                }}
-              >
-                Ou preencha o formulário de contato →
               </a>
             </div>
           </>

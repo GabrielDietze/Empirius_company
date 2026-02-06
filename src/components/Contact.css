@@ -1,13 +1,13 @@
 /* Contact — Cartão de Visita Digital (Glassmorphism) */
 .contact {
-  /* 1. Altura exata: 100% da tela menos o cabeçalho */
-  height: calc(100vh - var(--header-height));
-  min-height: 600px; /* Segurança: se a tela for muito baixinha, ele permite scroll */
+  /* 1. Altura: 70% da tela */
+  height: 70vh;
+  min-height: 450px;
   
-  /* 2. Compensa o Header Fixo - reduzido para aproximar da seção anterior */
+  /* 2. Compensa o Header Fixo */
   margin-top: 0;
   
-  /* 3. Remove padding vertical (60px -> 0), mantém lateral */
+  /* 3. Remove padding vertical, mantém lateral */
   padding: 0 37px;
   
   position: relative;

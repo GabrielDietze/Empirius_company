@@ -1,6 +1,6 @@
 import './ServiceIcon3D.css'
 
-type ServiceId = 'sites' | 'redes' | 'google' | 'estrategia'
+type ServiceId = 'sites' | 'redes' | 'google' | 'estrategia' | 'sistemas' | 'chatbots'
 
 interface ServiceIcon3DProps {
   serviceId: ServiceId
@@ -14,6 +14,8 @@ export function ServiceIcon3D({ serviceId, className = '' }: ServiceIcon3DProps)
       {serviceId === 'redes' && <IconSocial />}
       {serviceId === 'google' && <IconPin />}
       {serviceId === 'estrategia' && <IconTarget />}
+      {serviceId === 'sistemas' && <IconSystems />}
+      {serviceId === 'chatbots' && <IconChatbot />}
     </div>
   )
 }
@@ -147,6 +149,114 @@ function IconTarget() {
       <circle cx="40" cy="40" r="10" fill="rgba(34, 211, 238, 0.3)" stroke="#22d3ee" strokeWidth="1.5" filter="url(#targetGlow)" />
       <circle cx="40" cy="40" r="4" fill="#22d3ee" filter="url(#targetGlow)" />
       <path d="M 56 24 L 64 32 L 56 40 L 52 36 L 58 30 L 56 24 Z" fill="url(#arrowCyan)" stroke="rgba(255,255,255,0.7)" strokeWidth="0.6" />
+    </svg>
+  )
+}
+
+/* Sistemas Internos: engrenagem principal com elemento secundário */
+function IconSystems() {
+  return (
+    <svg viewBox="0 0 80 80" fill="none" className="service-icon-3d__svg">
+      <defs>
+        <linearGradient id="systemsEdge" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="rgba(255,255,255,0.9)" />
+          <stop offset="50%" stopColor="rgba(34, 211, 238, 0.8)" />
+          <stop offset="100%" stopColor="rgba(34, 211, 238, 0.4)" />
+        </linearGradient>
+        <filter id="systemsGlow">
+          <feGaussianBlur stdDeviation="2" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+      
+      {/* Engrenagem grande - centro */}
+      <g filter="url(#systemsGlow)">
+        {/* Corpo da engrenagem */}
+        <circle cx="40" cy="40" r="20" fill="rgba(34, 211, 238, 0.12)" stroke="url(#systemsEdge)" strokeWidth="2.2" />
+        <circle cx="40" cy="40" r="12" fill="none" stroke="rgba(34, 211, 238, 0.5)" strokeWidth="1" />
+        <circle cx="40" cy="40" r="6" fill="rgba(34, 211, 238, 0.2)" stroke="#22d3ee" strokeWidth="1.5" />
+        
+        {/* Dentes da engrenagem - 8 dentes */}
+        {/* Dente topo */}
+        <rect x="38" y="12" width="4" height="8" fill="url(#systemsEdge)" />
+        {/* Dente embaixo */}
+        <rect x="38" y="60" width="4" height="8" fill="url(#systemsEdge)" />
+        {/* Dente esquerda */}
+        <rect x="12" y="38" width="8" height="4" fill="url(#systemsEdge)" />
+        {/* Dente direita */}
+        <rect x="60" y="38" width="8" height="4" fill="url(#systemsEdge)" />
+        
+        {/* Dentes diagonais */}
+        <g transform="translate(40, 40) rotate(45)">
+          <rect x="-2" y="-20" width="4" height="8" fill="url(#systemsEdge)" opacity="0.8" />
+          <rect x="-2" y="12" width="4" height="8" fill="url(#systemsEdge)" opacity="0.8" />
+        </g>
+        <g transform="translate(40, 40) rotate(-45)">
+          <rect x="-2" y="-20" width="4" height="8" fill="url(#systemsEdge)" opacity="0.8" />
+          <rect x="-2" y="12" width="4" height="8" fill="url(#systemsEdge)" opacity="0.8" />
+        </g>
+        
+        {/* Ponto central brilhante */}
+        <circle cx="40" cy="40" r="3" fill="#22d3ee" />
+      </g>
+      
+      {/* Engrenagem pequena - topo direita (sobreposição) */}
+      <g filter="url(#systemsGlow)" opacity="0.75">
+        <circle cx="57" cy="25" r="9" fill="rgba(34, 211, 238, 0.1)" stroke="rgba(34, 211, 238, 0.7)" strokeWidth="1.6" />
+        <circle cx="57" cy="25" r="5" fill="none" stroke="rgba(34, 211, 238, 0.5)" strokeWidth="0.8" />
+        
+        {/* Mini dentes */}
+        <rect x="55.5" y="14.5" width="3" height="5" fill="rgba(34, 211, 238, 0.8)" />
+        <rect x="55.5" y="30.5" width="3" height="5" fill="rgba(34, 211, 238, 0.8)" />
+        <rect x="48" y="23.5" width="5" height="3" fill="rgba(34, 211, 238, 0.8)" />
+        <rect x="64" y="23.5" width="5" height="3" fill="rgba(34, 211, 238, 0.8)" />
+      </g>
+      
+      {/* Conexão entre engrenagens */}
+      <line x1="47" y1="33" x2="52" y2="28" stroke="rgba(34, 211, 238, 0.6)" strokeWidth="1.2" opacity="0.7" />
+    </svg>
+  )
+}
+
+/* Chatbots Inteligentes: bolhas de chat com IA */
+function IconChatbot() {
+  return (
+    <svg viewBox="0 0 80 80" fill="none" className="service-icon-3d__svg">
+      <defs>
+        <linearGradient id="chatEdge" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="rgba(255,255,255,0.9)" />
+          <stop offset="50%" stopColor="rgba(34, 211, 238, 0.8)" />
+          <stop offset="100%" stopColor="rgba(34, 211, 238, 0.4)" />
+        </linearGradient>
+        <filter id="chatGlow">
+          <feGaussianBlur stdDeviation="1.5" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+      {/* Bolha esquerda - mensagem recebida */}
+      <g filter="url(#chatGlow)">
+        <path d="M 12 28 Q 12 18 22 18 L 38 18 Q 48 18 48 28 L 48 38 Q 48 48 38 48 L 20 48 L 16 54 L 22 48 L 22 48 Q 12 48 12 38 Z" fill="rgba(34, 211, 238, 0.15)" stroke="url(#chatEdge)" strokeWidth="1.6" />
+        <circle cx="20" cy="32" r="2.5" fill="#22d3ee" />
+        <circle cx="28" cy="32" r="2.5" fill="#22d3ee" />
+        <circle cx="36" cy="32" r="2.5" fill="#22d3ee" />
+      </g>
+      {/* Bolha direita - mensagem enviada */}
+      <g filter="url(#chatGlow)">
+        <path d="M 52 44 Q 52 34 62 34 L 72 34 Q 76 34 76 44 L 76 54 Q 76 64 66 64 L 58 64 L 54 70 L 60 64 Q 52 64 52 54 Z" fill="rgba(34, 211, 238, 0.2)" stroke="url(#chatEdge)" strokeWidth="1.6" />
+        <circle cx="62" cy="50" r="2.5" fill="#22d3ee" />
+        <circle cx="70" cy="50" r="2.5" fill="#22d3ee" />
+      </g>
+      {/* Indicador de IA */}
+      <g opacity="0.7">
+        <circle cx="40" cy="12" r="5" fill="none" stroke="rgba(34, 211, 238, 0.6)" strokeWidth="1" />
+        <path d="M 38 12 L 40 14 L 42 12" fill="none" stroke="rgba(34, 211, 238, 0.6)" strokeWidth="1" strokeLinecap="round" />
+      </g>
     </svg>
   )
 }

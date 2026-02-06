@@ -38,7 +38,7 @@ export function Contact() {
               </li>
               <li>
                 <span className="contact__value-check" aria-hidden="true">✓</span>
-                Proposta em até 24h
+                Proposta em menos de 24h
               </li>
             </ul>
           </div>

@@ -1,9 +1,8 @@
 /* About — glass + mesh gradient + forma abstrata */
 .bento-about {
   position: relative;
-  min-height: calc(100vh - var(--header-height));
-  margin-top: var(--header-height);
-  padding: 60px 32px;
+  min-height: 70vh;
+  padding: 40px 32px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -21,7 +20,7 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 64px;
+  gap: 40px;
   align-items: center;
   position: relative;
   z-index: 1;
@@ -78,13 +77,16 @@
 
 @media (max-width: 768px) {
   .bento-about {
-    padding: 40px 20px;
-    min-height: calc(100vh - var(--header-height));
+    padding: 30px 20px;
   }
 
   .bento-about__inner {
     grid-template-columns: 1fr;
     gap: 36px;
+  }
+
+  .bento-about__text {
+    text-align: center;
   }
 
   .bento-about__title {
@@ -95,6 +97,11 @@
   .bento-about__text p {
     font-size: 0.9375rem;
     margin-bottom: 16px;
+  }
+
+  .bento-about__text .btn {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .bento-about__visual {
@@ -109,8 +116,11 @@
 
 @media (max-width: 480px) {
   .bento-about {
-    padding: 30px 22px;
-    min-height: calc(100vh - var(--header-height));
+    padding: 24px 22px;
+  }
+
+  .bento-about__text {
+    text-align: center;
   }
 
   .bento-about__title {
@@ -119,6 +129,11 @@
 
   .bento-about__text p {
     font-size: 0.875rem;
+  }
+
+  .bento-about__text .btn {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .bento-about__shape {

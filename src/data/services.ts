@@ -9,6 +9,7 @@ export interface ServiceItem {
   description: DescriptionSegment[]
   benefits?: string[]
   size: 'large' | 'medium' | 'wide'
+  actionLabel?: string
 }
 
 export const services: ServiceItem[] = [
@@ -23,6 +24,7 @@ export const services: ServiceItem[] = [
       { text: '.' },
     ],
     size: 'medium' as const,
+    actionLabel: 'Ver sites entregues →',
   },
   {
     id: 'redes',
@@ -33,6 +35,7 @@ export const services: ServiceItem[] = [
       { text: ', sem você se preocupar com o que postar.' },
     ],
     size: 'medium' as const,
+    actionLabel: 'Ver estratégias →',
   },
   {
     id: 'google',
@@ -45,6 +48,7 @@ export const services: ServiceItem[] = [
       { text: ' na sua região.' },
     ],
     size: 'medium' as const,
+    actionLabel: 'Ver resultados →',
   },
   {
     id: 'estrategia',
@@ -57,5 +61,33 @@ export const services: ServiceItem[] = [
       { text: '.' },
     ],
     size: 'wide' as const,
+    actionLabel: 'Conhecer o método →',
+  },
+]
+
+export const automationServices: ServiceItem[] = [
+  {
+    id: 'sistemas',
+    title: 'Sistemas Internos',
+    description: [
+      { text: 'Sistemas sob medida para ' },
+      { text: 'organizar processos', highlight: true },
+      { text: ', reduzir erros e ' },
+      { text: 'escalar sua operação', highlight: true },
+      { text: '.' },
+    ],
+    size: 'medium' as const,
+    actionLabel: 'Solicitar solução →',
+  },
+  {
+    id: 'chatbots',
+    title: 'Chatbots Inteligentes',
+    description: [
+      { text: 'Atendimento automatizado que ' },
+      { text: 'responde, qualifica e vende', highlight: true },
+      { text: ' 24h por dia.' },
+    ],
+    size: 'medium' as const,
+    actionLabel: 'Ver em ação →',
   },
 ]

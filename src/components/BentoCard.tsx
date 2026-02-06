@@ -3,7 +3,7 @@ import { ServiceIcon3D } from './ServiceIcon3D'
 import './BentoCard.css'
 
 type Size = 'small' | 'medium' | 'large' | 'wide'
-type ServiceId = 'sites' | 'redes' | 'google' | 'estrategia'
+type ServiceId = 'sites' | 'redes' | 'google' | 'estrategia' | 'sistemas' | 'chatbots'
 
 export interface DescriptionSegment {
   text: string

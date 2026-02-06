@@ -48,6 +48,62 @@
   grid-column: 1 / -1;
 }
 
+/* Blocos de serviços */
+.bento-services__block {
+  margin-bottom: 80px;
+}
+
+.bento-services__block-title {
+  font-size: clamp(1.5rem, 4vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: var(--tracking-tighter);
+  color: var(--text);
+  margin-bottom: 16px;
+  max-width: 20ch;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.bento-services__block-intro {
+  font-size: clamp(0.9375rem, 2vw, 1.15rem);
+  color: var(--text-muted);
+  max-width: 50ch;
+  margin: 0 auto 48px auto;
+  text-align: center;
+}
+
+/* Grid com 2 colunas para o bloco de automação */
+.bento-grid--automation {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Visual "tech" para o bloco de automação */
+.bento-services__block--automation {
+  border-top: 1px solid rgba(34, 211, 238, 0.1);
+  padding-top: 80px;
+}
+
+@media (max-width: 768px) {
+  .bento-services__block {
+    margin-bottom: 60px;
+  }
+
+  .bento-services__block--automation {
+    padding-top: 60px;
+  }
+
+  .bento-grid--automation {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    max-width: 400px;
+  }
+}
+
 @media (max-width: 768px) {
   .bento-grid--services {
     grid-template-columns: 1fr;
@@ -79,6 +135,10 @@
     gap: 12px;
   }
 
+  .bento-grid--automation {
+    gap: 12px;
+  }
+
   .bento-section {
     padding: 48px 25px;
   }
@@ -90,5 +150,23 @@
   .bento-section__intro {
     font-size: 0.875rem;
     margin-bottom: 24px;
+  }
+
+  .bento-services__block-title {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+  }
+
+  .bento-services__block-intro {
+    font-size: 0.875rem;
+    margin-bottom: 24px;
+  }
+
+  .bento-services__block {
+    margin-bottom: 40px;
+  }
+
+  .bento-services__block--automation {
+    padding-top: 40px;
   }
 }
