@@ -273,11 +273,11 @@
   }
 
   .contact__promise-title {
-    font-size: 1.5rem;
+    font-size: 1.65rem;
   }
 
   .contact__value-list li {
-    font-size: 0.83rem;
+    font-size: 0.9rem;
   }
 
   .contact__action {
@@ -308,7 +308,7 @@
   }
 
   .contact-card__invite {
-    font-size: 0.95rem;
+    font-size: 1rem;
     margin-bottom: 19px;
   }
 
@@ -346,7 +346,7 @@
 
 @media (max-width: 480px) {
   .contact__promise-title {
-    font-size: 1.3rem;
+    font-size: 1.45rem;
   }
 
   .contact-card {
@@ -368,7 +368,7 @@
   }
 
   .contact-card__invite {
-    font-size: 0.89rem;
+    font-size: 0.95rem;
     margin-bottom: 15px;
   }
 

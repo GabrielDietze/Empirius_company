@@ -120,12 +120,12 @@
   }
 
   .bento-section__title {
-    font-size: clamp(1.35rem, 5vw, 1.75rem);
+    font-size: clamp(1.5rem, 6vw, 2rem);
     margin-bottom: 12px;
   }
 
   .bento-section__intro {
-    font-size: 0.9375rem;
+    font-size: 1rem;
     margin-bottom: 32px;
   }
 }
@@ -144,21 +144,21 @@
   }
 
   .bento-section__title {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
   }
 
   .bento-section__intro {
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
     margin-bottom: 24px;
   }
 
   .bento-services__block-title {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     margin-bottom: 12px;
   }
 
   .bento-services__block-intro {
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
     margin-bottom: 24px;
   }
 

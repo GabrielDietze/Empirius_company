@@ -1,8 +1,15 @@
+/**
+ * Segmento de texto com suporte a destaque
+ * Usado para criar textos formatados com partes em negrito/highlight
+ */
 export interface DescriptionSegment {
   text: string
   highlight?: boolean
 }
 
+/**
+ * Item de serviço para exibição em cards da seção de serviços
+ */
 export interface ServiceItem {
   id: string
   title: string
@@ -12,6 +19,15 @@ export interface ServiceItem {
   actionLabel?: string
 }
 
+/**
+ * Serviços principais - Foco em atração e conversão de clientes
+ * 
+ * Inclui:
+ * - Sites profissionais
+ * - Gestão de redes sociais
+ * - Otimização de Google Business
+ * - Estratégia digital
+ */
 export const services: ServiceItem[] = [
   {
     id: 'sites',
@@ -65,6 +81,13 @@ export const services: ServiceItem[] = [
   },
 ]
 
+/**
+ * Serviços de automação - Foco em organização e escalabilidade
+ * 
+ * Inclui:
+ * - Sistemas internos sob medida
+ * - Chatbots inteligentes para atendimento
+ */
 export const automationServices: ServiceItem[] = [
   {
     id: 'sistemas',

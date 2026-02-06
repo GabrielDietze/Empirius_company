@@ -5,7 +5,8 @@ import type { Project } from '../data/projects'
 import './BentoProjects.css'
 
 /* ==========================================================================
-   ICONS
+   ÍCONES SVG
+   Ícones reutilizáveis para a seção de projetos
    ========================================================================== */
 
 function IconClose() {
@@ -66,18 +67,23 @@ function IconWhatsApp() {
 }
 
 /* ==========================================================================
-   CARD CONTENT - Conteúdo compartilhado entre card pequeno e expandido
+   CARD CONTENT - Conteúdo compartilhado entre card compact e expandido
+   
+   Este componente renderiza o conteúdo do projeto de forma dinâmica:
+   - Versão compact: Card no grid (apenas informações básicas)
+   - Versão expandida: Modal com case completo (desafio, estratégia, resultados)
    ========================================================================== */
 
 interface CardContentProps {
   project: Project
   isExpanded: boolean
-  isHero?: boolean
-  isWide?: boolean
-  onClose?: () => void
+  isHero?: boolean      // Card hero tem layout maior e mais informações
+  isWide?: boolean      // Card wide ocupa largura completa
+  onClose?: () => void  // Função para fechar o modal (apenas quando expandido)
 }
 
 function CardContent({ project, isExpanded, isHero, isWide, onClose }: CardContentProps) {
+  // Configuração do link do WhatsApp com mensagem pré-preenchida
   const whatsappNumber = '5531999999999'
   const whatsappMessage = encodeURIComponent(
     `Olá! Vi o case "${project.name}" no site da Empirius e quero um resultado similar para meu negócio.`
@@ -224,7 +230,10 @@ function CardContent({ project, isExpanded, isHero, isWide, onClose }: CardConte
 }
 
 /* ==========================================================================
-   PROJECT CARD - Card no Grid
+   PROJECT CARD - Card individual no Grid
+   
+   Card clicável que expande para modal quando possui conteúdo detalhado.
+   Suporta três variações: normal, hero (destaque) e wide (largura completa)
    ========================================================================== */
 
 function ProjectCard({
@@ -281,7 +290,14 @@ function ProjectCard({
 }
 
 /* ==========================================================================
-   EXPANDED OVERLAY - Modal com overlay fixo centralizado
+   EXPANDED OVERLAY - Modal fixo e centralizado
+   
+   Overlay de tela cheia que exibe o case completo do projeto.
+   
+   Funcionalidades:
+   - Bloqueia scroll do body enquanto aberto
+   - Fecha ao pressionar ESC ou clicar fora do card
+   - Animações suaves de entrada/saída com Framer Motion
    ========================================================================== */
 
 function ExpandedOverlay({
@@ -291,7 +307,7 @@ function ExpandedOverlay({
   project: Project
   onClose: () => void
 }) {
-  // Bloqueia scroll do body
+  // Bloqueia scroll do body e compensa largura da scrollbar
   useEffect(() => {
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
     document.body.style.overflow = 'hidden'
@@ -354,11 +370,24 @@ function ExpandedOverlay({
 
 /* ==========================================================================
    BENTO PROJECTS - Componente Principal
+   
+   Portfólio de projetos em layout Bento Grid.
+   
+   Layout:
+   - 1 card Hero (destaque maior)
+   - N cards secundários (tamanho padrão)
+   - 1 card Wide (largura completa no final)
+   
+   Interatividade:
+   - Cards expansíveis com modal animado
+   - Gestão de estado para controle do modal ativo
    ========================================================================== */
 
 export function BentoProjects() {
+  // Estado para controlar qual projeto está expandido (null = nenhum)
   const [selectedId, setSelectedId] = useState<string | null>(null)
 
+  // Força reveal de elementos após fechar modal
   useEffect(() => {
     const elements = document.querySelectorAll('.bento-projects .reveal')
     elements.forEach((el) => el.classList.add('is-visible'))
@@ -429,7 +458,7 @@ export function BentoProjects() {
         </div>
       </div>
 
-      {/* ANIMATEPRESENCE - Permite animações de saída (exit) */}
+      {/* ANIMATEPRESENCE - Permite animações de saída (exit) do Framer Motion */}
       <AnimatePresence>
         {selectedProject && (
           <ExpandedOverlay

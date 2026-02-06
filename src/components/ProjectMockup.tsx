@@ -12,6 +12,17 @@ interface ProjectMockupProps {
   screenVariant?: 'instagram'
 }
 
+/**
+ * ProjectMockup - Mockups de dispositivos para exibição de projetos
+ * 
+ * Tipos disponíveis:
+ * - macbook: Laptop com tela e base
+ * - iphone: Smartphone individual com notch
+ * - iphones: Stack de 3 iPhones (simulação de feed social)
+ * - dashboard: Gráfico de métricas/resultados
+ * 
+ * Usado para dar contexto visual aos cases/projetos no portfólio
+ */
 export function ProjectMockup({ type, className = '', imageUrl, hideBadge, screenVariant }: ProjectMockupProps) {
   const screenContent = imageUrl ? (
     <img src={imageUrl} alt="" className="mockup__screen-img" />

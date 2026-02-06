@@ -90,12 +90,12 @@
   }
 
   .bento-about__title {
-    font-size: 1.35rem;
+    font-size: 1.5rem;
     margin-bottom: 16px;
   }
 
   .bento-about__text p {
-    font-size: 0.9375rem;
+    font-size: 1rem;
     margin-bottom: 16px;
   }
 
@@ -124,11 +124,11 @@
   }
 
   .bento-about__title {
-    font-size: 1.2rem;
+    font-size: 1.35rem;
   }
 
   .bento-about__text p {
-    font-size: 0.875rem;
+    font-size: 0.95rem;
   }
 
   .bento-about__text .btn {

@@ -5,11 +5,16 @@ import './BentoCard.css'
 type Size = 'small' | 'medium' | 'large' | 'wide'
 type ServiceId = 'sites' | 'redes' | 'google' | 'estrategia' | 'sistemas' | 'chatbots'
 
+/** Segmento de descrição com suporte a destaque visual */
 export interface DescriptionSegment {
   text: string
   highlight?: boolean
 }
 
+/**
+ * Props do BentoCard
+ * Componente versátil usado em várias seções (serviços, benefícios, etc.)
+ */
 interface BentoCardProps {
   title: string
   description?: string | DescriptionSegment[]
@@ -23,6 +28,10 @@ interface BentoCardProps {
   className?: string
 }
 
+/**
+ * Componente interno para renderizar descrição
+ * Suporta tanto string simples quanto array de segmentos com destaques
+ */
 function DescriptionContent({
   description,
   isSegments,
@@ -47,6 +56,17 @@ function DescriptionContent({
   )
 }
 
+/**
+ * BentoCard - Card modular para layout Bento Grid
+ * 
+ * Funcionalidades:
+ * - Suporta múltiplos tamanhos (small, medium, large, wide)
+ * - Ícones 3D ou emojis personalizados
+ * - Descrição com texto rico (segmentos com destaque)
+ * - Lista de benefícios com checkmarks
+ * - Link de ação opcional
+ * - Layout especial para cards largos (wide)
+ */
 export function BentoCard({
   title,
   description,

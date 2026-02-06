@@ -2,6 +2,15 @@ import { BentoCard } from './BentoCard'
 import { services, automationServices } from '../data/services'
 import './BentoServices.css'
 
+/**
+ * Seção BentoServices - Apresentação de serviços em grid Bento
+ * 
+ * Dividida em dois blocos:
+ * 1. Serviços para atração/conversão de clientes (sites, redes sociais, Google Business, estratégia)
+ * 2. Automação e sistemas internos (sistemas sob medida, chatbots)
+ * 
+ * Cada serviço é renderizado como um BentoCard com tamanho e ícone personalizados
+ */
 export function BentoServices() {
   return (
     <section className="bento-section bento-services" id="servicos">

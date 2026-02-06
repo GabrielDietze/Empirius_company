@@ -1,5 +1,13 @@
 import './Footer.css'
 
+/**
+ * Rodapé da página
+ * 
+ * Contém:
+ * - Logo/nome da empresa
+ * - Tagline
+ * - Copyright dinâmico (ano atual)
+ */
 export function Footer() {
   return (
     <footer className="footer">

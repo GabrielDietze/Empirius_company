@@ -1,7 +1,18 @@
 import { useParallax } from '../hooks/useParallax'
 import './Hero.css'
 
+/**
+ * Seção Hero - Primeira impressão da landing page
+ * 
+ * Contém:
+ * - Título principal com destaque visual
+ * - Subtítulo descrevendo a proposta de valor
+ * - CTAs primário e secundário
+ * - Background com mesh gradient animado (parallax)
+ * - Elementos visuais decorativos
+ */
 export function Hero() {
+  // Aplica efeito parallax no primeiro elemento do mesh (movimenta a 20% da velocidade do scroll)
   const parallaxRef = useParallax(0.2)
 
   return (

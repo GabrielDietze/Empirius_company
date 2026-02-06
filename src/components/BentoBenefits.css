@@ -230,12 +230,12 @@
   }
 
   .bento-benefits .bento-section__title {
-    font-size: clamp(1.35rem, 5vw, 1.75rem);
+    font-size: clamp(1.5rem, 6vw, 2rem);
     margin-bottom: 12px;
   }
 
   .bento-benefits .bento-section__intro {
-    font-size: 0.9375rem;
+    font-size: 1rem;
   }
 
   .bento-benefits__grid {
@@ -272,11 +272,11 @@
   }
 
   .bento-benefits .bento-section__title {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
   }
 
   .bento-benefits .bento-section__intro {
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
   }
 
   .bento-benefits__grid {
@@ -294,15 +294,15 @@
   }
 
   .benefit-card__title {
-    font-size: 1.05rem;
+    font-size: 1.15rem;
   }
 
   .benefit-card__impact {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
 
   .benefit-card__description {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
 
   .bento-benefits__proof-text {

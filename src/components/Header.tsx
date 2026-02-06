@@ -1,10 +1,22 @@
 import { useState, useEffect } from 'react'
 import './Header.css'
 
+/**
+ * Componente Header - Navegação fixa no topo da página
+ * 
+ * Funcionalidades:
+ * - Menu hambúrguer responsivo para mobile
+ * - Altera estilo ao fazer scroll (adiciona background/sombra)
+ * - Links de navegação com scroll suave para âncoras
+ * - Acessibilidade com aria-labels adequados
+ */
 export function Header() {
+  // Estado do menu mobile (aberto/fechado)
   const [menuOpen, setMenuOpen] = useState(false)
+  // Estado que indica se o usuário fez scroll na página
   const [scrolled, setScrolled] = useState(false)
 
+  // Detecta scroll para alterar o estilo do header
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', onScroll, { passive: true })

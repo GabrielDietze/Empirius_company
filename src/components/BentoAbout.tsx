@@ -1,5 +1,12 @@
 import './BentoAbout.css'
 
+/**
+ * Seção BentoAbout - Sobre a Empirius
+ * 
+ * Apresenta a missão e proposta de valor da empresa,
+ * com foco em micro e pequenos empreendedores.
+ * Inclui elementos visuais decorativos e mesh gradient de fundo.
+ */
 export function BentoAbout() {
   return (
     <section className="bento-about" id="sobre">

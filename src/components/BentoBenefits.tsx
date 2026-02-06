@@ -2,7 +2,10 @@ import { benefits } from '../data/benefits'
 import type { BenefitItem } from '../data/benefits'
 import './BentoBenefits.css'
 
-// Ícones SVG minimalistas - todos na cor da marca
+/**
+ * Mapeamento de ícones SVG para os benefícios
+ * Todos os ícones usam currentColor para herdar a cor do tema
+ */
 const icons: Record<string, JSX.Element> = {
   chart: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -56,6 +59,15 @@ function BenefitCard({ benefit, index }: { benefit: BenefitItem; index: number }
   )
 }
 
+/**
+ * Seção BentoBenefits - Apresenta os diferenciais da Empirius
+ * 
+ * Estrutura:
+ * - Header com título e introdução
+ * - Grid com 4 cards de benefícios
+ * - CTAs (diagnóstico gratuito e ver projetos)
+ * - Prova social (número de projetos entregues)
+ */
 export function BentoBenefits() {
   return (
     <section className="bento-section bento-benefits" id="beneficios">

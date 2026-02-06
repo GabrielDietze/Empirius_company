@@ -1,7 +1,17 @@
-/** Tipo de mockup (usado por ProjectMockup, mantido para compatibilidade) */
+/**
+ * Tipo de mockup usado para visualização de projetos
+ * Mantido para compatibilidade futura com ProjectMockup component
+ */
 export type ProjectMockupType = 'macbook' | 'iphone' | 'iphones' | 'dashboard'
 
-/** Projeto/case para a seção Projetos — card expansível */
+/**
+ * Projeto/case de sucesso para exibição no portfólio
+ * 
+ * Estrutura:
+ * - Informações básicas (nome, tipo, problema, resultado)
+ * - Imagem de preview
+ * - Conteúdo expandido opcional com detalhes completos do case
+ */
 export interface Project {
   id: string
   /** Nome do projeto / cliente */
@@ -26,13 +36,21 @@ export interface Project {
     problema: string[]
     /** Estratégia aplicada / ações realizadas (bullets) */
     solucao: string[]
-    /** Métricas (bullets) */
+    /** Métricas e resultados alcançados (bullets) */
     resultados: string[]
-    /** Ex: "Figma • React • Node" */
+    /** Tecnologias e ferramentas utilizadas (separadas por " • ") */
     ferramentas: string
   }
 }
 
+/**
+ * Lista de projetos/cases de sucesso
+ * 
+ * Ordem de exibição:
+ * - Primeiro projeto: Card Hero (destaque maior)
+ * - Projetos intermediários: Cards normais
+ * - Último projeto: Card Wide (largura completa)
+ */
 export const projects: Project[] = [
   {
     id: 'personal-marcela',

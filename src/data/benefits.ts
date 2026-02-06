@@ -1,4 +1,7 @@
-/** Benefício da consultoria (por que trabalhar com a Empirius) */
+/**
+ * Benefício/diferencial da empresa
+ * Usado na seção de "Por que escolher a Empirius"
+ */
 export interface BenefitItem {
   id: string
   title: string
@@ -10,6 +13,15 @@ export interface BenefitItem {
   icon?: string
 }
 
+/**
+ * Lista de benefícios/diferenciais da Empirius
+ * 
+ * Demonstra:
+ * - Resultados mensuráveis (ROI)
+ * - Estratégia personalizada
+ * - Atendimento próximo
+ * - Foco em crescimento escalável
+ */
 export const benefits: BenefitItem[] = [
   {
     id: 'resultados',

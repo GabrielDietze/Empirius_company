@@ -7,6 +7,22 @@ interface ServiceIcon3DProps {
   className?: string
 }
 
+/**
+ * ServiceIcon3D - Ícones SVG com efeito 3D para os serviços
+ * 
+ * Cada serviço tem um ícone personalizado:
+ * - sites: Globo com anéis (representa web/global)
+ * - redes: Rede de ícones sociais (Instagram, Facebook, WhatsApp)
+ * - google: Pin de localização com "G" (Google Business)
+ * - estrategia: Alvo com animação (foco em objetivo)
+ * - sistemas: Estrutura de camadas (arquitetura de sistemas)
+ * - chatbots: Bolha de chat com inteligência (automação)
+ * 
+ * Todos os ícones utilizam:
+ * - Gradientes ciano/branco para visual premium
+ * - Filtros de glow (brilho) para efeito néon
+ * - Animações CSS para interatividade
+ */
 export function ServiceIcon3D({ serviceId, className = '' }: ServiceIcon3DProps) {
   return (
     <div className={`service-icon-3d service-icon-3d--${serviceId} ${className}`} aria-hidden="true">
@@ -20,7 +36,10 @@ export function ServiceIcon3D({ serviceId, className = '' }: ServiceIcon3DProps)
   )
 }
 
-/* Globo: esfera de aneis neon ciano + bordas brancas (vidro fosco) */
+/**
+ * IconGlobe - Ícone de globo para serviço de Sites
+ * Representa alcance global e presença web
+ */
 function IconGlobe() {
   return (
     <svg viewBox="0 0 80 80" fill="none" className="service-icon-3d__svg">
@@ -48,7 +67,10 @@ function IconGlobe() {
   )
 }
 
-/* Redes Sociais: icones de Facebook, Instagram e WhatsApp */
+/**
+ * IconSocial - Ícones de redes sociais (Instagram, Facebook, WhatsApp)
+ * Representa gestão de presença nas principais plataformas sociais
+ */
 function IconSocial() {
   return (
     <svg viewBox="0 0 80 80" fill="none" className="service-icon-3d__svg">
@@ -90,7 +112,10 @@ function IconSocial() {
   )
 }
 
-/* Pin: vidro ciano com bordas brancas + "G" brilhante */
+/**
+ * IconPin - Pin de localização com "G" do Google
+ * Representa Google Business e SEO local
+ */
 function IconPin() {
   return (
     <svg viewBox="0 0 80 80" fill="none" className="service-icon-3d__svg">
@@ -121,7 +146,10 @@ function IconPin() {
   )
 }
 
-/* Alvo: circulos com bordas brancas/ciano + centro emissivo */
+/**
+ * IconTarget - Alvo com círculos concêntricos
+ * Representa estratégia digital focada em objetivos
+ */
 function IconTarget() {
   return (
     <svg viewBox="0 0 80 80" fill="none" className="service-icon-3d__svg">

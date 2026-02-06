@@ -6,7 +6,14 @@ interface DeviceStackProps {
   className?: string
 }
 
-/** Stack MacBook (trás, inclinado) + iPhone (frente) para vitrine de projeto */
+/**
+ * DeviceStack - Composição de dispositivos empilhados
+ * 
+ * Combina MacBook (ao fundo, inclinado) + iPhone (na frente)
+ * para criar uma apresentação visual impactante de projetos responsivos.
+ * 
+ * Inclui efeito de glow para dar profundidade e destaque.
+ */
 export function DeviceStack({ imageUrl, className = '' }: DeviceStackProps) {
   return (
     <div className={`device-stack ${className}`} aria-hidden="true">

@@ -1,9 +1,15 @@
 import './Contact.css'
 
-/** Número WhatsApp com DDI (ex.: 5511999999999). Substitua pelo número real. */
+/**
+ * Número WhatsApp com DDI (ex.: 5511999999999)
+ * IMPORTANTE: Substitua pelo número real antes do deploy
+ */
 const WHATSAPP_NUMBER = '5511999999999'
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`
 
+/**
+ * Ícone do WhatsApp como componente SVG
+ */
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
     <svg
@@ -17,6 +23,15 @@ function WhatsAppIcon({ className }: { className?: string }) {
   )
 }
 
+/**
+ * Seção Contact - Formulário/Cartão de contato
+ * 
+ * Estrutura em 2 colunas:
+ * - Esquerda: Promessa de valor e benefícios do diagnóstico
+ * - Direita: Cartão glassmorphism com CTA para WhatsApp
+ * 
+ * NOTA: Substitua o avatar "E" por foto real do consultor para aumentar conversão
+ */
 export function Contact() {
   return (
     <section className="contact" id="contato">

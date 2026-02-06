@@ -282,13 +282,13 @@
   }
 
   .hero__title {
-    font-size: clamp(1.75rem, 6vw, 2.4rem);
+    font-size: clamp(1.95rem, 7vw, 2.6rem);
     margin: 0 auto 20px;
     line-height: 1.1;
   }
 
   .hero__subtitle {
-    font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+    font-size: clamp(1rem, 3vw, 1.15rem);
     margin: 0 auto 32px;
     line-height: 1.6;
   }
@@ -300,6 +300,8 @@
 
   .hero__cta {
     gap: 12px;
+    max-width: 300px;
+    margin: 0 auto;
   }
 
   .btn {
@@ -387,18 +389,22 @@
   }
 
   .hero__title {
-    font-size: clamp(1.4rem, 6.2vw, 1.95rem);
+    font-size: clamp(1.6rem, 6.8vw, 2.15rem);
     margin: 0 auto 16px;
   }
 
   .hero__subtitle {
-    font-size: clamp(0.8rem, 2.2vw, 0.95rem);
+    font-size: clamp(0.9rem, 2.5vw, 1.05rem);
     margin: 0 auto 28px;
   }
 
   .hero__tag {
     font-size: 0.64rem;
     margin-bottom: 12px;
+  }
+
+  .hero__cta {
+    max-width: 260px;
   }
 
   .btn {

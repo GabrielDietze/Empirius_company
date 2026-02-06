@@ -710,21 +710,11 @@
   }
   
   .bento-projects__title {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
   }
   
   .bento-projects__intro {
-    font-size: 0.875rem;
-  }
-  
-  .projects-bento-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  
-  .projects-bento-grid > .project-card--hero {
-    grid-column: span 1;
-  }
+    font-size: 0.95rem;
   
   /* Card Wide vira vertical no mobile */
   .projects-bento-grid > .project-card--wide {
@@ -1432,4 +1422,5 @@
     right: 1rem;
     z-index: 9999;
   }
+}
 }
