@@ -84,7 +84,7 @@ interface CardContentProps {
 
 function CardContent({ project, isExpanded, isHero, isWide, onClose }: CardContentProps) {
   // Configuração do link do WhatsApp com mensagem pré-preenchida
-  const whatsappNumber = '5531999999999'
+  const whatsappNumber = '5531998954003'
   const whatsappMessage = encodeURIComponent(
     `Olá! Vi o case "${project.name}" no site da Empirius e quero um resultado similar para meu negócio.`
   )

@@ -4,7 +4,7 @@ import './Contact.css'
  * Número WhatsApp com DDI (ex.: 5511999999999)
  * IMPORTANTE: Substitua pelo número real antes do deploy
  */
-const WHATSAPP_NUMBER = '5511999999999'
+const WHATSAPP_NUMBER = '5531998954003'
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`
 
 /**
@@ -92,8 +92,8 @@ export function Contact() {
               {/* Rodapé */}
               <p className="contact-card__footer">
                 Prefere e-mail?{' '}
-                <a href="mailto:contato@empirius.com.br" className="contact-card__footer-link">
-                  contato@empirius.com.br
+                <a href="mailto:contatoempirius@gmail.com" className="contact-card__footer-link">
+                  contatoempirius@gmail.com
                 </a>
               </p>
             </div>
