@@ -5,7 +5,8 @@ import './Contact.css'
  * IMPORTANTE: Substitua pelo número real antes do deploy
  */
 const WHATSAPP_NUMBER = '5531998954003'
-const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`
+const WHATSAPP_MESSAGE = encodeURIComponent('Olá! Vim pelo site da Empirius e gostaria de conversar sobre meu projeto.')
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`
 
 /**
  * Ícone do WhatsApp como componente SVG
