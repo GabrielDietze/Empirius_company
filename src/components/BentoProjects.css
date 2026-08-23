@@ -715,6 +715,7 @@
   
   .bento-projects__intro {
     font-size: 0.95rem;
+  }
   
   /* Card Wide vira vertical no mobile */
   .projects-bento-grid > .project-card--wide {
@@ -1422,5 +1423,4 @@
     right: 1rem;
     z-index: 9999;
   }
-}
 }

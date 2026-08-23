@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { projects } from '../data/projects'
 import type { Project } from '../data/projects'
@@ -328,7 +329,7 @@ function ExpandedOverlay({
     return () => window.removeEventListener('keydown', handleEsc)
   }, [onClose])
 
-  return (
+  return createPortal(
     /* 
      * OVERLAY CONTAINER FIXO
      * - position: fixed + inset: 0 = cobre toda a tela
@@ -364,7 +365,8 @@ function ExpandedOverlay({
           onClose={onClose}
         />
       </motion.article>
-    </motion.div>
+    </motion.div>,
+    document.body
   )
 }
 
