@@ -53,6 +53,35 @@ export interface Project {
  */
 export const projects: Project[] = [
   {
+    id: 'lacqua-di-fiori-minas-shopping',
+    name: 'Lacqua di Fiori • Minas Shopping',
+    serviceType: 'E-commerce • UX/UI • Performance',
+    problema: 'Levar a experiência da loja física para um e-commerce elegante, rápido e confiável.',
+    resultado: 'E-commerce completo',
+    image: '/images/lacqua-di-fiori.png',
+    techTags: ['React', 'E-commerce', 'UX/UI', 'SEO'],
+    expandido: {
+      contexto:
+        'Projeto desenvolvido para a loja Lacqua di Fiori do Minas Shopping, traduzindo a presença física da marca em uma experiência de compra digital completa, elegante e preparada para atender clientes em todo o Brasil.',
+      problema: [
+        'Conectar a confiança e o cuidado da loja física à experiência online.',
+        'Organizar perfumes e produtos de beleza em uma navegação simples e intuitiva.',
+        'Oferecer uma jornada de compra segura, clara e preparada para diferentes dispositivos.',
+      ],
+      solucao: [
+        'Criação de uma vitrine digital com identidade visual alinhada à Lacqua di Fiori.',
+        'Arquitetura de categorias para facilitar a descoberta de perfumes, kits, desodorantes e hidratantes.',
+        'Construção de uma experiência responsiva com foco em velocidade, confiança e conversão.',
+      ],
+      resultados: [
+        'E-commerce totalmente funcional',
+        'Experiência de compra responsiva',
+        'Presença digital integrada à loja física',
+      ],
+      ferramentas: 'React • E-commerce • UX/UI • SEO • Design Responsivo',
+    },
+  },
+  {
     id: 'personal-marcela',
     name: 'Personal Marcela Magalhães',
     serviceType: 'Site • Automação',
@@ -81,26 +110,28 @@ export const projects: Project[] = [
   {
     id: 'academia-corpo',
     name: 'Academia Corpo em Forma',
-    serviceType: 'Redes Sociais • Branding',
-    problema: 'Transformar academia em hub comunitário engajado.',
+    serviceType: 'Redes Sociais • Branding • Automação',
+    problema: 'Transformar academia em hub comunitário engajado e automatizar o atendimento.',
     resultado: '+40% alcance',
     image: '/images/academia-corpo.png',
     url: 'https://www.instagram.com/academia.corpo.emforma/',
     expandido: {
       contexto:
-        'Transformar a academia em um hub comunitário. O objetivo era aumentar o engajamento dos alunos atuais e atrair novas matrículas através de uma identidade visual forte e desejo gerado pelo Instagram.',
+        'Transformar a academia em um hub comunitário e tornar o atendimento mais eficiente. O objetivo era aumentar o engajamento dos alunos atuais, atrair novas matrículas e automatizar as primeiras interações através de uma identidade visual forte, conteúdo estratégico e chatbot.',
       problema: [
         'Baixo engajamento e pouca retenção de alunos.',
         'Identidade visual fraca e sem diferencial nas redes.',
         'Dificuldade em atrair novos alunos organicamente.',
+        'Atendimento manual e repetitivo para dúvidas e primeiros contatos.',
       ],
       solucao: [
         'Criação de identidade visual proprietária para posts e stories.',
         'Estratégia de conteúdo focada em retenção de alunos e atração de seguidores.',
         'Uso de templates escaláveis para manter constância sem perder qualidade.',
+        'Desenvolvimento de chatbot para automatizar o atendimento inicial e direcionar os interessados.',
       ],
-      resultados: ['Crescimento real da base de seguidores', '+40% Alcance nas publicações', 'Maior engajamento e retenção de alunos'],
-      ferramentas: 'Instagram • Redes Sociais',
+      resultados: ['Crescimento real da base de seguidores', '+40% Alcance nas publicações', 'Maior engajamento e retenção de alunos', 'Atendimento inicial automatizado com chatbot'],
+      ferramentas: 'Instagram • Redes Sociais • Chatbot • Automação de Atendimento',
     },
   },
   {

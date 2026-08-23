@@ -96,7 +96,7 @@
 
 /* Card Wide ocupa todas as 3 colunas */
 .projects-bento-grid > .project-card--wide {
-  grid-column: span 3;
+  grid-column: span 2;
 }
 
 /* Quando tem expandido, muda o grid */
