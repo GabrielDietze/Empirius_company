@@ -156,6 +156,12 @@
   letter-spacing: -0.04em;
 }
 
+.contact-card__avatar-img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
 .contact-card__status {
   display: flex;
   align-items: center;

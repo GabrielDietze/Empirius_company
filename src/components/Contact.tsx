@@ -66,7 +66,7 @@ export function Contact() {
               {/* DICA: Substitua o avatar pela foto real do consultor para aumentar conversão */}
               <div className="contact-card__header">
                 <div className="contact-card__avatar" aria-hidden="true">
-                  <span className="contact-card__avatar-inner">E</span>
+                  <img src="/logo.png" alt="Empirius" className="contact-card__avatar-img" />
                 </div>
                 <div className="contact-card__status">
                   <span className="contact-card__status-dot" aria-hidden="true" />

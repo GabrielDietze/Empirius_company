@@ -125,6 +125,19 @@
   to { transform: translate(-50%, -50%) rotateY(25deg) rotateX(-5deg) rotateZ(-360deg); }
 }
 
+.hero__logo {
+  height: 56px;
+  width: auto;
+  margin-bottom: 24px;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .hero__logo {
+    margin: 0 auto 24px;
+  }
+}
+
 .hero__tag {
   display: inline-block;
   font-weight: 600;

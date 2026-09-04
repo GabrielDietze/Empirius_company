@@ -16,6 +16,15 @@
   letter-spacing: var(--tracking-tight);
   color: var(--text);
   margin-bottom: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer__logo-img {
+  height: 24px;
+  width: auto;
+  display: block;
 }
 
 .footer__text {

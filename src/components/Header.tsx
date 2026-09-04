@@ -34,7 +34,10 @@ export function Header() {
   return (
     <header className={`header ${scrolled ? 'header--scrolled' : ''}`}>
       <div className="header__inner">
-        <a href="#" className="header__logo">Empirius</a>
+        <a href="#" className="header__logo">
+          <img src="/logo.png" alt="Empirius logo" className="header__logo-img" />
+          Empirius
+        </a>
         <nav className={`header__nav ${menuOpen ? 'header__nav--open' : ''}`} aria-label="Menu principal">
           <ul>
             {links.map(({ href, label }) => (

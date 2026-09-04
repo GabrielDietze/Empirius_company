@@ -26,6 +26,7 @@ export function Hero() {
 
       <div className="hero__inner">
         <div className="hero__text">
+          <img src="/logo.png" alt="Empirius" className="hero__logo reveal" />
           <h1 className="hero__title reveal reveal-delay-1">
             Seu negócio merece uma <span className="hero__highlight">presença digital que gera clientes</span>.
           </h1>
